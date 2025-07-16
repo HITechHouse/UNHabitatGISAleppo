@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Metatags for character set, viewport, and compatibility -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Favicon and Apple Touch Icon -->
+    <link
+      rel="shortcut icon"
+      href="assets/img/UN_Habitat_Icon.svg"
+      type="image/x-icon"
+    />
+    <!-- Page Title -->
+    <title>Assign User Role</title>
+    <!-- Fonts and icons -->
+    <link href="libraries/css/inter.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link href="libraries/css/fontawesome-6.5.1.min.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="assets/css/soft-ui-dashboard.css?v=1.1.0"
+      rel="stylesheet"
+    />
+
+    <!-- Simplified Arabic Font -->
+    <link href="libraries/css/noto-naskh-arabic.css" rel="stylesheet" />
+    <!-- Github buttons -->
+    <!-- Common User Functions -->
+
+    <script src="assets/js/common-user-functions.js"></script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="libraries/js/soft-ui-dashboard-1.1.0.min.js"></script>
+
+    <!-- Common styles -->
+    <link href="assets/css/styles.css" rel="stylesheet" />
+
+    <style>
+      /* Page-specific styles for assign-user-role.html */
+
+      .menu-item i {
+        margin-left: 8px;
+        width: 20px;
+        text-align: center;
+      }
+
+      .menu-item:hover {
+        background-color: #f5f5f5;
+      }
+
+      body[dir="ltr"] .menu-dropdown-content {
+        right: auto;
+        left: 0;
+      }
+
+      body[dir="ltr"] .menu-item i {
+        margin-left: 0;
+        margin-right: 8px;
+      }
+
+      /* Enhanced Table Header Styles */
+      .card-header h6 {
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        color: #344767 !important;
+        margin-bottom: 0.5rem !important;
+      }
+
+      .table thead th {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        color: #344767 !important;
+        padding: 1rem 0.75rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        border-bottom: 2px solid #e9ecef !important;
+        background-color: #f8f9fa !important;
+      }
+
+      .table thead th.text-uppercase {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+      }
+
+      /* Card and chart styles */
+      .card {
+        border-radius: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        background-color: linear-gradient(135deg, #e3f2fd, #ffffff);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 200px;
+        padding: 1.5rem;
+      }
+
+      .card-title {
+        margin-bottom: 1rem;
+      }
+
+      .card-text {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .chart-container {
+        height: 100%;
+        min-height: 200px;
+      }
+
+      canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      /* Font Awesome icon styles */
+      .fa,
+      .fab,
+      .fas,
+      .far,
+      i.fa,
+      i.fab,
+      i.fas,
+      i.far,
+      i.fa-facebook-f,
+      i.fa-x-twitter,
+      i.fa-instagram,
+      i.fa-linkedin-in,
+      i.fa-whatsapp {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+        display: inline-block !important;
+        visibility: visible !important;
+      }
+
+      /* Enhanced Notification System Styles */
+      #notificationContainer {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        max-width: 400px;
+        pointer-events: none;
+      }
+
+      body[dir="ltr"] #notificationContainer {
+        right: auto;
+        left: 20px;
+      }
+
+      .notification {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 10px;
+        padding: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        opacity: 0;
+        transform: translateX(100%);
+        animation: slideIn 0.3s ease-out forwards;
+        pointer-events: auto;
+        border-left: 4px solid;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body[dir="ltr"] .notification {
+        transform: translateX(-100%);
+        border-left: none;
+        border-right: 4px solid;
+      }
+
+      .notification.success {
+        border-left-color: #28a745;
+        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      }
+
+      body[dir="ltr"] .notification.success {
+        border-right-color: #28a745;
+      }
+
+      .notification.error {
+        border-left-color: #dc3545;
+        background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+      }
+
+      body[dir="ltr"] .notification.error {
+        border-right-color: #dc3545;
+      }
+
+      .notification.warning {
+        border-left-color: #ffc107;
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+      }
+
+      body[dir="ltr"] .notification.warning {
+        border-right-color: #ffc107;
+      }
+
+      .notification.info {
+        border-left-color: #17a2b8;
+        background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+      }
+
+      body[dir="ltr"] .notification.info {
+        border-right-color: #17a2b8;
+      }
+
+      .notification-icon {
+        font-size: 20px;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .notification.success .notification-icon {
+        color: #155724;
+      }
+
+      .notification.error .notification-icon {
+        color: #721c24;
+      }
+
+      .notification.warning .notification-icon {
+        color: #856404;
+      }
+
+      .notification.info .notification-icon {
+        color: #0c5460;
+      }
+
+      .notification-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .notification-title {
+        font-weight: bold;
+        margin-bottom: 4px;
+        color: #2c3e50;
+        font-size: 14px;
+      }
+
+      .notification-message {
+        color: #34495e;
+        font-size: 13px;
+        line-height: 1.4;
+        word-wrap: break-word;
+      }
+
+      .notification-close {
+        background: none;
+        border: none;
+        color: #6c757d;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      .notification-close:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #495057;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .notification.slide-out {
+        animation: slideOut 0.3s ease-in forwards;
+      }
+
+      @keyframes slideOut {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes slideInLtr {
+        from {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideOutLtr {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+      }
+
+      body[dir="ltr"] .notification {
+        animation: slideInLtr 0.3s ease-out forwards;
+      }
+
+      body[dir="ltr"] .notification.slide-out {
+        animation: slideOutLtr 0.3s ease-in forwards;
+      }
+
+      .notification::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 100%
+        );
+        pointer-events: none;
+      }
+
+      /* Multi-select dropdown styling */
+      .roles-select {
+        width: 100%;
+        min-height: 120px;
+        max-height: 150px;
+        border: 1px solid #d1ecf1;
+        border-radius: 8px;
+        padding: 8px;
+        background-color: #f8f9fa;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        overflow-y: auto;
+        resize: vertical;
+      }
+
+      .roles-select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        outline: none;
+      }
+
+      .roles-select option {
+        padding: 8px 10px;
+        margin: 2px 0;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: block;
+        line-height: 1.4;
+      }
+
+      .roles-select option:checked {
+        background: linear-gradient(
+          135deg,
+          #28a745 0%,
+          #20c997 100%
+        ) !important;
+        color: white !important;
+        font-weight: bold;
+        border: 2px solid #155724;
+      }
+
+      .roles-select option:hover {
+        background-color: #e3f2fd !important;
+        color: #0056b3;
+      }
+
+      .roles-select option:checked:hover {
+        background: linear-gradient(
+          135deg,
+          #218838 0%,
+          #1e7e34 100%
+        ) !important;
+        color: white !important;
+      }
+
+      /* Instructions text */
+      .select-instructions {
+        font-size: 10px;
+        color: #6c757d;
+        margin-top: 5px;
+        text-align: center;
+        font-style: italic;
+      }
+
+      /* Count badge styling */
+      .count-badge {
+        background: linear-gradient(135deg, #0d6efd 0%, #3498db 100%);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .count-badge:hover {
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+      }
+
+      .count-badge i {
+        font-size: 12px;
+      }
+
+      /* User name styling */
+      .user-name-cell {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 15px;
+      }
+
+      .user-email {
+        color: #6c757d;
+        font-size: 12px;
+        font-style: italic;
+        margin-top: 2px;
+      }
+
+      /* Table row hover effects */
+      #userRolesTableBody tr {
+        transition: all 0.3s ease;
+      }
+
+      #userRolesTableBody tr:hover {
+        background-color: rgba(0, 123, 255, 0.05);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Improved table cell padding */
+      #userRolesTableBody td {
+        padding: 15px 12px;
+        vertical-align: middle;
+      }
+
+      /* Table header improvements */
+      #userRolesTable thead th {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-bottom: 2px solid #dee2e6;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      /* Loading spinner */
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Save button styling */
+      .save-changes-btn {
+        position: sticky;
+        bottom: 20px;
+        margin: 20px auto;
+        display: block;
+        z-index: 1000;
+      }
+
+      /* Green save button styling */
+      .btn-primary {
+        background-color: #28a745 !important;
+        border-color: #28a745 !important;
+        color: #fff !important;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #218838 !important;
+        border-color: #218838 !important;
+        color: #fff !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+      }
+
+      .btn-primary:focus {
+        background-color: #218838 !important;
+        border-color: #218838 !important;
+        color: #fff !important;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+      }
+
+      .btn-primary:active {
+        background-color: #1e7e34 !important;
+        border-color: #1e7e34 !important;
+        color: #fff !important;
+      }
+    </style>
+  </head>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img
+          src="assets/img/aleppo.jfif"
+          alt="Logo 1"
+          class="header-logo"
+          onclick="window.location.href = './welcome.html';"
+          style="cursor: pointer"
+          title="Aleppo Governorate"
+        />
+      </div>
+
+      <div class="header-title text-center">
+        <div class="title-ar">نظام إدارة المعلومات الحضرية _ مدينة حلب</div>
+        <div class="title-en">
+          Urban Information Management System - Aleppo City
+        </div>
+      </div>
+
+      <div class="header-logos right-logos">
+        <div class="menu-dropdown">
+          <button
+            class="menu-toggle"
+            id="menuToggleBtn"
+            onclick="toggleMenu()"
+          ></button>
+          <div class="menu-dropdown-content" id="menuDropdown">
+            <a
+              href="#"
+              class="menu-item"
+              id="langToggleBtn"
+              onclick="toggleLanguage();"
+            >
+              <i class="fas fa-language"></i>
+              <span id="langToggleText">تغيير اللغة</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="settingsBtn"
+              onclick="window.location.href = './profile.html';"
+            >
+              <i class="fas fa-cog"></i>
+              <span id="settingsText">الإعدادات</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="logoutBtn"
+              onclick="logoutUser();"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span id="logoutText">تسجيل الخروج</span>
+            </a>
+          </div>
+        </div>
+          <img
+            src="assets/img/unhabitat.png"
+            alt="Logo 3"
+            class="header-logo"
+            title="UN Habitat"
+            style="background-color: #fff;"
+          />
+        <img src="assets/img/japan.jpg" alt="Logo 2" class="header-logo" title="From the People of Japanese "/>
+      </div>
+    </header>
+
+    <aside
+      class="sidenav navbar navbar-vertical navbar-expand-xs border-0 my-3 fixed-end bg-gray-300"
+      id="sidenav-main"
+      style="max-height: calc(100vh - 66px); overflow-y: visible"
+    >
+      <div class="sidenav-header">
+        <i
+          class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true"
+          id="iconSidenav"
+        ></i>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-tachometer-alt"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-table"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">configuration Tables </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="ManageUsers.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #007bff 0%,
+                    #0056b3 100%
+                  ) !important;
+                "
+              >
+                <i
+                  class="fas fa-users-cog"
+                  style="color: white; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Manage users</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="neighborhoodCommitteesManagement.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-users"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان الأحياء</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="developmentCommitteesManagement.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-chart-line"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان التنمية</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidenav-footer mx-3"></div>
+    </aside>
+    <!-- Main Content Area -->
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
+    >
+      <!-- Demo Mode Notice -->
+      <div class="container-fluid py-2">
+        <div class="alert alert-info alert-dismissible fade show" role="alert" id="demoModeNotice">
+          <i class="fas fa-info-circle me-2"></i>
+          <strong id="demoModeTitle">وضع التجربة:</strong> 
+          <span id="demoModeText">هذه الصفحة تعمل بدون خادم خلفي. جميع البيانات محفوظة محلياً في المتصفح.</span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+      
+      <!-- Table Section for Assigning User Roles -->
+      <div class="container-fluid py-4">
+        <!-- Bootstrap container with padding -->
+        <div class="row">
+          <div class="col-12">
+            <!-- Full-width column -->
+            <div class="card mb-4 mt-5">
+              <!-- Card with margin bottom and top -->
+              <!-- Card Header -->
+              <div
+                class="card-header pb-0 d-flex justify-content-between align-items-center"
+              >
+                <!-- Card header with no bottom padding -->
+                <h6 id="pageTitle">ربط المستخدمين بالأدوار</h6>
+                <div class="d-flex gap-2">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="saveAllChanges()"
+                  >
+                    <i class="fas fa-save"></i>
+                    <span id="saveChangesText">حفظ التغييرات</span>
+                  </button>
+                  <button
+                    class="btn btn-warning btn-sm"
+                    onclick="resetToDefault()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #ffc107 0%,
+                        #fd7e14 100%
+                      );
+                      border: none;
+                      box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+                    "
+                    title="إعادة تعيين البيانات إلى الحالة الافتراضية"
+                  >
+                    <i class="fas fa-undo"></i>
+                    <span id="resetButtonText">إعادة تعيين</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body px-0 pt-0 pb-2">
+                <!-- Card body with specific padding -->
+                <!-- Loading indicator -->
+                <div id="loadingIndicator" class="text-center p-4">
+                  <div class="loading"></div>
+                  <p class="mt-2">جاري التحميل...</p>
+                </div>
+                <!-- Table Responsive Wrapper -->
+                <div
+                  class="table-responsive p-0"
+                  id="tableContainer"
+                  style="display: none"
+                >
+                  <!-- Responsive table with no padding -->
+                  <table
+                    class="table align-items-center mb-0"
+                    id="userRolesTable"
+                  >
+                    <!-- Bootstrap table -->
+                    <!-- Table Header -->
+                    <thead>
+                      <tr>
+                        <!-- User Name Column -->
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          <span id="userNameHeader">اسم المستخدم</span>
+                        </th>
+                        <!-- Current Roles Column -->
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          <span id="currentRolesHeader"
+                            ><i class="fas fa-chart-bar me-1"></i>عدد
+                            الأدوار</span
+                          >
+                        </th>
+                        <!-- Available Roles Column -->
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          <span id="availableRolesHeader"
+                            ><i class="fas fa-list-check me-1"></i>اختيار
+                            الأدوار</span
+                          >
+                        </th>
+                      </tr>
+                    </thead>
+                    <!-- Table Body -->
+                    <tbody id="userRolesTableBody">
+                      <!-- Dynamic content will be loaded here -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="fixed-plugin">
+      <a
+        id="helpButton"
+        class="fixed-plugin-button text-dark position-fixed px-3 py-2"
+        style="bottom: 40px; z-index: 6000"
+      >
+        <i class="fa fa-question-circle py-2"> </i>
+      </a>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="libraries/js/popper-2.11.8.min.js"></script>
+    <script src="libraries/js/bootstrap-5.3.2.min.js"></script>
+    <script src="libraries/js/perfect-scrollbar-1.5.5.min.js"></script>
+    <script src="libraries/js/smooth-scrollbar-8.8.1.min.js"></script>
+    <script src="libraries/js/chart-4.4.1.umd.min.js"></script>
+    <script>
+      // Global variables
+      let users = [];
+      let roles = [];
+      let userRoles = [];
+
+      // Mock data for users
+      const mockUsers = [
+        {
+          id: 1,
+          username: "أحمد محمد",
+          email: "ahmed.mohamed@example.com",
+          first_name: "أحمد",
+          last_name: "محمد"
+        },
+        {
+          id: 2,
+          username: "فاطمة علي",
+          email: "fatima.ali@example.com",
+          first_name: "فاطمة",
+          last_name: "علي"
+        },
+        {
+          id: 3,
+          username: "محمد حسن",
+          email: "mohamed.hassan@example.com",
+          first_name: "محمد",
+          last_name: "حسن"
+        },
+        {
+          id: 4,
+          username: "سارة أحمد",
+          email: "sara.ahmed@example.com",
+          first_name: "سارة",
+          last_name: "أحمد"
+        },
+        {
+          id: 5,
+          username: "علي محمود",
+          email: "ali.mahmoud@example.com",
+          first_name: "علي",
+          last_name: "محمود"
+        },
+        {
+          id: 6,
+          username: "نور الدين",
+          email: "nour.eldeen@example.com",
+          first_name: "نور",
+          last_name: "الدين"
+        }
+      ];
+
+      // Mock data for roles
+      const mockRoles = [
+        {
+          id: 1,
+          role_name: "مدير النظام",
+          description: "صلاحيات كاملة على النظام"
+        },
+        {
+          id: 2,
+          role_name: "مشرف",
+          description: "إدارة المستخدمين والمحتوى"
+        },
+        {
+          id: 3,
+          role_name: "محرر",
+          description: "تحرير المحتوى والبيانات"
+        },
+        {
+          id: 4,
+          role_name: "مشاهد",
+          description: "عرض البيانات فقط"
+        },
+        {
+          id: 5,
+          role_name: "محلل بيانات",
+          description: "تحليل البيانات والتقارير"
+        }
+      ];
+
+      // Mock data for user roles (initial assignments)
+      const mockUserRoles = [
+        { id: 1, user: 1, role: 1 }, // أحمد محمد - مدير النظام
+        { id: 2, user: 2, role: 2 }, // فاطمة علي - مشرف
+        { id: 3, user: 2, role: 3 }, // فاطمة علي - محرر
+        { id: 4, user: 3, role: 3 }, // محمد حسن - محرر
+        { id: 5, user: 4, role: 4 }, // سارة أحمد - مشاهد
+        { id: 6, user: 5, role: 2 }, // علي محمود - مشرف
+        { id: 7, user: 5, role: 5 }, // علي محمود - محلل بيانات
+        { id: 8, user: 6, role: 4 }, // نور الدين - مشاهد
+        { id: 9, user: 6, role: 5 }  // نور الدين - محلل بيانات
+      ];
+
+      // Local storage keys
+      const STORAGE_KEYS = {
+        USERS: 'mock_users',
+        ROLES: 'mock_roles',
+        USER_ROLES: 'mock_user_roles'
+      };
+
+      // Initialize mock data in localStorage if not exists
+      function initializeMockData() {
+        if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+          localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(mockUsers));
+        }
+        if (!localStorage.getItem(STORAGE_KEYS.ROLES)) {
+          localStorage.setItem(STORAGE_KEYS.ROLES, JSON.stringify(mockRoles));
+        }
+        if (!localStorage.getItem(STORAGE_KEYS.USER_ROLES)) {
+          localStorage.setItem(STORAGE_KEYS.USER_ROLES, JSON.stringify(mockUserRoles));
+        }
+      }
+
+      // Get JWT token from localStorage (kept for compatibility)
+      function getAuthToken() {
+        return localStorage.getItem("access_token");
+      }
+
+      // Mock API Helper function
+      async function apiCall(endpoint, options = {}) {
+        // Simulate network delay (shorter for demo mode)
+        await new Promise(resolve => setTimeout(resolve, 150));
+
+        try {
+          // Handle different endpoints
+          if (endpoint === "/api/users/") {
+            const usersData = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+            return usersData;
+          }
+          
+          if (endpoint === "/api/roles/") {
+            const rolesData = JSON.parse(localStorage.getItem(STORAGE_KEYS.ROLES) || '[]');
+            return rolesData;
+          }
+          
+          if (endpoint === "/api/user-roles/") {
+            const userRolesData = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER_ROLES) || '[]');
+            return userRolesData;
+          }
+
+          // Handle POST requests for user-roles
+          if (endpoint === "/api/user-roles/" && options.method === "POST") {
+            const body = JSON.parse(options.body);
+            const userRolesData = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER_ROLES) || '[]');
+            
+            const newUserRole = {
+              id: Date.now() + Math.random(),
+              user: body.user,
+              role: body.role
+            };
+            
+            userRolesData.push(newUserRole);
+            localStorage.setItem(STORAGE_KEYS.USER_ROLES, JSON.stringify(userRolesData));
+            
+            return { success: true, data: newUserRole };
+          }
+
+          // Handle DELETE requests for user-roles
+          if (endpoint.includes("/api/user-roles/") && options.method === "DELETE") {
+            const id = parseInt(endpoint.split("/").pop());
+            const userRolesData = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER_ROLES) || '[]');
+            
+            const filteredData = userRolesData.filter(ur => ur.id !== id);
+            localStorage.setItem(STORAGE_KEYS.USER_ROLES, JSON.stringify(filteredData));
+            
+            return { success: true };
+          }
+
+          return { success: true };
+        } catch (error) {
+          console.error("Mock API call failed:", error);
+          throw error;
+        }
+      }
+
+      // Enhanced Notification System
+      function showNotification(type, message, title = "") {
+        const notificationContainer = document.getElementById(
+          "notificationContainer"
+        );
+
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.className = `notification ${type}`;
+
+        // Select appropriate icon based on type
+        let icon = "";
+        switch (type) {
+          case "success":
+            icon = "fas fa-check-circle";
+            break;
+          case "error":
+            icon = "fas fa-exclamation-circle";
+            break;
+          case "warning":
+            icon = "fas fa-exclamation-triangle";
+            break;
+          case "info":
+            icon = "fas fa-info-circle";
+            break;
+          default:
+            icon = "fas fa-info-circle";
+        }
+
+        notification.innerHTML = `
+          <i class="${icon} notification-icon"></i>
+          <div class="notification-content">
+            ${title ? `<div class="notification-title">${title}</div>` : ""}
+            <div class="notification-message">${message}</div>
+          </div>
+          <button class="notification-close" onclick="closeNotification(this.parentElement)">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+
+        // Add notification to container
+        notificationContainer.appendChild(notification);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+          if (notification.parentElement) {
+            closeNotification(notification);
+          }
+        }, 5000);
+      }
+
+      function closeNotification(notification) {
+        notification.classList.add("slide-out");
+        setTimeout(() => {
+          if (notification.parentElement) {
+            notification.parentElement.removeChild(notification);
+          }
+        }, 300);
+      }
+
+      // Helper functions for specific notification types
+      function showSuccessNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("success", message, title);
+      }
+
+      function showErrorNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("error", message, title);
+      }
+
+      function showInfoNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("info", message, title);
+      }
+
+      function showWarningNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("warning", message, title);
+      }
+
+      // Legacy support function to maintain compatibility
+      function showNotificationLegacy(message, type = "info") {
+        showNotification(type, message);
+      }
+
+      // Fetch all users
+      async function fetchUsers() {
+        try {
+          const data = await apiCall("/api/users/");
+          users = Array.isArray(data) ? data : (data && data.results) || [];
+          return users;
+        } catch (error) {
+          console.error("Error fetching users:", error);
+          showErrorNotification("fetchUsersFailed", "", error.message);
+          return [];
+        }
+      }
+
+      // Fetch all roles
+      async function fetchRoles() {
+        try {
+          const data = await apiCall("/api/roles/");
+          roles = Array.isArray(data) ? data : (data && data.results) || [];
+          return roles;
+        } catch (error) {
+          console.error("Error fetching roles:", error);
+          showErrorNotification("fetchRolesFailed", "", error.message);
+          return [];
+        }
+      }
+
+      // Fetch user roles
+      async function fetchUserRoles() {
+        try {
+          const data = await apiCall("/api/user-roles/");
+          userRoles = Array.isArray(data) ? data : (data && data.results) || [];
+          return userRoles;
+        } catch (error) {
+          console.error("Error fetching user roles:", error);
+          showErrorNotification("fetchUserRolesFailed", "", error.message);
+          return [];
+        }
+      }
+
+      // Get roles for a specific user
+      function getRolesForUser(userId) {
+        return userRoles
+          .filter((ur) => ur.user === userId)
+          .map((ur) => ur.role);
+      }
+
+      // Check if user has role
+      function userHasRole(userId, roleId) {
+        return userRoles.some((ur) => ur.user === userId && ur.role === roleId);
+      }
+
+      // Display users and roles in table
+      function displayUserRoles() {
+        const tbody = document.getElementById("userRolesTableBody");
+        tbody.innerHTML = "";
+
+        users.forEach((user) => {
+          const row = document.createElement("tr");
+
+          // User name cell - Simple and clean
+          const userNameCell = document.createElement("td");
+          userNameCell.innerHTML = `
+            <div class="d-flex px-2 py-1">
+              <div class="d-flex flex-column justify-content-center">
+                <div class="user-name-cell">${user.username}</div>
+                ${
+                  user.email
+                    ? `<div class="user-email">${user.email}</div>`
+                    : ""
+                }
+              </div>
+            </div>
+          `;
+
+          // Current roles count cell
+          const currentRolesCell = document.createElement("td");
+          currentRolesCell.className = "align-middle text-center";
+          const currentRoleIds = getRolesForUser(user.id);
+          const rolesCount = currentRoleIds.length;
+
+          currentRolesCell.innerHTML = `
+            <div class="count-badge">
+              <i class="fas fa-user-shield"></i>
+              <span>${rolesCount} ${rolesCount === 1 ? "دور" : "أدوار"}</span>
+            </div>
+          `;
+
+          // Available roles cell (multi-select dropdown)
+          const availableRolesCell = document.createElement("td");
+          availableRolesCell.className = "align-middle";
+
+          // Create container for select and instructions
+          const selectContainer = document.createElement("div");
+
+          const rolesSelect = document.createElement("select");
+          rolesSelect.className = "roles-select";
+          rolesSelect.multiple = true;
+          rolesSelect.setAttribute("data-user-id", user.id);
+          rolesSelect.setAttribute("size", "6"); // Show multiple options at once
+
+          // Add options for all roles
+          roles.forEach((role) => {
+            const option = document.createElement("option");
+            option.value = role.id;
+            option.textContent = role.role_name;
+            option.selected = userHasRole(user.id, role.id);
+            rolesSelect.appendChild(option);
+          });
+
+          // Add instructions text
+          const instructionsDiv = document.createElement("div");
+          instructionsDiv.className = "select-instructions";
+          instructionsDiv.textContent =
+            currentLang === "ar"
+              ? "اضغط Ctrl + النقر لاختيار عدة أدوار"
+              : "Ctrl + Click to select multiple";
+
+          // Add event listener for select changes
+          rolesSelect.addEventListener("change", function () {
+            onRoleSelectChange(this, user.id);
+          });
+
+          // Enhance multiple selection behavior
+          rolesSelect.addEventListener("mousedown", function (e) {
+            e.preventDefault();
+            const option = e.target;
+            if (option.tagName === "OPTION") {
+              option.selected = !option.selected;
+              // Trigger change event manually
+              this.dispatchEvent(new Event("change"));
+              return false;
+            }
+          });
+
+          // Additional keyboard support for better UX
+          rolesSelect.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              const focusedOption = this.options[this.selectedIndex];
+              if (focusedOption) {
+                focusedOption.selected = !focusedOption.selected;
+                this.dispatchEvent(new Event("change"));
+              }
+            }
+          });
+
+          selectContainer.appendChild(rolesSelect);
+          selectContainer.appendChild(instructionsDiv);
+          availableRolesCell.appendChild(selectContainer);
+
+          row.appendChild(userNameCell);
+          row.appendChild(currentRolesCell);
+          row.appendChild(availableRolesCell);
+
+          tbody.appendChild(row);
+        });
+      }
+
+      // Handle role select changes
+      function onRoleSelectChange(selectElement, userId) {
+        const selectedOptions = Array.from(selectElement.selectedOptions);
+        const selectedRoleIds = selectedOptions.map((option) =>
+          parseInt(option.value)
+        );
+
+        // Remove all existing roles for this user from userRoles
+        userRoles = userRoles.filter((ur) => ur.user !== userId);
+
+        // Add selected roles to userRoles
+        selectedRoleIds.forEach((roleId) => {
+          userRoles.push({
+            user: userId,
+            role: roleId,
+            id: Date.now() + Math.random(), // Temporary ID for local tracking
+          });
+        });
+
+        // Update the count display
+        updateRoleCount(userId, selectedRoleIds.length);
+
+        console.log("User roles updated:", userRoles);
+      }
+
+      // Update role count display
+      function updateRoleCount(userId, count) {
+        const row = document
+          .querySelector(`select[data-user-id="${userId}"]`)
+          .closest("tr");
+        const countBadge = row.querySelector(".count-badge span");
+        if (countBadge) {
+          const text =
+            currentLang === "ar"
+              ? `${count} ${count === 1 ? "دور" : "أدوار"}`
+              : `${count} ${count === 1 ? "Role" : "Roles"}`;
+          countBadge.textContent = text;
+        }
+      }
+
+      // Save all changes to localStorage
+      async function saveAllChanges() {
+        try {
+          showInfoNotification("savingChanges");
+
+          // Get current user roles from localStorage
+          const currentServerUserRoles = JSON.parse(
+            localStorage.getItem(STORAGE_KEYS.USER_ROLES) || '[]'
+          );
+
+          // Calculate changes needed
+          const changes = [];
+
+          // Check for roles to add and remove for each user
+          users.forEach((user) => {
+            const currentLocalRoleIds = getRolesForUser(user.id);
+            const currentServerRoleIds = currentServerUserRoles
+              .filter((ur) => ur.user === user.id)
+              .map((ur) => ur.role);
+
+            // Roles to add
+            const toAdd = currentLocalRoleIds.filter(
+              (roleId) => !currentServerRoleIds.includes(roleId)
+            );
+
+            // Roles to remove
+            const toRemove = currentServerRoleIds.filter(
+              (roleId) => !currentLocalRoleIds.includes(roleId)
+            );
+
+            // Add operations
+            toAdd.forEach((roleId) => {
+              changes.push({
+                action: "add",
+                user: user.id,
+                role: roleId,
+              });
+            });
+
+            // Remove operations
+            toRemove.forEach((roleId) => {
+              const serverUserRole = currentServerUserRoles.find(
+                (ur) => ur.user === user.id && ur.role === roleId
+              );
+              if (serverUserRole) {
+                changes.push({
+                  action: "remove",
+                  id: serverUserRole.id,
+                });
+              }
+            });
+          });
+
+          // Execute changes
+          let successCount = 0;
+          let errorCount = 0;
+
+          for (const change of changes) {
+            try {
+              if (change.action === "add") {
+                await apiCall("/api/user-roles/", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    user: change.user,
+                    role: change.role,
+                  }),
+                });
+                successCount++;
+              } else if (change.action === "remove") {
+                await apiCall(`/api/user-roles/${change.id}/`, {
+                  method: "DELETE",
+                });
+                successCount++;
+              }
+            } catch (error) {
+              console.error("Error saving change:", error);
+              errorCount++;
+            }
+          }
+
+          if (errorCount === 0) {
+            const successMessage =
+              currentLang === "ar"
+                ? `تم حفظ جميع التغييرات بنجاح (${successCount} عملية)`
+                : `All changes saved successfully (${successCount} operations)`;
+            showSuccessNotification("userRolesSaved", "", successMessage);
+            // Refresh data from localStorage
+            await loadAllData();
+          } else if (successCount > 0) {
+            const partialMessage =
+              currentLang === "ar"
+                ? `تم حفظ ${successCount} تغيير، فشل في ${errorCount} عمليات`
+                : `${successCount} changes saved, ${errorCount} operations failed`;
+            showWarningNotification("userRolesPartialSave", "", partialMessage);
+          } else {
+            showErrorNotification("userRolesSaveFailed");
+          }
+        } catch (error) {
+          console.error("Error saving changes:", error);
+          showErrorNotification("userRolesSaveFailed", "", error.message);
+        }
+      }
+
+      // Reset data to default state
+      function resetToDefault() {
+        const confirmMessage = translations[currentLang].resetConfirmMessage;
+        if (confirm(confirmMessage)) {
+          // Clear localStorage
+          localStorage.removeItem(STORAGE_KEYS.USERS);
+          localStorage.removeItem(STORAGE_KEYS.ROLES);
+          localStorage.removeItem(STORAGE_KEYS.USER_ROLES);
+          
+          // Reinitialize mock data
+          initializeMockData();
+          
+          // Reload data
+          loadAllData();
+          
+          const successMessage = translations[currentLang].resetSuccessMessage;
+          showSuccessNotification("userRolesSaved", "", successMessage);
+        }
+      }
+
+      // Load all data
+      async function loadAllData() {
+        document.getElementById("loadingIndicator").style.display = "block";
+        document.getElementById("tableContainer").style.display = "none";
+
+        try {
+          // Initialize mock data
+          initializeMockData();
+
+          // Fetch all data in parallel
+          await Promise.all([fetchUsers(), fetchRoles(), fetchUserRoles()]);
+
+          // Display the data
+          displayUserRoles();
+
+          document.getElementById("loadingIndicator").style.display = "none";
+          document.getElementById("tableContainer").style.display = "block";
+
+          // Show success message for demo mode
+          const loadMessage = currentLang === "ar" 
+            ? "تم تحميل البيانات بنجاح (وضع التجربة)" 
+            : "Data loaded successfully (Demo Mode)";
+          showInfoNotification("dataLoaded", "", loadMessage);
+        } catch (error) {
+          console.error("Error loading data:", error);
+          showErrorNotification("networkError", "", error.message);
+          document.getElementById("loadingIndicator").style.display = "none";
+        }
+      }
+
+      // Wait for DOM to be fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to handle zoom level changes
+        function handleZoom() {
+          const sidenav = document.getElementById("sidenav-main");
+          const windowWidth = window.innerWidth;
+          const zoomLevel = window.devicePixelRatio;
+
+          if (zoomLevel > 1.51 || windowWidth < 1200) {
+            sidenav.style.display = "none";
+          } else {
+            sidenav.style.display = "block";
+          }
+        }
+
+        // Initial check
+        handleZoom();
+
+        // Listen for zoom changes
+        window.addEventListener("resize", handleZoom);
+
+        // Initialize scrollbar
+        var win = navigator.platform.indexOf("Win") > -1;
+        if (win && document.querySelector("#sidenav-scrollbar")) {
+          var options = {
+            damping: "0.5",
+          };
+          Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+        }
+
+        // Load all data when page loads
+        loadAllData();
+      });
+    </script>
+    <script>
+      var win = navigator.platform.indexOf("Win") > -1;
+      if (win && document.querySelector("#sidenav-scrollbar")) {
+        var options = {
+          damping: "0.5",
+        };
+        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+      }
+    </script>
+
+    <!-- Language Toggle Script -->
+    <script>
+      const translations = {
+        ar: {
+          dir: "rtl",
+          dashboard: "لوحة التحكم",
+          configTables: "جداول الإعدادات",
+          maps: "الخرائط",
+          manageUsers: "إدارة المستخدمين ",
+          langToggleText: "تغيير اللغة",
+          signIn: "تسجيل الدخول",
+          signUp: "إنشاء حساب",
+          families: "عدد الأسر",
+          validBuildings: "منشآت صالحة",
+          residentialBuildings: "منشآت سكنية",
+          threatened: "مهددة بالإزالة",
+          constructionStatus: "الوضع الإنشائي",
+          educationStatus: "الوضع التعليمي",
+          healthStatus: "الوضع الصحي",
+          footerText: "© 2025، جميع الحقوق محفوظة،",
+          companyName: "دار التقنية الحديثة",
+          settingsText: "الإعدادات",
+          logoutText: "تسجيل الخروج",
+          neighborhoodCommittees: "إدارة لجان الأحياء",
+          developmentCommittees: "إدارة لجان التنمية والتطوع",
+          projectsOverview: "نظرة عامة على المشاريع",
+          moreIn2024: "زيادة بنسبة 4% في 2024",
+          projectCompletion: "معدل إكمال المشاريع في حلب",
+          foodProjects: "مشاريع الغذاء",
+          healthProjects: "مشاريع الصحة",
+          clothingProjects: "مشاريع الملابس والمساعدات السكنية",
+          viewAllProjects: "عرض جميع المشاريع",
+          projects: "المشاريع",
+          projectName: "اسم المشروع",
+          type: "النوع",
+          budget: "الميزانية",
+          status: "الحالة",
+          projectOrders: "طلبات المشاريع",
+          thisMonth: "هذا الشهر",
+          timeline: [
+            { title: "أغذية", date: "٢٨ كانون الأول ٢٠٢٥" },
+            { title: "صحة", date: "١٦ نيسان ٢٠٢٥" },
+            { title: "ملابس ومساعدات سكنية", date: "١٧ نيسان ٢٠٢٥" },
+            { title: "سكن وإقامة", date: "٢٠ كانون الأول ٢٠٢٥" },
+            { title: "تعليم", date: "٠٥ تشرين الثاني ٢٠٢٥" },
+            { title: "دعم نفسي وأسري", date: "١٧ كانون الأول ٢٠٢٥" },
+          ],
+          chartLabels: {
+            construction: ["صالح", "متصدع", "متهالك", "جيد"],
+            health: ["مشفى", "مستوصف", "عيادة متنقلة", "عيادة"],
+            education: ["جامعة", "مدرسة", "مدارس خاصة", "روضات"],
+            service: ["مياه", "كهرباء", "صرف صحي", "لا شيء"],
+          },
+          notifications: {
+            userRolesUpdated: "تم تحديث أدوار المستخدمين بنجاح",
+            userRolesSaved: "تم حفظ جميع التغييرات بنجاح (محلياً)",
+            userRolesPartialSave: "تم حفظ بعض التغييرات",
+            userRolesSaveFailed: "فشل في حفظ التغييرات",
+            fetchUsersFailed: "فشل في جلب قائمة المستخدمين",
+            fetchRolesFailed: "فشل في جلب قائمة الأدوار",
+            fetchUserRolesFailed: "فشل في جلب ربط المستخدمين بالأدوار",
+            savingChanges: "جاري حفظ التغييرات...",
+            loadingData: "جاري تحميل البيانات...",
+            dataLoaded: "تم تحميل البيانات بنجاح (وضع التجربة)",
+            networkError: "خطأ في الاتصال بالخادم",
+            sessionExpired: "انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى",
+            serverDataFetchFailed: "فشل في جلب بيانات السيرفر",
+          },
+          // Assign User Role Page Specific Translations
+          pageTitle: "ربط المستخدمين بالأدوار",
+          userNameHeader: "اسم المستخدم",
+          currentRolesHeader: "عدد الأدوار",
+          availableRolesHeader: "اختيار الأدوار",
+          saveChangesText: "حفظ التغييرات",
+          demoModeTitle: "وضع التجربة:",
+          demoModeText: "هذه الصفحة تعمل بدون خادم خلفي. جميع البيانات محفوظة محلياً في المتصفح.",
+          resetButtonText: "إعادة تعيين",
+          resetConfirmMessage: "هل أنت متأكد من إعادة تعيين جميع البيانات إلى الحالة الافتراضية؟",
+          resetSuccessMessage: "تم إعادة تعيين البيانات بنجاح"
+        },
+        en: {
+          neighborhoodCommittees: "Neighborhood Comm",
+          developmentCommittees: "Development Comm",
+          dir: "ltr",
+          dashboard: "Dashboard",
+          configTables: "Configuration Tables",
+          maps: "Maps",
+          manageUsers: "Manage Users",
+          langToggleText: "Change Language",
+          signIn: "Sign In",
+          signUp: "Sign Up",
+          families: "Families",
+          validBuildings: "Valid Buildings",
+          residentialBuildings: "Residential Buildings",
+          threatened: "Threatened with Removal",
+          constructionStatus: "Construction Status",
+          educationStatus: "Education Status",
+          healthStatus: "Health Status",
+          footerText: "© 2025, All rights reserved,",
+          companyName: "Hi-Tech House",
+          settingsText: "Settings",
+          logoutText: "Logout",
+          projectsOverview: "Projects Foods And Health overview",
+          moreIn2024: "4% more in 2024",
+          projectCompletion: "Project completion rate in Aleppo",
+          foodProjects: "Food Projects",
+          healthProjects: "Health Projects",
+          clothingProjects: "Clothing and housing benefits Projects",
+          viewAllProjects: "View all Projects",
+          projects: "Projects",
+          projectName: "NAME OF PROJECT",
+          type: "TYPE",
+          budget: "BUDGET",
+          status: "STATUS",
+          projectOrders: "Projects Orders overview",
+          thisMonth: "this month",
+          timeline: [
+            { title: "Foods", date: "28 DEC 2025" },
+            { title: "Health", date: "16 Apr 2025" },
+            { title: "Clothing and housing benefits", date: "17 Apr 2025" },
+            { title: "Housing and accommodation", date: "20 DEC 2025" },
+            { title: "Education", date: "05 Nov 2025" },
+            { title: "Psychological and family support", date: "17 DEC 2025" },
+          ],
+          chartLabels: {
+            construction: ["Valid", "Cracked", "Dilapidated", "Good"],
+            health: ["Hospital", "Clinic", "Mobile Clinic", "Polyclinic"],
+            education: [
+              "University",
+              "School",
+              "Private Schools",
+              "Kindergartens",
+            ],
+            service: ["Water", "Electricity", "Sanitation", "None"],
+          },
+          notifications: {
+            userRolesUpdated: "User roles updated successfully",
+            userRolesSaved: "All changes saved successfully (locally)",
+            userRolesPartialSave: "Some changes were saved",
+            userRolesSaveFailed: "Failed to save changes",
+            fetchUsersFailed: "Failed to fetch users list",
+            fetchRolesFailed: "Failed to fetch roles list",
+            fetchUserRolesFailed: "Failed to fetch user roles",
+            savingChanges: "Saving changes...",
+            loadingData: "Loading data...",
+            dataLoaded: "Data loaded successfully (Demo Mode)",
+            networkError: "Network connection error",
+            sessionExpired: "Session expired, please login again",
+            serverDataFetchFailed: "Failed to fetch server data",
+          },
+          // Assign User Role Page Specific Translations
+          pageTitle: "Assign User Roles",
+          userNameHeader: "User Name",
+          currentRolesHeader: "Roles Count",
+          availableRolesHeader: "Select Roles",
+          saveChangesText: "Save Changes",
+          demoModeTitle: "Demo Mode:",
+          demoModeText: "This page works without a backend server. All data is stored locally in the browser.",
+          resetButtonText: "Reset",
+          resetConfirmMessage: "Are you sure you want to reset all data to default state?",
+          resetSuccessMessage: "Data reset successfully"
+        },
+      };
+
+      let currentLang = "ar";
+
+      function switchLanguage(lang) {
+        // Store the language preference in localStorage
+        try {
+          localStorage.setItem("preferredLanguage", lang);
+        } catch (error) {
+          console.error("Error saving language preference:", error);
+        }
+
+        // Update aside (sidebar) position based on language
+        const aside = document.getElementById("sidenav-main");
+
+        aside.classList.remove("fixed-end", "fixed-start");
+
+        // Update dropdown button container alignment based on language
+        const dropdownContainer = document.getElementById(
+          "dropdownButtonContainer"
+        );
+        const projectsTitleContainer = document.getElementById(
+          "projectsTitleContainer"
+        );
+        const helpButton = document.getElementById("helpButton");
+
+        if (lang === "ar") {
+          aside.classList.add("fixed-end");
+          // For RTL (Arabic)
+          if (dropdownContainer) dropdownContainer.classList.remove("text-end");
+          if (dropdownContainer) dropdownContainer.classList.add("text-start");
+          if (projectsTitleContainer)
+            projectsTitleContainer.classList.remove("text-start");
+          if (projectsTitleContainer)
+            projectsTitleContainer.classList.add("text-end");
+
+          // Position help button on the left side for Arabic
+          if (helpButton) {
+            helpButton.style.left = "20px";
+            helpButton.style.right = "auto";
+          }
+        } else {
+          aside.classList.add("fixed-start");
+          // For LTR (English)
+          if (dropdownContainer)
+            dropdownContainer.classList.remove("text-start");
+          if (dropdownContainer) dropdownContainer.classList.add("text-end");
+          if (projectsTitleContainer)
+            projectsTitleContainer.classList.remove("text-end");
+          if (projectsTitleContainer)
+            projectsTitleContainer.classList.add("text-start");
+
+          // Position help button on the right side for English
+          if (helpButton) {
+            helpButton.style.right = "20px";
+            helpButton.style.left = "auto";
+          }
+        }
+
+        // Update document direction
+
+        currentLang = lang;
+        const t = translations[lang];
+
+        // Update document direction
+        document.documentElement.lang = lang;
+        document.documentElement.dir = t.dir;
+
+        // Update aside (sidebar) text
+        const navTexts = document.querySelectorAll(".nav-link .nav-link-text");
+        if (navTexts[0]) navTexts[0].textContent = t.dashboard;
+        if (navTexts[1]) navTexts[1].textContent = t.configTables;
+        if (navTexts[2]) navTexts[2].textContent = t.manageUsers;
+        if (navTexts[3]) navTexts[3].textContent = t.neighborhoodCommittees;
+        if (navTexts[4]) navTexts[4].textContent = t.developmentCommittees;
+
+        const langToggleText = document.getElementById("langToggleText");
+        if (langToggleText) {
+          langToggleText.textContent = t.langToggleText;
+        }
+
+        // Update header menu items (settings/logout)
+        const settingsText = document.getElementById("settingsText");
+        if (settingsText) settingsText.textContent = t.settingsText;
+        const logoutText = document.getElementById("logoutText");
+        if (logoutText) logoutText.textContent = t.logoutText;
+
+        // Update main cards (if they exist on this page)
+        const cardTitles = document.querySelectorAll(".card-title");
+
+        // Update page-specific elements
+        const pageTitle = document.getElementById("pageTitle");
+        if (pageTitle) pageTitle.textContent = t.pageTitle;
+
+        const userNameHeader = document.getElementById("userNameHeader");
+        if (userNameHeader) userNameHeader.textContent = t.userNameHeader;
+
+        const currentRolesHeader =
+          document.getElementById("currentRolesHeader");
+        if (currentRolesHeader)
+          currentRolesHeader.innerHTML =
+            lang === "ar"
+              ? '<i class="fas fa-chart-bar me-1"></i>' + t.currentRolesHeader
+              : '<i class="fas fa-chart-bar me-1"></i>' + t.currentRolesHeader;
+
+        const availableRolesHeader = document.getElementById(
+          "availableRolesHeader"
+        );
+        if (availableRolesHeader)
+          availableRolesHeader.innerHTML =
+            lang === "ar"
+              ? '<i class="fas fa-list-check me-1"></i>' +
+                t.availableRolesHeader
+              : '<i class="fas fa-list-check me-1"></i>' +
+                t.availableRolesHeader;
+
+        const saveChangesText = document.getElementById("saveChangesText");
+        if (saveChangesText) saveChangesText.textContent = t.saveChangesText;
+
+        // Update demo mode notice
+        const demoModeTitle = document.getElementById("demoModeTitle");
+        if (demoModeTitle) demoModeTitle.textContent = t.demoModeTitle;
+        
+        const demoModeText = document.getElementById("demoModeText");
+        if (demoModeText) demoModeText.textContent = t.demoModeText;
+
+        // Update reset button text
+        const resetButton = document.querySelector('button[onclick="resetToDefault()"] span');
+        if (resetButton) resetButton.textContent = t.resetButtonText;
+
+        // Update instructions text for all role selects
+        const instructionsDivs = document.querySelectorAll(
+          ".select-instructions"
+        );
+        instructionsDivs.forEach((div) => {
+          div.textContent =
+            lang === "ar"
+              ? "اضغط Ctrl + النقر لاختيار عدة أدوار"
+              : "Ctrl + Click to select multiple";
+        });
+
+        // Update chart card titles (if they exist on this page)
+        const chartTitles = document.querySelectorAll(
+          "h5.card-title.text-center"
+        );
+        // if (chartTitles[0]) chartTitles[0].textContent = t.constructionStatus; // Example from dashboard
+        // if (chartTitles[1]) chartTitles[1].textContent = t.educationStatus; // Example from dashboard
+        // if (chartTitles[2]) chartTitles[2].textContent = t.healthStatus; // Example from dashboard
+
+        // Update chart labels and datasets (if they exist on this page)
+        // if (window.constructionChart) { // Example from dashboard
+        //   constructionChart.data.labels = t.chartLabels.construction;
+        //   constructionChart.data.datasets[0].label =
+        //     lang === "ar" ? "عدد المنشآت" : "Number of Buildings";
+        //   constructionChart.update();
+        // }
+        // ... other charts if present
+
+        // Update projects section title (if it exists on this page)
+        const projectsTitle = document.getElementById("projectsTitle");
+        // if (projectsTitle) projectsTitle.textContent = t.projects; // Example from dashboard
+
+        // Update Projects Orders overview section title (if it exists on this page)
+        const projectsOrdersTitle = document.getElementById(
+          "projectsOrdersTitle"
+        );
+        // if (projectsOrdersTitle) // Example from dashboard
+        //   projectsOrdersTitle.textContent = t.projectOrders;
+      }
+
+      function toggleLanguage() {
+        if (currentLang === "ar") {
+          switchLanguage("en");
+        } else {
+          switchLanguage("ar");
+        }
+      }
+
+      function logout() {
+        window.location.href = "./index.html"; // Redirect to index.html (login page)
+      }
+
+      // Add menu functionality
+      function toggleMenu() {
+        const menu = document.getElementById("menuDropdown");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Close menu when clicking outside
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("menuDropdown");
+        const menuBtn = document.getElementById("menuToggleBtn");
+
+        if (menu && menuBtn) {
+          if (!menuBtn.contains(e.target) && !menu.contains(e.target)) {
+            menu.style.display = "none";
+          }
+        }
+      });
+
+      // Initial language setup
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set initial classes for RTL layout (if applicable to this page)
+        const dropdownContainer = document.getElementById(
+          "dropdownButtonContainer"
+        );
+        const projectsTitleContainer = document.getElementById(
+          "projectsTitleContainer"
+        );
+        const helpButton = document.getElementById("helpButton");
+
+        if (dropdownContainer && projectsTitleContainer) {
+          // Initial setup for Arabic (RTL) if needed
+          // dropdownContainer.classList.add("text-start");
+          // projectsTitleContainer.classList.add("text-end");
+        }
+
+        // Initial position for help button (Arabic - RTL) if needed
+        // if (helpButton) {
+        //   helpButton.style.left = "20px";
+        //   helpButton.style.right = "auto";
+        // }
+
+        // Check if there's a saved language preference in localStorage
+        let savedLanguage;
+        try {
+          savedLanguage = localStorage.getItem("preferredLanguage");
+        } catch (error) {
+          console.error("Error retrieving language preference:", error);
+          savedLanguage = null;
+        }
+
+        // Set initial language based on saved preference or default to Arabic
+        const initialLang = savedLanguage || "ar";
+        switchLanguage(initialLang); // Apply the language switch
+
+        // Ensure the language toggle text is properly set after language switch
+        const langToggleText = document.getElementById("langToggleText");
+        if (langToggleText) {
+          langToggleText.textContent = initialLang === "ar" ? "تغيير اللغة" : "Change Language";
+        }
+
+        // Set up language toggle button click handler
+        const langToggleBtn = document.getElementById("langToggleBtn");
+        if (langToggleBtn) {
+          // Remove any existing click handlers to avoid duplicates
+          langToggleBtn.onclick = null; // Clear previous handler if any
+          langToggleBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleLanguage();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

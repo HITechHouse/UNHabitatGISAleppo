@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome</title>
+    <link
+      rel="shortcut icon"
+      href="assets/img/UN_Habitat_Icon.svg"
+      type="image/x-icon"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- External Font Awesome CSS -->
+    <link href="libraries/css/fontawesome-6.5.1.min.css" rel="stylesheet" />
+    <!-- External Swiper CSS -->
+    <link href="libraries/css/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="libraries/css/material-icons.css" rel="stylesheet" />
+    <link
+      href="libraries/fonts/google-fonts/noto-naskh-arabic.css"
+      rel="stylesheet"
+    />
+
+    <!-- External Swiper JS -->
+    <script src="libraries/js/swiper-bundle.min.js"></script>
+
+    <!-- Common styles -->
+    <link href="assets/css/styles.css" rel="stylesheet" />
+
+    <style>
+      /* Page-specific styles for welcome.html */
+      html,
+      body {
+        height: 100%;
+        /* Ensure html and body take full height */
+      }
+
+      body {
+        color: #333;
+        line-height: 1.6;
+        overflow: hidden;
+        /* Prevent body scroll, main content will scroll if needed */
+      }
+
+      /* Layout Structure: Header, Main Content, Footer */
+      #mainHeader {
+        flex-shrink: 0;
+        /* Prevent header from shrinking */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      #mainContent {
+        flex: 1;
+        /* Allow main content to grow and fill available space */
+        width: 100%;
+        position: relative;
+        margin-top: 50px;
+        /* Space for fixed header */
+        height: calc(100vh - 50px);
+        /* Full viewport height minus header only */
+        overflow: hidden;
+        /* Swiper will handle its own overflow/scrolling */
+        padding: 0;
+      }
+
+      .header-title {
+        font-size: 1rem;
+      }
+
+      .language-toggle:hover {
+        background: rgba(255, 255, 255, 0.32);
+        border-color: #fff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        color: #007bff;
+        /* Example hover color */
+      }
+
+      /* Menu Dropdown */
+      .menu-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.32);
+        transform: scale(1.05);
+      }
+
+      .menu-dropdown-content {
+        display: none;
+        /* Hidden by default, shown by JS */
+        position: absolute;
+        top: 100%;
+        /* Position below the toggle button */
+        right: 0;
+        /* Align to the right for RTL default */
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1000;
+        /* Ensure it's above other content */
+        margin-top: 5px;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu-item i {
+        /* Icon styling within menu item */
+        margin-left: 8px;
+        /* LTR default, JS might adjust for RTL/LTR text */
+        width: 20px;
+        text-align: center;
+      }
+
+      .menu-item:hover {
+        background-color: #f5f5f5;
+      }
+
+      /* Main Content: Swiper Carousel */
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+        /* Fill the #mainContent area */
+      }
+
+      .swiper-slide {
+        background-color: #1e293b;
+        /* Slide background */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.7;
+        /* Applied opacity to slides */
+      }
+
+      .swiper-slide > div {
+        /* Ensure content div inside slide takes full space */
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .slide-content {
+        text-align: center;
+        color: white;
+        padding: 2rem;
+        position: relative;
+        /* For z-index stacking if needed over overlays */
+        z-index: 2;
+        /* Above potential overlays */
+        max-width: 800px;
+        /* Limit content width for readability */
+      }
+
+      .slide-content h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: white;
+        font-weight: 700;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .slide-content p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        max-width: 1000px;
+        margin: 0 auto;
+        color: white;
+      }
+
+      .slide-content i {
+        /* Icon styling within slide content */
+        margin-left: 0.5rem;
+        /* Default spacing */
+        color: #3b82f6;
+        /* Icon color */
+      }
+
+      /* Swiper Navigation Buttons */
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: white;
+        /* Navigation arrow color */
+      }
+
+      /* Floating Buttons over Swiper */
+      .floating-slider-btns {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        /* Above slides */
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .floating-slider-btns #exploreMapBtn,
+      .floating-slider-btns #servicesCirclesBtn,
+      .floating-slider-btns #dashboardBtn {
+        display: none;
+      }
+
+      /* General Button Styles */
+      .btn {
+        padding: 0.75rem 1.5rem;
+        margin: 0.5rem;
+        border-radius: 50px;
+        /* Rounded buttons */
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease, opacity 0.3s ease;
+        display: inline-block;
+        min-width: 150px;
+        /* Minimum width for floating buttons */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        /* Shadow for floating buttons */
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+        /* General hover effect */
+      }
+
+      .btn-primary {
+        background-color: #5b8fe0;
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background-color: #2563eb;
+        /* Darker shade on hover */
+      }
+
+      .btn-secondary {
+        background-color: #e5e7eb;
+        color: #1f2937;
+      }
+
+      .btn-secondary:hover {
+        background-color: #d1d5db;
+        /* Darker shade on hover */
+      }
+
+      /* LTR Specific Adjustments */
+      body[dir="ltr"] .header-title {
+        text-align: center;
+        /* Already default, but explicit */
+      }
+
+      body[dir="ltr"] .header-logos.right-logos {
+        /* Adjust logo positioning for LTR */
+        margin-left: auto;
+        /* Push to the right */
+      }
+
+      body[dir="ltr"] .menu-dropdown-content {
+        /* Adjust menu dropdown for LTR */
+        right: auto;
+        left: 0;
+      }
+
+      body[dir="ltr"] .menu-item i {
+        /* Adjust icon margin in menu for LTR */
+        margin-left: 0;
+        margin-right: 8px;
+      }
+
+      body[dir="ltr"] .slide-content {
+        /* Ensure slide content text alignment for LTR */
+        text-align: center;
+        /* Already default, but explicit */
+      }
+
+      body[dir="ltr"] .slide-content i {
+        margin-left: 0;
+        margin-right: 0.5rem;
+      }
+
+      /* Responsive Design Adjustments */
+      @media (max-width: 768px) {
+        .header-title-container {
+          /* Example if this class was used */
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .account-name {
+          /* Example if an account name was displayed */
+          display: none;
+          /* Hide on smaller screens */
+        }
+      }
+
+      @media (max-width: 600px) {
+        .floating-slider-btns {
+          /* Stack floating buttons vertically */
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .floating-slider-btns .btn {
+          /* Adjust button size for smaller screens */
+          min-width: 120px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Modal Styles */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        max-width: 400px;
+        width: 90%;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+        color: #1e293b;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+      }
+
+      .modal-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+
+      .modal-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        min-width: 120px;
+      }
+
+      .modal-btn.edit {
+        background-color: #5b8fe0;
+        color: white;
+      }
+
+      .modal-btn.edit:hover {
+        background-color: #2563eb;
+      }
+
+      .modal-btn.view {
+        background-color: #e5e7eb;
+        color: #1f2937;
+      }
+
+      .modal-btn.view:hover {
+        background-color: #d1d5db;
+      }
+
+      /* ============================
+   BACKGROUND IMAGE STYLES
+   ============================ */
+
+      /* Background image with blur effect */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("assets/img/aleppo.png");
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+        filter: blur(1px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Add Modal HTML -->
+    <div class="modal-overlay" id="modeModal">
+      <div class="modal-content">
+        <div class="modal-title" id="modalTitle">اختر الوضع</div>
+        <div class="modal-buttons">
+          <button class="modal-btn edit" id="editBtn">تعديل</button>
+          <button class="modal-btn view" id="viewBtn">استعراض</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header Section: Fixed at the top -->
+    <header id="mainHeader">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img
+          src="assets/img/aleppo.jfif"
+          alt="Logo 1"
+          class="header-logo"
+          onclick="window.location.href = './welcome.html';"
+          style="cursor: pointer"
+          title="Aleppo Governorate"
+        />
+      </div>
+
+      <div class="header-title text-center">
+        <div class="title-ar">نظام إدارة المعلومات الحضرية _ مدينة حلب</div>
+        <div class="title-en">
+          Urban Information Management System - Aleppo City
+        </div>
+      </div>
+
+      <div class="header-logos right-logos">
+        <div class="menu-dropdown">
+          <button
+            class="menu-toggle"
+            id="menuToggleBtn"
+            onclick="toggleMenu()"
+          ></button>
+          <div class="menu-dropdown-content" id="menuDropdown">
+            <a
+              href="#"
+              class="menu-item"
+              id="langToggleBtn"
+              onclick="toggleLanguage();"
+            >
+              <i class="fas fa-language"></i>
+              <span id="langToggleText">تغيير اللغة</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="settingsBtn"
+              onclick="handleSettingsClick(event);"
+            >
+              <i class="fas fa-cog"></i>
+              <span id="settingsText">الإعدادات</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="logoutBtn"
+              onclick="logoutUser();"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span id="logoutText">تسجيل الخروج</span>
+            </a>
+          </div>
+        </div>
+          <img
+            src="assets/img/unhabitat.png"
+            alt="Logo 3"
+            class="header-logo"
+            title="UN Habitat"
+            style="background-color: #fff;"
+          />
+        <img src="assets/img/japan.jpg" alt="Logo 2" class="header-logo" title="From the People of Japanese "/>
+      </div>
+    </header>
+
+    <!-- Main Content Area: Swiper Carousel -->
+    <main id="mainContent">
+      <div class="swiper-container" id="mainSwiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2 id="slide1Title">نظام إدارة المعلومات الحضرية</h2>
+              <p id="slide1Desc">
+                منصة متكاملة لتحليل وتقييم الاحتياجات الأساسية في التجمعات
+                العمرانية، تتيح تحليلاً شاملاً على مستويين: التجمع العمراني ككل
+                والأحياء بشكل تفصيلي. تمثل الاحتياجات الرئيسية (الكمية والنوعية)
+                وفهم تأثيرها الوظيفي والخدمي على كامل التجمع العمراني سواء كانت
+                معطيات ثابتة أو متغيرة.
+              </p>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2>
+                <i class="fas fa-city"></i>
+                <span id="slide2Title">تحليل التجمع العمراني</span>
+              </h2>
+              <p id="slide2Desc">
+                بطاقة التجمع العمراني تشمل: اسم التجمع الرسمي وتصنيفه الإداري
+                والعمراني ومساحة المغلف العمراني القائم وعدد الأحياء الموجودة
+                فيه وتقديرات عامة لعدد السكان (قبيل الأزمة، حالياً). تقييم
+                الاتصالية بين التجمع ومحيطه المباشر والتجمعات الرئيسية المجاورة
+                وجرد حضري تشغيلي لواقع المرافق الأساسية.
+              </p>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2>
+                <i class="fas fa-chart-pie"></i>
+                <span id="slide3Title">تحليل الأحياء</span>
+              </h2>
+              <p id="slide3Desc">
+                رصد وتحليل الاحتياجات المحلية على مستوى الحي من خلال تتبع أنماط
+                التغيرات السكانية، تحليل حالة النسيج العمراني، رصد واقع البنى
+                التحتية الأساسية، تقييم الوضع الخدمي، وتوثيق التدخلات القائمة في
+                مجالات الإنسانية والتعافي المبكر.
+              </p>
+            </div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2>
+                <i class="fas fa-users"></i>
+                <span id="slide4Title">التغيرات السكانية</span>
+              </h2>
+              <p id="slide4Desc">
+                تتبع أنماط التغيرات العامة السكانية على مختلف أنواعها، آخذين
+                بعين الاعتبار العوامل المسببة لشكل التغير السكاني (وافد، مغادر،
+                عائد) وتأثيرها على التركيبة السكانية والاحتياجات الخدمية في
+                الأحياء.
+              </p>
+            </div>
+          </div>
+          <!-- Slide 5 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2>
+                <i class="fas fa-building"></i>
+                <span id="slide5Title">النسيج العمراني</span>
+              </h2>
+              <p id="slide5Desc">
+                تحليل حالة النسيج العمراني للحي من خلال فهم مكوناته وتتبع
+                التغيرات التي طرأت عليه من خلال تغيرات نسب الإشغال العمرانية
+                وواقع المباني، والأضرار الفيزيائية على المباني، وأنماط الملكية.
+              </p>
+            </div>
+          </div>
+          <!-- Slide 6 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2>
+                <i class="fas fa-bolt"></i>
+                <span id="slide6Title">البنى التحتية</span>
+              </h2>
+              <p id="slide6Desc">
+                رصد واقع البنى التحتية الأساسية على مستوى الحي (الكهرباء،
+                المياه، الصرف الصحي، الاتصالات الأرضية) من أجل تحديد مستوى
+                الكفاءة الخدمية للشبكات وتسجيل التغيرات الدورية من خلال تحديد
+                مستوى درجة الضرر العام وشكله.
+              </p>
+            </div>
+          </div>
+          <!-- Slide 7 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2>
+                <i class="fas fa-hospital"></i>
+                <span id="slide7Title">الخدمات الأساسية</span>
+              </h2>
+              <p id="slide7Desc">
+                تقييم الوضع الخدمي على مستوى الحي للخدمات الأساسية (الصحة،
+                التعليم، إدارة النفايات الصلبة) من أجل تحديد مستوى الكفاءة
+                التشغيلية لمرافق الخدمات وتسجيل التغيرات الدورية من خلال تحديد
+                مستوى درجة الضرر العام وشكله.
+              </p>
+            </div>
+          </div>
+          <!-- Slide 8 -->
+          <div class="swiper-slide">
+            <div class="slide-content">
+              <h2>
+                <i class="fas fa-hands-helping"></i>
+                <span id="slide8Title">التدخلات الإنسانية</span>
+              </h2>
+              <p id="slide8Desc">
+                توثيق وتحليل التدخلات القائمة (المجالات الإنسانية، مجالات
+                التعافي المبكر) من خلال تحديد قطاع المساعدة والجهة المقدمة لها
+                ومعلومات الاتصال بها، مع التركيز على المركبات الأساسية: الضرر
+                الفيزيائي، الكادر، المستهلكات اللازمة.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Swiper Navigation Buttons -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <!-- Floating Action Buttons over Swiper -->
+        <div class="floating-slider-btns" style="text-align: center">
+          <a
+            href="sector/index.html"
+            class="btn btn-primary"
+            id="servicesCirclesBtn"
+          >
+            Service Circles</a
+          >
+          <a href="maps/index.html" class="btn btn-primary" id="exploreMapBtn"
+            >Neighborhood Map
+          </a>
+          <a
+            href="dashboard.html"
+            class="btn btn-secondary"
+            id="dashboardBtn"
+            style="text-align: center"
+            >Dashboard</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <!-- Page Interaction Scripts -->
+    <script>
+      // Global variable to store the Swiper instance
+      let swiperInstance = null;
+
+      // Function to initialize the Swiper carousel
+      function initSwiper() {
+        try {
+          // Destroy the existing Swiper instance if it exists
+          if (swiperInstance) {
+            swiperInstance.destroy(true, true);
+            swiperInstance = null;
+          }
+
+          // Initialize a new Swiper instance
+          swiperInstance = new Swiper(".swiper-container", {
+            loop: true, // Enables continuous loop mode
+            autoplay: {
+              delay: 8000, // Delay between transitions (in ms)
+            },
+            navigation: {
+              // Navigation arrows
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            effect: "slide", // Add smooth transition effect
+            fadeEffect: {
+              crossFade: true,
+            },
+          });
+
+          return swiperInstance;
+        } catch (error) {
+          console.error("Failed to initialize Swiper:", error);
+          return null;
+        }
+      }
+
+      // Function to toggle the main menu visibility
+      function toggleMenu() {
+        const menu = document.getElementById("menuDropdown");
+        if (menu) {
+          menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
+        }
+      }
+
+      // Add translations for modal
+      const translations = {
+        ar: {
+          slide1Title: "نظام إدارة المعلومات الحضرية",
+          slide1Desc:
+            "منصة متكاملة لتحليل وتقييم الاحتياجات الأساسية في التجمعات العمرانية، تتيح تحليلاً شاملاً على مستويين: التجمع العمراني ككل والأحياء بشكل تفصيلي. تمثل الاحتياجات الرئيسية (الكمية والنوعية) وفهم تأثيرها الوظيفي والخدمي على كامل التجمع العمراني سواء كانت معطيات ثابتة أو متغيرة.",
+          slide2Title: "تحليل التجمع العمراني",
+          slide2Desc:
+            "بطاقة التجمع العمراني تشمل: اسم التجمع الرسمي وتصنيفه الإداري والعمراني ومساحة المغلف العمراني القائم وعدد الأحياء الموجودة فيه وتقديرات عامة لعدد السكان (قبيل الأزمة، حالياً). تقييم الاتصالية بين التجمع ومحيطه المباشر والتجمعات الرئيسية المجاورة وجرد حضري تشغيلي لواقع المرافق الأساسية.",
+          slide3Title: "تحليل الأحياء",
+          slide3Desc:
+            "رصد وتحليل الاحتياجات المحلية على مستوى الحي من خلال تتبع أنماط التغيرات السكانية، تحليل حالة النسيج العمراني، رصد واقع البنى التحتية الأساسية، تقييم الوضع الخدمي، وتوثيق التدخلات القائمة في مجالات الإنسانية والتعافي المبكر.",
+          slide4Title: "التغيرات السكانية",
+          slide4Desc:
+            "تتبع أنماط التغيرات العامة السكانية على مختلف أنواعها، آخذين بعين الاعتبار العوامل المسببة لشكل التغير السكاني (وافد، مغادر، عائد) وتأثيرها على التركيبة السكانية والاحتياجات الخدمية في الأحياء.",
+          slide5Title: "النسيج العمراني",
+          slide5Desc:
+            "تحليل حالة النسيج العمراني للحي من خلال فهم مكوناته وتتبع التغيرات التي طرأت عليه من خلال تغيرات نسب الإشغال العمرانية وواقع المباني، والأضرار الفيزيائية على المباني، وأنماط الملكية.",
+          slide6Title: "البنى التحتية",
+          slide6Desc:
+            "رصد واقع البنى التحتية الأساسية على مستوى الحي (الكهرباء، المياه، الصرف الصحي، الاتصالات الأرضية) من أجل تحديد مستوى الكفاءة الخدمية للشبكات وتسجيل التغيرات الدورية من خلال تحديد مستوى درجة الضرر العام وشكله.",
+          slide7Title: "الخدمات الأساسية",
+          slide7Desc:
+            "تقييم الوضع الخدمي على مستوى الحي للخدمات الأساسية (الصحة، التعليم، إدارة النفايات الصلبة) من أجل تحديد مستوى الكفاءة التشغيلية لمرافق الخدمات وتسجيل التغيرات الدورية من خلال تحديد مستوى درجة الضرر العام وشكله.",
+          slide8Title: "التدخلات الإنسانية",
+          slide8Desc:
+            "توثيق وتحليل التدخلات القائمة (المجالات الإنسانية، مجالات التعافي المبكر) من خلال تحديد قطاع المساعدة والجهة المقدمة لها ومعلومات الاتصال بها، مع التركيز على المركبات الأساسية: الضرر الفيزيائي، الكادر، المستهلكات اللازمة.",
+          exploreMapBtn: "خريطة الاحياء",
+          servicesCirclesBtn: "خريطة المدينة",
+          dashboardBtn: "لوحة التحكم",
+          langToggleText: "تغيير اللغة",
+          settingsText: "الإعدادات",
+          logoutText: "تسجيل الخروج",
+          modalTitle: "اختر الوضع",
+          editBtn: "تعديل",
+          viewBtn: "استعراض",
+        },
+        en: {
+          slide1Title: "Urban Information Management System",
+          slide1Desc:
+            "An integrated platform for analyzing and evaluating basic needs in urban settlements, providing comprehensive analysis at two levels: the entire urban settlement and detailed neighborhoods. Represents the main needs (quantitative and qualitative) and understanding their functional and service impact on the entire urban settlement, whether fixed or variable data.",
+          slide2Title: "Urban Settlement Analysis",
+          slide2Desc:
+            "Urban settlement card includes: official settlement name and administrative and urban classification, area of existing urban envelope, number of neighborhoods within it, and general estimates of population (before crisis, currently). Evaluation of connectivity between the settlement and its immediate surroundings and neighboring main settlements and operational urban inventory of basic facilities.",
+          slide3Title: "Neighborhood Analysis",
+          slide3Desc:
+            "Monitoring and analyzing local needs at the neighborhood level through tracking population change patterns, analyzing urban fabric status, monitoring basic infrastructure reality, evaluating service status, and documenting existing interventions in humanitarian and early recovery areas.",
+          slide4Title: "Population Changes",
+          slide4Desc:
+            "Tracking general population change patterns of various types, taking into account the factors causing the form of population change (incoming, outgoing, returning) and their impact on population composition and service needs in neighborhoods.",
+          slide5Title: "Urban Fabric",
+          slide5Desc:
+            "Analysis of the neighborhood's urban fabric status through understanding its components and tracking changes that occurred through changes in urban occupancy ratios and building reality, physical damage to buildings, and ownership patterns.",
+          slide6Title: "Infrastructure",
+          slide6Desc:
+            "Monitoring the reality of basic infrastructure at the neighborhood level (electricity, water, sewage, land communications) to determine the level of service efficiency of networks and record periodic changes through determining the level and form of general damage.",
+          slide7Title: "Basic Services",
+          slide7Desc:
+            "Evaluation of service status at the neighborhood level for basic services (health, education, solid waste management) to determine the operational efficiency level of service facilities and record periodic changes through determining the level and form of general damage.",
+          slide8Title: "Humanitarian Interventions",
+          slide8Desc:
+            "Documentation and analysis of existing interventions (humanitarian areas, early recovery areas) through identifying the assistance sector and the providing entity and their contact information, with focus on basic components: physical damage, staff, necessary consumables.",
+          exploreMapBtn: "Neighborhood Map",
+          servicesCirclesBtn: "City Map",
+          dashboardBtn: "Dashboard",
+          langToggleText: "Change Language",
+          settingsText: "Settings",
+          logoutText: "Logout",
+          modalTitle: "Choose Mode",
+          editBtn: "Edit",
+          viewBtn: "View",
+        },
+      };
+
+      let currentLang = "ar"; // Default language
+
+      // Function to switch the page language
+      function switchLanguage(lang) {
+        // Store the language preference in localStorage
+        try {
+          localStorage.setItem("preferredLanguage", lang);
+        } catch (error) {
+          console.error("Error saving language preference:", error);
+        }
+
+        currentLang = lang;
+        const t = translations[lang];
+
+        // Set document language and direction
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+        // Update slide content for all 8 slides
+        document
+          .querySelectorAll("#slide1Title, .slide1Title")
+          .forEach((el) => (el.textContent = t.slide1Title));
+        document
+          .querySelectorAll("#slide1Desc, .slide1Desc")
+          .forEach((el) => (el.textContent = t.slide1Desc));
+        document
+          .querySelectorAll("#slide2Title, .slide2Title")
+          .forEach((el) => (el.textContent = t.slide2Title));
+        document
+          .querySelectorAll("#slide2Desc, .slide2Desc")
+          .forEach((el) => (el.textContent = t.slide2Desc));
+        document
+          .querySelectorAll("#slide3Title, .slide3Title")
+          .forEach((el) => (el.textContent = t.slide3Title));
+        document
+          .querySelectorAll("#slide3Desc, .slide3Desc")
+          .forEach((el) => (el.textContent = t.slide3Desc));
+        document
+          .querySelectorAll("#slide4Title, .slide4Title")
+          .forEach((el) => (el.textContent = t.slide4Title));
+        document
+          .querySelectorAll("#slide4Desc, .slide4Desc")
+          .forEach((el) => (el.textContent = t.slide4Desc));
+        document
+          .querySelectorAll("#slide5Title, .slide5Title")
+          .forEach((el) => (el.textContent = t.slide5Title));
+        document
+          .querySelectorAll("#slide5Desc, .slide5Desc")
+          .forEach((el) => (el.textContent = t.slide5Desc));
+        document
+          .querySelectorAll("#slide6Title, .slide6Title")
+          .forEach((el) => (el.textContent = t.slide6Title));
+        document
+          .querySelectorAll("#slide6Desc, .slide6Desc")
+          .forEach((el) => (el.textContent = t.slide6Desc));
+        document
+          .querySelectorAll("#slide7Title, .slide7Title")
+          .forEach((el) => (el.textContent = t.slide7Title));
+        document
+          .querySelectorAll("#slide7Desc, .slide7Desc")
+          .forEach((el) => (el.textContent = t.slide7Desc));
+        document
+          .querySelectorAll("#slide8Title, .slide8Title")
+          .forEach((el) => (el.textContent = t.slide8Title));
+        document
+          .querySelectorAll("#slide8Desc, .slide8Desc")
+          .forEach((el) => (el.textContent = t.slide8Desc));
+
+        document.getElementById("exploreMapBtn").textContent = t.exploreMapBtn;
+        document.getElementById("servicesCirclesBtn").textContent =
+          t.servicesCirclesBtn;
+        document.getElementById("dashboardBtn").textContent = t.dashboardBtn;
+
+        // Update menu items
+        const langToggleText = document.getElementById("langToggleText");
+        if (langToggleText) langToggleText.textContent = t.langToggleText;
+
+        document.getElementById("settingsText").textContent = t.settingsText;
+        document.getElementById("logoutText").textContent = t.logoutText;
+
+        // Update modal translations
+        document.getElementById("modalTitle").textContent = t.modalTitle;
+        document.getElementById("editBtn").textContent = t.editBtn;
+        document.getElementById("viewBtn").textContent = t.viewBtn;
+
+        // Re-initialize Swiper after language change to ensure layout updates
+        setTimeout(() => {
+          initSwiper();
+        }, 300); // Longer delay for DOM updates
+      }
+
+      // Function to toggle language between AR and EN
+      function toggleLanguage() {
+        const newLang = currentLang === "ar" ? "en" : "ar";
+        switchLanguage(newLang);
+      }
+
+      // Event listener to close the menu when clicking outside of it
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("menuDropdown");
+        const menuBtn = document.getElementById("menuToggleBtn");
+
+        if (menu && menuBtn) {
+          // Check if the click is outside the menu button and the menu itself
+          if (!menuBtn.contains(event.target) && !menu.contains(event.target)) {
+            menu.style.display = "none";
+          }
+        }
+      });
+
+      // Initialize Swiper and set default language when the DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check if there's a saved language preference in localStorage
+        let savedLanguage;
+        try {
+          savedLanguage = localStorage.getItem("preferredLanguage");
+        } catch (error) {
+          console.error("Error retrieving language preference:", error);
+          savedLanguage = null;
+        }
+
+        // Set initial language based on saved preference or default to Arabic
+        const initialLang = savedLanguage || "ar";
+        switchLanguage(initialLang);
+
+        // Then initialize Swiper with a short delay to ensure DOM is ready
+        setTimeout(() => {
+          initSwiper();
+        }, 200);
+
+        // Load and apply user permissions to show/hide buttons
+        setTimeout(() => {
+          applyUserPermissions();
+        }, 500);
+
+        // Add click handlers for the map and services buttons
+        document
+          .getElementById("exploreMapBtn")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            showModeModal("map");
+          });
+
+        document
+          .getElementById("servicesCirclesBtn")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            showModeModal("services");
+          });
+
+        // Add click handlers for modal buttons
+        document
+          .getElementById("editBtn")
+          .addEventListener("click", function () {
+            handleModalAction("edit");
+          });
+
+        document
+          .getElementById("viewBtn")
+          .addEventListener("click", function () {
+            handleModalAction("view");
+          });
+
+        // Close modal when clicking outside
+        document
+          .getElementById("modeModal")
+          .addEventListener("click", function (e) {
+            if (e.target === this) {
+              hideModeModal();
+            }
+          });
+      });
+
+      // Function to apply user permissions and show/hide buttons accordingly
+      function applyUserPermissions() {
+        // Get user permissions from localStorage
+        const permissions = getPermissionsFromLocalStorage();
+
+        // Debug: Check what's in localStorage
+        console.log("Debug - localStorage contents:");
+        console.log(
+          "userPermissions:",
+          localStorage.getItem("userPermissions")
+        );
+        console.log("user:", localStorage.getItem("user"));
+        console.log("userInfo:", localStorage.getItem("userInfo"));
+        console.log("Applying user permissions:", permissions);
+
+        // Check permissions for each button and show/hide accordingly
+        const exploreMapBtn = document.getElementById("exploreMapBtn");
+        const servicesCirclesBtn =
+          document.getElementById("servicesCirclesBtn");
+        const dashboardBtn = document.getElementById("dashboardBtn");
+
+        // Check neighborhood map permissions (edit and view)
+        const hasNeighborhoodEdit = permissions.some(
+          (perm) => perm.code === "PERM_EDIT_NEIGHBORHOOD_MAP"
+        );
+        const hasNeighborhoodView = permissions.some(
+          (perm) => perm.code === "PERM_VIEW_NEIGHBORHOOD_MAP"
+        );
+
+        // Check city map permissions (edit and view)
+        const hasCityEdit = permissions.some(
+          (perm) => perm.code === "PERM_EDIT_CITY_MAP"
+        );
+        const hasCityView = permissions.some(
+          (perm) => perm.code === "PERM_VIEW_CITY_MAP"
+        );
+
+        // Check dashboard permission
+        const hasDashboard = permissions.some(
+          (perm) => perm.code === "PERM_DASHBOARD"
+        );
+
+        // Show/hide neighborhood map button
+        if (exploreMapBtn) {
+          if (hasNeighborhoodEdit || hasNeighborhoodView) {
+            exploreMapBtn.style.display = "inline-block";
+            console.log(
+              "Neighborhood map button shown - Edit:",
+              hasNeighborhoodEdit,
+              "View:",
+              hasNeighborhoodView
+            );
+          } else {
+            exploreMapBtn.style.display = "none";
+            console.log("Neighborhood map button hidden - no permissions");
+          }
+        }
+
+        // Show/hide city map button
+        if (servicesCirclesBtn) {
+          if (hasCityEdit || hasCityView) {
+            servicesCirclesBtn.style.display = "inline-block";
+            console.log(
+              "City map button shown - Edit:",
+              hasCityEdit,
+              "View:",
+              hasCityView
+            );
+          } else {
+            servicesCirclesBtn.style.display = "none";
+            console.log("City map button hidden - no permissions");
+          }
+        }
+
+        // Show/hide dashboard button
+        if (dashboardBtn) {
+          if (hasDashboard) {
+            dashboardBtn.style.display = "inline-block";
+            console.log("Dashboard button shown");
+          } else {
+            dashboardBtn.style.display = "none";
+            console.log("Dashboard button hidden - no permission");
+          }
+        }
+
+        // Store permission states for modal handling
+        window.userPermissionStates = {
+          neighborhoodEdit: hasNeighborhoodEdit,
+          neighborhoodView: hasNeighborhoodView,
+          cityEdit: hasCityEdit,
+          cityView: hasCityView,
+          dashboard: hasDashboard,
+        };
+      }
+
+      // Function to get user permissions directly from localStorage
+      function getPermissionsFromLocalStorage() {
+        try {
+          const permissions = localStorage.getItem("userPermissions");
+          return permissions ? JSON.parse(permissions) : [];
+        } catch (error) {
+          console.error(
+            "Error parsing user permissions from localStorage:",
+            error
+          );
+          return [];
+        }
+      }
+
+      // Variable to store which button triggered the modal
+      let currentButtonType = "";
+
+      // Function to show modal
+      function showModeModal(buttonType) {
+        const modal = document.getElementById("modeModal");
+        const editBtn = document.getElementById("editBtn");
+        const viewBtn = document.getElementById("viewBtn");
+        currentButtonType = buttonType;
+
+        // Get permission states
+        const permissionStates = window.userPermissionStates || {};
+
+        // إظهار/إخفاء الأزرار حسب الصلاحيات
+        if (buttonType === "map") {
+          // خريطة الأحياء
+          if (editBtn)
+            editBtn.style.display = permissionStates.neighborhoodEdit
+              ? "inline-block"
+              : "none";
+          if (viewBtn)
+            viewBtn.style.display = permissionStates.neighborhoodView
+              ? "inline-block"
+              : "none";
+        } else if (buttonType === "services") {
+          // خريطة المدينة
+          if (editBtn)
+            editBtn.style.display = permissionStates.cityEdit
+              ? "inline-block"
+              : "none";
+          if (viewBtn)
+            viewBtn.style.display = permissionStates.cityView
+              ? "inline-block"
+              : "none";
+        } else {
+          // افتراضي: أظهر الزرين
+          if (editBtn) editBtn.style.display = "inline-block";
+          if (viewBtn) viewBtn.style.display = "inline-block";
+        }
+
+        modal.style.display = "flex";
+        console.log("Modal shown for:", buttonType); // Debug log
+      }
+
+      // Function to hide modal
+      function hideModeModal() {
+        const modal = document.getElementById("modeModal");
+        modal.style.display = "none";
+        currentButtonType = "";
+      }
+
+      // Function to handle modal button clicks
+      function handleModalAction(action) {
+        console.log("Action:", action, "Button Type:", currentButtonType); // Debug log
+
+        // Get permission states
+        const permissionStates = window.userPermissionStates || {};
+
+        if (currentButtonType === "map") {
+          if (action === "edit") {
+            // Check if user has edit permission for neighborhood map
+            if (!permissionStates.neighborhoodEdit) {
+              alert("ليس لديك صلاحية تعديل خريطة الأحياء");
+              hideModeModal();
+              return;
+            }
+            localStorage.setItem("mapType", "neighborhood");
+            console.log("mapType set to:", localStorage.getItem("mapType"));
+            window.location.href = "./edit.html";
+          } else if (action === "view") {
+            // Check if user has view permission for neighborhood map
+            if (!permissionStates.neighborhoodView) {
+              alert("ليس لديك صلاحية استعراض خريطة الأحياء");
+              hideModeModal();
+              return;
+            }
+            localStorage.setItem("mapType", "neighborhood");
+            console.log("mapType set to:", localStorage.getItem("mapType"));
+            window.location.href = "./maps/index2.html";
+          }
+        } else if (currentButtonType === "services") {
+          if (action === "edit") {
+            // Check if user has edit permission for city map
+            if (!permissionStates.cityEdit) {
+              alert("ليس لديك صلاحية تعديل خريطة المدينة");
+              hideModeModal();
+              return;
+            }
+            localStorage.setItem("mapType", "city");
+            console.log("mapType set to:", localStorage.getItem("mapType"));
+            window.location.href = "./edit.html";
+          } else if (action === "view") {
+            // Check if user has view permission for city map
+            if (!permissionStates.cityView) {
+              alert("ليس لديك صلاحية استعراض خريطة المدينة");
+              hideModeModal();
+              return;
+            }
+            localStorage.setItem("mapType", "city");
+            console.log("mapType set to:", localStorage.getItem("mapType"));
+            window.location.href = "./sector/index2.html";
+          }
+        }
+
+        hideModeModal();
+      }
+
+      // Function to handle user logout (for menu)
+      function logoutUser() {
+        // Clear localStorage
+        localStorage.removeItem("user");
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("userPermissions");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        
+        // Redirects the user to the login page (index.html)
+        window.location.href = "./index.html";
+      }
+
+      // Function to handle settings click
+      function handleSettingsClick(event) {
+        event.preventDefault();
+        window.location.href = "./profile.html";
+      }
+    </script>
+
+  </body>
+</html>

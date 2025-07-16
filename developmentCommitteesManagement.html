@@ -1,0 +1,3975 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/img/UN_Habitat_Icon.svg"
+      type="image/x-icon"
+    />
+    <title>Development Committees Management</title>
+    <!-- Simplified Arabic Font -->
+    <link href="libraries/css/noto-naskh-arabic.css" rel="stylesheet" />
+    <link href="libraries/css/fontawesome-6.5.1.min.css" rel="stylesheet" />
+    <link
+      href="libraries/css/bootstrap-icons-1.11.3.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link href="libraries/css/noto-naskh-arabic.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link href="libraries/css/fontawesome-6.5.1.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="libraries/css/bootstrap-icons-1.11.3.min.css"
+    />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="assets/css/soft-ui-dashboard.css?v=1.1.0"
+      rel="stylesheet"
+    />
+
+    <!-- Common styles -->
+    <link href="assets/css/styles.css" rel="stylesheet" />
+
+    <style>
+      /* Page-specific styles for developmentCommitteesManagement.html */
+      #mainHeader .title-en {
+        font-size: 0.9rem !important;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu-item i {
+        margin-left: 8px;
+        width: 20px;
+        text-align: center;
+      }
+
+      .menu-item:hover {
+        background-color: #f5f5f5;
+      }
+
+      body[dir="ltr"] .menu-dropdown-content {
+        right: auto;
+        left: 0;
+      }
+
+      body[dir="ltr"] .menu-item i {
+        margin-left: 0;
+        margin-right: 8px;
+      }
+
+      /* Font Awesome icon styles */
+      .fa,
+      .fab,
+      .fas,
+      .far,
+      i.fa,
+      i.fab,
+      i.fas,
+      i.far,
+      i.fa-facebook-f,
+      i.fa-x-twitter,
+      i.fa-instagram,
+      i.fa-linkedin-in,
+      i.fa-whatsapp {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+        display: inline-block !important;
+        visibility: visible !important;
+      }
+
+      /* Styles from eddit.html */
+      :root {
+        --primary-color: #00b2e3;
+        --secondary-color: #0d6efd;
+        --accent-color: #f97316;
+        --text-dark: #27272a;
+        --text-light: #71717a;
+        --text-white: #ffffff;
+        --bg-light: #f8f9fa;
+        --bg-white: #ffffff;
+        --bg-gray-light: #f4f4f5;
+        --bg-gray-medium: #e3e3e7;
+        --card-bg: #ffffff;
+        --border-radius: 10px;
+        --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15);
+        --border-color: #d4d4d8;
+        --success-color: #22c55e;
+        --warning-color: #eab308;
+        --danger-color: #ef4444;
+        --info-color: #0ea5e9;
+      }
+
+      .data-row {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-light);
+        margin-bottom: 1rem;
+        padding: 1rem;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-right: 3px solid var(--primary-color);
+        display: flex;
+        flex-direction: column;
+        animation-duration: 0.7s;
+      }
+
+      .data-row:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .row-title-container {
+        width: 100%;
+        margin-bottom: 0.8rem;
+        padding-right: 8px;
+      }
+
+      .row-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 6px;
+        display: inline-block;
+      }
+
+      .fields-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
+      }
+
+      .field-item {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        background-color: var(--bg-light);
+        padding: 0.5rem 0.8rem;
+        border-radius: var(--border-radius);
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        flex-grow: 0;
+        flex-shrink: 0;
+        min-width: 120px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        position: relative;
+        user-select: none;
+      }
+
+      .field-item:hover {
+        background-color: var(--bg-gray-light);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .field-item:active {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .field-label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-dark);
+        margin: 0rem 0.6rem;
+        cursor: pointer;
+        white-space: nowrap;
+        flex: 1;
+      }
+
+      .custom-checkbox {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .custom-checkbox input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      .custom-checkbox span {
+        position: relative;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--primary-color);
+        border-radius: 4px;
+        background-color: var(--card-bg);
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        flex-shrink: 0;
+      }
+
+      .custom-checkbox input[type="checkbox"]:checked + span {
+        background-color: var(--success-color);
+        border-color: var(--success-color);
+        transform: scale(1.1);
+        box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+      }
+
+      .custom-checkbox input[type="checkbox"]:checked + span::after {
+        content: "\2713";
+        font-size: 12px;
+        color: var(--text-white);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .custom-checkbox:hover span {
+        border-color: var(--success-color);
+        box-shadow: 0 0 5px rgba(34, 197, 94, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .data-row {
+          padding: 0.8rem;
+        }
+
+        .row-title {
+          font-size: 1.1rem;
+        }
+
+        .field-item {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      /* Styles for neighborhood management from z.html */
+      .action-icons i {
+        cursor: pointer;
+        margin: 0 6px;
+        transition: transform 0.2s;
+        font-size: 1.2rem;
+      }
+
+      .action-icons i:hover {
+        transform: scale(1.3);
+      }
+
+      /* Enhanced Modal Styles */
+      .modal-dialog {
+        margin: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+        position: fixed;
+        max-width: 380px;
+        width: 95vw;
+        min-width: 260px;
+        z-index: 1055;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 80vh;
+        height: auto;
+      }
+      .modal-dialog.modal-lg {
+        max-width: 600px;
+      }
+      .modal-content {
+        border-radius: 14px;
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18);
+        padding: 0;
+        overflow-x: hidden;
+        max-height: 78vh;
+        overflow-y: auto;
+      }
+      .modal-header,
+      .modal-footer {
+        padding: 0.5rem 1rem;
+      }
+      .modal-title {
+        font-size: 1.1rem;
+      }
+      .modal-body {
+        padding: 0.75rem 1rem;
+        overflow-x: hidden;
+      }
+      /* منع ظهور شريط تمرير أفقي في الجداول داخل المودال */
+      .modal .table-responsive {
+        overflow-x: auto;
+        max-width: 100%;
+      }
+      .modal .table {
+        min-width: 100%;
+        width: 100%;
+        margin-bottom: 0;
+      }
+      /* منع ظهور شريط تمرير أفقي في أي مودال */
+      .modal {
+        overflow-x: hidden !important;
+      }
+
+      .modal-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--text-white);
+        border-bottom: none;
+        padding: 0.5rem !important;
+        text-align: center;
+        position: relative;
+      }
+
+      .modal-title {
+        color: var(--text-white);
+        font-weight: 600;
+        font-size: 1.25rem;
+        margin: 0;
+      }
+
+      /* Fix modal close button positioning for RTL/LTR */
+      .modal-header .btn-close {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        padding: 0.5rem;
+        z-index: 1060;
+      }
+
+      /* RTL positioning */
+      body[dir="rtl"] .modal-header .btn-close {
+        left: 1rem;
+        right: auto;
+      }
+
+      /* LTR positioning */
+      body[dir="ltr"] .modal-header .btn-close {
+        right: 1rem;
+        left: auto;
+      }
+
+      /* Ensure close button is visible on all modal types */
+      #formModal .modal-header .btn-close,
+      #detailsModal .modal-header .btn-close,
+      #memberFormModal .modal-header .btn-close {
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        opacity: 1;
+      }
+
+      .modal-body {
+        /*padding: 2rem;*/
+        background-color: #f8f9fa;
+      }
+
+      .modal-footer {
+        background-color: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+        padding: 0;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .modal-footer .btn {
+        min-width: 120px;
+        border-radius: 25px;
+        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .modal-footer .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+        border: none;
+      }
+
+      .modal-footer .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+
+      .modal-footer .btn-secondary {
+        background-color: var(--text-light);
+        border: none;
+        box-shadow: 0 4px 15px rgba(113, 113, 122, 0.3);
+      }
+
+      .modal-footer .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(113, 113, 122, 0.5);
+      }
+
+      .form-control {
+        border-radius: 10px;
+        border: 2px solid var(--border-color);
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+      }
+
+      .table th,
+      .table td {
+        vertical-align: middle !important;
+      }
+
+      /* Enhanced Filter Section */
+      .filter-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--bg-gray-light) 100%
+        );
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Unified Button Styles */
+      .filter-section .btn {
+        min-width: 140px;
+        height: 45px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Unified Icon Styles for Filter Section Buttons */
+      .filter-section .btn i {
+        font-size: 1.1rem;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        margin-left: 6px;
+        margin-right: 0;
+        flex-shrink: 0;
+      }
+
+      /* Specific icon adjustments for better visual balance */
+      .filter-section .btn i.bi-arrow-counterclockwise {
+        font-size: 1.15rem;
+      }
+
+      .filter-section .btn i.bi-file-earmark-excel {
+        font-size: 1.1rem;
+      }
+
+      .filter-section .btn i.bi-plus-circle {
+        font-size: 1.2rem;
+      }
+
+      /* RTL support for icon spacing */
+      body[dir="rtl"] .filter-section .btn i {
+        margin-left: 0;
+        margin-right: 6px;
+      }
+
+      /* Button text alignment and spacing */
+      .filter-section .btn {
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Ensure consistent vertical alignment */
+      .filter-section .btn,
+      .filter-section .btn * {
+        vertical-align: middle;
+      }
+
+      /* Enhanced button hover effects with icon scaling */
+      .filter-section .btn:hover i {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+      }
+
+      .filter-section .btn-secondary {
+        background: linear-gradient(
+          135deg,
+          var(--text-light) 0%,
+          var(--text-dark) 100%
+        );
+        color: var(--text-white);
+      }
+
+      .filter-section .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(113, 113, 122, 0.4);
+      }
+
+      .filter-section .btn-success {
+        background: linear-gradient(
+          135deg,
+          var(--success-color) 0%,
+          #16a34a 100%
+        );
+        color: var(--text-white);
+      }
+
+      .filter-section .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+      }
+
+      .filter-section .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color) 0%,
+          var(--primary-color) 100%
+        );
+        color: var(--text-white);
+      }
+
+      .filter-section .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+      }
+
+      /* Search Input Enhancement */
+      .filter-section .form-control {
+        /* border-radius: 25px; */
+        border: 2px solid var(--border-color);
+        padding: 0.75rem 1.25rem;
+        background-color: var(--bg-white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .filter-section .form-control:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        transform: translateY(-1px);
+      }
+
+      /* Date Input Styling */
+      .filter-section label {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .filter-section label input[type="date"] {
+        border-radius: 10px;
+        border: 2px solid var(--border-color);
+        padding: 0.5rem 0.75rem;
+        background-color: var(--bg-white);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Horizontal Date Filter Container */
+      .date-filter-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .date-filter-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0;
+        min-width: 140px;
+      }
+
+      .date-filter-item input[type="date"] {
+        border-radius: 10px;
+        border: 2px solid var(--border-color);
+        padding: 0.5rem 0.75rem;
+        background-color: var(--bg-white);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .date-filter-item input[type="date"]:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        transform: translateY(-1px);
+      }
+
+      /* RTL support for date filter */
+      body[dir="rtl"] .date-filter-container {
+        direction: rtl;
+      }
+
+      body[dir="ltr"] .date-filter-container {
+        direction: ltr;
+      }
+
+      /* Button Group Container */
+      .filter-section > div:last-child {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      /* Responsive Design for Filter Section */
+      @media (max-width: 768px) {
+        .filter-section {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .filter-section > div:last-child {
+          justify-content: center;
+        }
+
+        .filter-section .btn {
+          min-width: 120px;
+        }
+
+        /* Stack date filters vertically on mobile */
+        .date-filter-container {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.75rem;
+        }
+
+        .date-filter-item {
+          min-width: auto;
+          width: 100%;
+        }
+      }
+
+      /* Enhanced Details Modal */
+      .modal-dialog.modal-lg {
+        max-width: 800px;
+      }
+
+      #detailsModal .modal-content {
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      #detailsModal .modal-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        padding: 2rem;
+      }
+
+      #detailsModal .table-responsive {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      #detailsModal .table {
+        margin-bottom: 0;
+      }
+
+      #detailsModal .table thead th {
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--bg-gray-light) 100%
+        );
+        border: none;
+        font-weight: 600;
+        color: var(--text-dark);
+        padding: 1rem;
+      }
+
+      #detailsModal .table tbody td {
+        padding: 1rem;
+        border-color: var(--border-color);
+      }
+
+      #addMemberBtn {
+        background-color: var(--accent-color);
+        border: none;
+        border-radius: 25px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      #addMemberBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
+      }
+
+      /* Enhanced Table Styling */
+      .table-bordered {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .table-dark th {
+        background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+        border: none;
+        font-weight: 600;
+        padding: 1.25rem 1rem;
+      }
+
+      .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(13, 110, 253, 0.05);
+      }
+
+      .table tbody td {
+        padding: 1rem;
+        border-color: var(--border-color);
+      }
+
+      /* Enhanced Page Header */
+      .text-center.mb-4 {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--text-white);
+        padding: 1rem 2rem;
+        border-radius: 20px;
+        margin-bottom: 2rem !important;
+        box-shadow: 0 10px 30px rgba(0, 178, 227, 0.3);
+      }
+
+      .text-center.mb-4 h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: var(--text-white);
+      }
+
+      .text-center.mb-4 .lead {
+        font-size: 1.2rem;
+        opacity: 0.95;
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+
+      /* Page Title Styling */
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(13, 110, 253, 0.1);
+        font-family: "Noto Naskh Arabic", serif;
+      }
+
+      /* Table Header Alignment */
+      .table-primary th {
+        text-align: right !important;
+        direction: rtl;
+      }
+
+      /* Badge Styling */
+      .badge {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+      }
+
+      .badge.bg-success {
+        background-color: var(--success-color) !important;
+        color: var(--text-white) !important;
+      }
+
+      .badge.bg-danger {
+        background-color: var(--danger-color) !important;
+        color: var(--text-white) !important;
+      }
+
+      .badge.bg-warning {
+        background-color: var(--warning-color) !important;
+        color: var(--text-dark) !important;
+      }
+
+      /* Action Buttons Styling */
+      .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        border-radius: 0.25rem;
+        margin: 0 0.125rem;
+      }
+
+      .btn-sm:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Table Cell Alignment */
+      .table td {
+        vertical-align: middle !important;
+        text-align: right !important;
+        direction: rtl;
+      }
+
+      /* Container Enhancement */
+      .container.mt-5 {
+        padding: 0 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .text-center.mb-4 {
+          padding: 1rem;
+        }
+      }
+
+      /* Table Responsive Scrollbar */
+      .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 2.5rem;
+      }
+      .table-responsive::-webkit-scrollbar {
+        height: 8px;
+        background: #f1f1f1;
+      }
+      .table-responsive::-webkit-scrollbar-thumb {
+        background: #bdbdbd;
+        border-radius: 4px;
+      }
+      .table-responsive {
+        scrollbar-color: #bdbdbd #f1f1f1;
+        scrollbar-width: thin;
+      }
+
+      /* Enhanced Main Content Styles */
+      .main-content {
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--bg-gray-light) 100%
+        );
+        min-height: calc(100vh - 66px);
+        padding: 2rem 0;
+      }
+
+      /* Page Header Section */
+      .page-header-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 178, 227, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .page-title-container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .page-title-main {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+      }
+
+      .page-title-main i {
+        font-size: 2rem;
+        margin-left: 1rem;
+        opacity: 0.9;
+      }
+
+      .page-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        margin-bottom: 0;
+        font-weight: 400;
+      }
+
+      .add-committee-btn {
+        background: linear-gradient(
+          135deg,
+          var(--success-color) 0%,
+          #16a34a 100%
+        );
+        border: none;
+        border-radius: 15px;
+        padding: 1rem 2rem;
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 2;
+      }
+
+      .add-committee-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(34, 197, 94, 0.4);
+        background: linear-gradient(
+          135deg,
+          #16a34a 0%,
+          var(--success-color) 100%
+        );
+      }
+
+      /* Table Section */
+      .table-section {
+        background: var(--bg-white);
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .table-header {
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--bg-gray-light) 100%
+        );
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .table-title {
+        color: var(--text-dark);
+        font-weight: 600;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .table-title i {
+        color: var(--secondary-color);
+      }
+
+      .table-actions {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+      }
+
+      .table-container-wrapper {
+        padding: 1.5rem;
+      }
+
+      /* Enhanced Table Styling */
+      .table-section .table {
+        margin-bottom: 0;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .table-section .table thead th {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color) 0%,
+          var(--primary-color) 100%
+        );
+        color: var(--text-white);
+        border: none;
+        font-weight: 600;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .table-section .table tbody td {
+        padding: 1rem;
+        border-color: var(--border-color);
+        vertical-align: middle;
+      }
+
+      .table-section .table tbody tr:hover {
+        background-color: rgba(13, 110, 253, 0.05);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .page-header-section {
+          padding: 1.5rem;
+          text-align: center;
+        }
+
+        .page-title-main {
+          font-size: 2rem;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .page-title-main i {
+          margin-left: 0;
+          margin-bottom: 0.5rem;
+        }
+
+        .add-committee-btn {
+          width: 100%;
+          margin-top: 1rem;
+        }
+
+        .table-header {
+          padding: 1rem;
+        }
+
+        .table-actions {
+          justify-content: flex-end;
+          margin-top: 1rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .main-content {
+          padding: 1rem 0;
+        }
+
+        .page-header-section {
+          padding: 1rem;
+        }
+
+        .page-title-main {
+          font-size: 1.5rem;
+        }
+      }
+
+      /* تحسينات إضافية */
+      .table-section .table tbody tr {
+        transition: all 0.2s ease;
+      }
+
+      .table-section .table tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.08);
+        transform: scale(1.01);
+      }
+
+      /* تحسين أزرار الإجراءات */
+      .table-section .btn-sm {
+        border-radius: 8px;
+        font-size: 0.8rem;
+        padding: 0.375rem 0.75rem;
+        transition: all 0.2s ease;
+      }
+
+      .table-section .btn-sm:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      /* تخصيص ألوان الأزرار */
+      .table-section .btn-primary {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+      }
+
+      .table-section .btn-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      /* تخصيص زر إضافة عملية تنسيق */
+      #addCoordBtn.btn-primary {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: var(--text-white);
+      }
+
+      #addCoordBtn.btn-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--text-white);
+      }
+
+      /* تخصيص زر إضافة عضو */
+      #addMemberBtn.btn-primary {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: var(--text-white);
+      }
+
+      #addMemberBtn.btn-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--text-white);
+      }
+
+      .table-section .btn-danger {
+        background-color: var(--danger-color);
+        border-color: var(--danger-color);
+      }
+
+      .table-section .btn-danger:hover {
+        background-color: #dc2626;
+        border-color: #dc2626;
+      }
+
+      .table-section .btn-secondary {
+        background-color: var(--text-light);
+        border-color: var(--text-light);
+        color: var(--text-white);
+      }
+
+      .table-section .btn-secondary:hover {
+        background-color: var(--text-dark);
+        border-color: var(--text-dark);
+      }
+
+      /* تحسين البادجات */
+      .badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 12px;
+        font-weight: 500;
+      }
+
+      /* تخصيص ألوان البادجات */
+      .badge.bg-success {
+        background-color: var(--success-color) !important;
+        color: var(--text-white) !important;
+      }
+
+      .badge.bg-danger {
+        background-color: var(--danger-color) !important;
+        color: var(--text-white) !important;
+      }
+
+      .badge.bg-warning {
+        background-color: var(--warning-color) !important;
+        color: var(--text-dark) !important;
+      }
+
+      .badge.bg-info {
+        background-color: var(--info-color) !important;
+        color: var(--text-white) !important;
+      }
+
+      /* تحسين زر إضافة لجنة */
+      .add-committee-btn {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .add-committee-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .add-committee-btn:hover::before {
+        left: 100%;
+      }
+
+      /* تحسين الجدول للشاشات الصغيرة */
+      @media (max-width: 768px) {
+        .table-section .table {
+          font-size: 0.9rem;
+        }
+
+        .table-section .btn-sm {
+          padding: 0.25rem 0.5rem;
+          font-size: 0.75rem;
+        }
+
+        .table-section .badge {
+          font-size: 0.7rem;
+          padding: 0.375rem 0.5rem;
+        }
+      }
+
+      /* تخصيص ألوان الأيقونات في الجدول */
+      .table-section .btn i {
+        color: var(--text-white);
+      }
+
+      .table-section .btn-primary i {
+        color: var(--text-white);
+      }
+
+      .table-section .btn-danger i {
+        color: var(--text-white);
+      }
+
+      .table-section .btn-secondary i {
+        color: var(--text-white);
+      }
+
+      .actions-ltr {
+        direction: ltr !important;
+        text-align: right !important;
+      }
+
+      #addCommitteeBtnCol {
+        direction: ltr !important;
+      }
+    </style>
+    <!-- Toast Notification -->
+    <div
+      id="customToast"
+      style="
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 220px;
+        z-index: 9999;
+        display: none;
+        background: #323232;
+        color: #fff;
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+        font-size: 1rem;
+        text-align: center;
+        transition: opacity 0.4s;
+        opacity: 0;
+      "
+    ></div>
+    <!-- Modal: تأكيد الحذف -->
+    <div
+      class="modal fade custom-fade"
+      id="confirmDeleteModal"
+      tabindex="-1"
+      aria-labelledby="confirmDeleteLabel"
+      aria-hidden="true"
+      style="z-index: 10000 !important"
+    >
+      <div class="modal-dialog modal-dialog-centered" style="max-width: 340px">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="confirmDeleteLabel">
+              <span id="confirmDeleteTitle">تأكيد الحذف</span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="إغلاق"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <span id="confirmDeleteMsg"
+              ><span id="confirmDeleteMessage"
+                >هل أنت متأكد من الحذف؟</span
+              ></span
+            >
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              <span id="confirmDeleteCancelText">إلغاء</span>
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+              <span id="confirmDeleteConfirmText">تأكيد</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      /* --- Animation for modals --- */
+      .modal.custom-fade .modal-dialog {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        transition: opacity 0.35s, transform 0.35s;
+      }
+      .modal.show.custom-fade .modal-dialog {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      /* --- Responsive tables in modal --- */
+      @media (max-width: 600px) {
+        #membersTable th:nth-child(1),
+        #membersTable td:nth-child(1),
+        #membersTable th:nth-child(5),
+        #membersTable td:nth-child(5),
+        #membersTable th:nth-child(6),
+        #membersTable td:nth-child(6),
+        #membersTable th:nth-child(7),
+        #membersTable td:nth-child(7) {
+          display: none;
+        }
+        #coordTable th:nth-child(1),
+        #coordTable td:nth-child(1),
+        #coordTable th:nth-child(4),
+        #coordTable td:nth-child(4) {
+          display: none;
+        }
+      }
+      .modal .table-responsive {
+        overflow-x: auto;
+        max-width: 100vw;
+      }
+    </style>
+  </head>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <!-- Header -->
+    <header id="mainHeader">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img
+          src="assets/img/aleppo.jfif"
+          alt="Logo 1"
+          class="header-logo"
+          onclick="window.location.href = './welcome.html';"
+          style="cursor: pointer"
+          title="Aleppo Governorate"
+        />
+      </div>
+
+      <div class="header-title text-center">
+        <div class="title-ar">نظام إدارة المعلومات الحضرية _ مدينة حلب</div>
+        <div class="title-en">
+          Urban Information Management System - Aleppo City
+        </div>
+      </div>
+
+      <div class="header-logos right-logos">
+        <div class="menu-dropdown">
+          <button
+            class="menu-toggle"
+            id="menuToggleBtn"
+            onclick="toggleMenu()"
+          ></button>
+          <div class="menu-dropdown-content" id="menuDropdown">
+            <a
+              href="#"
+              class="menu-item"
+              id="langToggleBtn"
+              onclick="toggleLanguage();"
+            >
+              <i class="fas fa-language"></i>
+              <span id="langToggleText">تغيير اللغة</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="settingsBtn"
+              onclick="window.location.href = './profile.html';"
+            >
+              <i class="fas fa-cog"></i>
+              <span id="settingsText">الإعدادات</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="logoutBtn"
+              onclick="logoutUser();"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span id="logoutText">تسجيل الخروج</span>
+            </a>
+          </div>
+        </div>
+        <img
+          src="assets/img/unhabitat.png"
+          alt="Logo 3"
+          class="header-logo"
+          title="UN Habitat"
+          style="background-color: #fff"
+        />
+        <img
+          src="assets/img/japan.jpg"
+          alt="Logo 2"
+          class="header-logo"
+          title="Aid from the Japanese people"
+        />
+      </div>
+    </header>
+
+    <aside
+      class="sidenav navbar navbar-vertical navbar-expand-xs border-0 my-3 fixed-end bg-gray-300"
+      id="sidenav-main"
+      style="max-height: calc(100vh - 66px); overflow-y: visible"
+    >
+      <div class="sidenav-header">
+        <i
+          class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true"
+          id="iconSidenav"
+        ></i>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-tachometer-alt"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-table"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">configuration Tables </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="ManageUsers.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-users-cog"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Manage users</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              href="neighborhoodCommitteesManagement.html"
+            >
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-users"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان الأحياء</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="developmentCommitteesManagement.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+                style="
+                background: linear-gradient(
+                  135deg,
+                  #007bff 0%,
+                  #0056b3 100%
+                ) !important;
+              "
+              >
+                <i
+                  class="fas fa-chart-line"
+                  style="color: white; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان التنمية</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidenav-footer mx-3"></div>
+    </aside>
+    <main class="main-content position-relative border-radius-lg mt-4">
+      <div class="container-fluid py-4">
+        <!-- Enhanced Page Header -->
+        <div class="page-header-section mb-4">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <div class="page-title-container">
+                <h1 class="page-title-main">
+                  <i
+                    class="fas fa-users me-3"
+                    style="color: var(--text-white)"
+                  ></i>
+                  <span id="pageTitle">لجان التنمية</span>
+                </h1>
+                <p class="page-subtitle">
+                  <span id="pageSubtitle"
+                    >إدارة وتنظيم لجان الأحياء في مدينة حلب</span
+                  >
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-lg-6 d-flex justify-content-start"
+              id="addCommitteeBtnCol"
+            >
+              <button
+                class="btn btn-primary btn-lg add-committee-btn"
+                id="addCommitteeBtn"
+              >
+                <i
+                  class="fas fa-plus-circle me-2"
+                  style="color: var(--text-white)"
+                ></i>
+                <span id="addCommitteeBtnText">إضافة لجنة جديدة</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Table Section -->
+        <div class="table-section">
+          <div class="table-header">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <h5 class="table-title">
+                  <i
+                    class="fas fa-table me-2"
+                    style="color: var(--secondary-color)"
+                  ></i>
+                  <span id="committeesListTitle">قائمة لجان الأحياء</span>
+                </h5>
+              </div>
+              <div class="col-md-6">
+                <div class="table-actions">
+                  <button
+                    class="btn btn-outline-secondary btn-sm me-2"
+                    id="exportBtn"
+                  >
+                    <i
+                      class="fas fa-download me-1"
+                      style="color: var(--text-dark)"
+                    ></i>
+                    <span id="exportBtnText">تصدير</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-container-wrapper">
+            <div class="table-responsive table-container">
+              <table
+                id="logTable"
+                class="table table-striped table-bordered table-hover"
+                style="min-width: 1200px"
+              >
+                <thead class="table-primary">
+                  <tr>
+                    <th id="thNeighborhood">اسم الحي</th>
+                    <th id="thCommittee">اسم اللجنة</th>
+                    <th id="thIsActive">هل اللجنة مفعّلة في هذا الحي</th>
+                    <th id="thHasCommittee">هل توجد لجنة في الحي</th>
+                    <th id="thHasOffice">هل يوجد مقر</th>
+                    <th id="thCompetence">كفاءات لجان الأحياء</th>
+                    <th id="thNotes">ملاحظات</th>
+                    <th id="thActions">الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="committeesTbody">
+                  <!-- سيتم تعبئته ديناميكياً -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Modal: إدارة أعضاء اللجنة -->
+    <div
+      class="modal fade"
+      id="membersModal"
+      tabindex="-1"
+      aria-labelledby="membersModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="membersModalLabel">
+              <span id="memberManagementTitle">أعضاء اللجنة</span> -
+              <span id="modalNeighborhoodName"></span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="إغلاق"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <button class="btn btn-primary mb-3" id="addMemberBtn">
+              <i class="fas fa-plus" style="color: var(--text-white)"></i>
+              <span id="addMemberBtnText">إضافة عضو</span>
+            </button>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover" id="membersTable">
+                <thead class="table-light">
+                  <tr>
+                    <th id="memberThNeighborhood">اسم الحي</th>
+                    <th id="memberThName">اسم العضو</th>
+                    <th id="memberThGender">الجنس</th>
+                    <th id="memberThAge">العمر</th>
+                    <th id="memberThEducation">المؤهل التعليمي</th>
+                    <th id="memberThPhone">رقم الهاتف</th>
+                    <th id="memberThPosition">المنصب</th>
+                    <th id="memberThActions">الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- سيتم تعبئتها ديناميكياً -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal: إضافة/تعديل عضو لجنة -->
+    <div
+      class="modal fade"
+      id="memberFormModal"
+      tabindex="-1"
+      aria-labelledby="memberFormModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="memberFormModalLabel">
+              <span id="memberFormTitle">إضافة عضو</span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="إغلاق"
+            ></button>
+          </div>
+          <form id="memberForm">
+            <div class="modal-body">
+              <input type="hidden" id="memberFormNeighborhood" />
+              <input type="hidden" id="memberFormIndex" />
+              <div class="mb-3">
+                <label for="memberName" class="form-label"
+                  ><span id="memberNameLabel">اسم العضو</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="memberName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="memberGender" class="form-label"
+                  ><span id="memberGenderLabel">الجنس</span></label
+                >
+                <select class="form-control" id="memberGender" required>
+                  <option value=""><span id="selectOption">اختر</span></option>
+                  <option value="ذكر"><span id="maleOption">ذكر</span></option>
+                  <option value="أنثى">
+                    <span id="femaleOption">أنثى</span>
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="memberAge" class="form-label"
+                  ><span id="memberAgeLabel">العمر</span></label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="memberAge"
+                  min="18"
+                  max="100"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="memberDegree" class="form-label"
+                  ><span id="memberDegreeLabel">المؤهل التعليمي</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="memberDegree"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="memberPhone" class="form-label"
+                  ><span id="memberPhoneLabel">رقم الهاتف</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="memberPhone"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="memberPosition" class="form-label"
+                  ><span id="memberPositionLabel">المنصب</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="memberPosition"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                <span id="memberCancelBtnText">إلغاء</span>
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <i
+                  class="fas fa-save me-1"
+                  style="color: var(--text-white)"
+                ></i>
+                <span id="memberSaveBtnText">حفظ</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal: إدارة التنسيق والتواصل -->
+    <div
+      class="modal fade"
+      id="coordModal"
+      tabindex="-1"
+      aria-labelledby="coordModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="coordModalLabel">
+              <span id="coordRecordTitle">سجل التنسيق والتواصل</span> -
+              <span id="coordNeighborhoodName"></span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="إغلاق"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <button class="btn btn-primary mb-3" id="addCoordBtn">
+              <i class="fas fa-plus" style="color: var(--text-white)"></i>
+              <span id="addCoordBtnText">إضافة عملية تنسيق</span>
+            </button>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover" id="coordTable">
+                <thead class="table-light">
+                  <tr>
+                    <th id="coordThMemberId">معرف العضو في اللجنة</th>
+                    <th id="coordThEntityType">نوع الجهة المنسق معها</th>
+                    <th id="coordThMethod">وسيلة التنسيق والتواصل</th>
+                    <th id="coordThFrequency">التواتر</th>
+                    <th id="coordThNeeds">الاحتياجات الناتجة عن التنسيق</th>
+                    <th id="coordThActions">الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- سيتم تعبئتها ديناميكياً -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal: إضافة/تعديل عملية تنسيق -->
+    <div
+      class="modal fade"
+      id="coordFormModal"
+      tabindex="-1"
+      aria-labelledby="coordFormModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="coordFormModalLabel">
+              <span id="coordFormTitle">إضافة عملية تنسيق</span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="إغلاق"
+            ></button>
+          </div>
+          <form id="coordForm">
+            <div class="modal-body">
+              <input type="hidden" id="coordFormNeighborhood" />
+              <input type="hidden" id="coordFormIndex" />
+              <div class="mb-3">
+                <label for="coordMemberId" class="form-label"
+                  ><span id="coordMemberIdLabel"
+                    >معرف العضو في اللجنة</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="coordMemberId"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="coordEntityType" class="form-label"
+                  ><span id="coordEntityTypeLabel"
+                    >نوع الجهة المنسق معها</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="coordEntityType"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="coordMethod" class="form-label"
+                  ><span id="coordMethodLabel"
+                    >وسيلة التنسيق والتواصل</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="coordMethod"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="coordFrequency" class="form-label"
+                  ><span id="coordFrequencyLabel"
+                    >التواتر (عدد مرات التواصل)</span
+                  ></label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="coordFrequency"
+                  min="1"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="coordNeeds" class="form-label"
+                  ><span id="coordNeedsLabel"
+                    >الاحتياجات الناتجة عن التنسيق</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="coordNeeds"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                <span id="coordCancelBtnText">إلغاء</span>
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <i
+                  class="fas fa-save me-1"
+                  style="color: var(--text-white)"
+                ></i>
+                <span id="coordSaveBtnText">حفظ</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- مودال إضافة/تعديل لجنة تنمية -->
+    <div
+      class="modal fade"
+      id="committeeFormModal"
+      tabindex="-1"
+      aria-labelledby="committeeFormModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="committeeFormModalLabel">
+              <span id="committeeFormTitle">إضافة لجنة</span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="إغلاق"
+            ></button>
+          </div>
+          <form id="committeeForm">
+            <div class="modal-body">
+              <input type="hidden" id="committeeFormIndex" />
+              <div class="mb-3">
+                <label for="committeeNeighborhood" class="form-label"
+                  ><span id="committeeNeighborhoodLabel">اسم الحي</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="committeeNeighborhood"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="committeeName" class="form-label"
+                  ><span id="committeeNameLabel">اسم اللجنة</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="committeeName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label"
+                  ><span id="committeeIsActiveLabel"
+                    >هل اللجنة مفعّلة في هذا الحي</span
+                  ></label
+                >
+                <select class="form-control" id="committeeIsActive" required>
+                  <option value="true">
+                    <span id="committeeYes1">نعم</span>
+                  </option>
+                  <option value="false">
+                    <span id="committeeNo1">لا</span>
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label"
+                  ><span id="committeeHasCommitteeLabel"
+                    >هل توجد لجنة في الحي</span
+                  ></label
+                >
+                <select
+                  class="form-control"
+                  id="committeeHasCommittee"
+                  required
+                >
+                  <option value="true">
+                    <span id="committeeYes2">نعم</span>
+                  </option>
+                  <option value="false">
+                    <span id="committeeNo2">لا</span>
+                  </option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label"
+                  ><span id="committeeNeedsOfficeLabel"
+                    >هل يوجد مقر</span
+                  ></label
+                >
+                <select class="form-control" id="committeeNeedsOffice" required>
+                  <option value="true">
+                    <span id="committeeYes3">نعم</span>
+                  </option>
+                  <option value="false">
+                    <span id="committeeNo3">لا</span>
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="committeeCompetence" class="form-label"
+                  ><span id="committeeCompetenceLabel"
+                    >كفاءات لجان الأحياء</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="committeeCompetence"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="committeeChallenges" class="form-label"
+                  ><span id="committeeChallengesLabel">ملاحظات</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="committeeChallenges"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                <span id="committeeCancelBtnText">إلغاء</span>
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <span id="committeeSaveBtnText">حفظ</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css" />
+    <style>
+      /* تنسيق أزرار التنقل لتظهر بجانب حقل البحث */
+      .dataTables_wrapper .dataTables_length,
+      .dataTables_wrapper .dataTables_filter,
+      .dataTables_wrapper .dataTables_paginate {
+        margin-bottom: 1rem;
+      }
+
+      /* تحسين مظهر قائمة عدد الأسطر */
+      .dataTables_wrapper .dataTables_length {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .dataTables_wrapper .dataTables_length label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        font-weight: 500;
+        color: var(--text-dark);
+        font-size: 0.9rem;
+      }
+
+      .dataTables_wrapper .dataTables_length select {
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 0.375rem 2.2rem 0.375rem 0.75rem; /* زيادة المسافة من جهة السهم */
+        background-color: var(--bg-white);
+        color: var(--text-dark);
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        min-width: 80px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        appearance: none; /* إخفاء السهم الافتراضي */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%236c757d" height="18" viewBox="0 0 20 20" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7.293 7.293a1 1 0 011.414 0L10 8.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: left 0.75rem center;
+        background-size: 1.1em;
+      }
+      body[dir="ltr"] .dataTables_wrapper .dataTables_length select {
+        padding: 0.375rem 0.75rem 0.375rem 2.2rem;
+        background-position: right 0.75rem center;
+      }
+      body[dir="rtl"] .dataTables_wrapper .dataTables_length select {
+        padding: 0.375rem 2.2rem 0.375rem 0.75rem;
+        background-position: left 0.75rem center;
+      }
+
+      .dataTables_wrapper .dataTables_length select:hover {
+        border-color: var(--secondary-color);
+        box-shadow: 0 4px 8px rgba(13, 110, 253, 0.15);
+      }
+
+      .dataTables_wrapper .dataTables_length select:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+      }
+
+      /* تحسين مظهر حقل البحث */
+      .dataTables_wrapper .dataTables_filter {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .dataTables_wrapper .dataTables_filter label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        font-weight: 500;
+        color: var(--text-dark);
+        font-size: 0.9rem;
+      }
+
+      .dataTables_wrapper .dataTables_filter input {
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        background-color: var(--bg-white);
+        color: var(--text-dark);
+        font-size: 0.9rem;
+        transition: all 0.2s ease-in-out;
+        min-width: 200px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .dataTables_wrapper .dataTables_filter input:hover {
+        border-color: var(--secondary-color);
+        box-shadow: 0 4px 8px rgba(13, 110, 253, 0.15);
+      }
+
+      .dataTables_wrapper .dataTables_filter input:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+      }
+
+      .dataTables_wrapper .dataTables_paginate {
+        text-align: center;
+      }
+
+      .dataTables_wrapper .dataTables_paginate .paginate_button {
+        margin: 0 2px;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-white);
+        color: var(--text-light);
+        cursor: pointer;
+        transition: all 0.15s ease-in-out;
+      }
+
+      .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background-color: var(--bg-gray-light);
+        border-color: var(--text-light);
+        color: var(--text-dark);
+      }
+
+      .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: var(--text-white);
+      }
+
+      /* تخصيص زر التنقل النشط */
+      .dataTables_wrapper .dataTables_paginate .page-item.active .page-link {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: var(--text-white);
+      }
+
+      .dataTables_wrapper
+        .dataTables_paginate
+        .page-item.active
+        .page-link:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--text-white);
+      }
+
+      .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+        color: var(--text-light);
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      /* تحسين التخطيط على الشاشات الصغيرة */
+      @media (max-width: 768px) {
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter,
+        .dataTables_wrapper .dataTables_paginate {
+          text-align: center;
+          margin-bottom: 0.5rem;
+        }
+
+        .dataTables_wrapper .dataTables_length {
+          justify-content: center;
+        }
+
+        .dataTables_wrapper .dataTables_length label {
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+          justify-content: center;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+          min-width: 150px;
+          width: 100%;
+          max-width: 250px;
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          if (!$.fn.DataTable.isDataTable("#logTable")) {
+            $("#logTable").DataTable({
+              pageLength: 5,
+              lengthMenu: [5, 10, 20, 50],
+              responsive: true,
+              dom:
+                '<"row"<"col-sm-12 col-md-4"l><"col-sm-12 col-md-4"f><"col-sm-12 col-md-4"p>>' +
+                '<"row"<"col-sm-12"tr>>' +
+                '<"row"<"col-sm-12"i>>',
+              language: {
+                search: "",
+                lengthMenu: "عرض _MENU_ صف",
+                info: "عرض _START_ إلى _END_ من أصل _TOTAL_ صف",
+                paginate: {
+                  previous: '<i class="fas fa-chevron-right"></i>',
+                  next: '<i class="fas fa-chevron-left"></i>',
+                },
+                infoEmpty: "لا توجد بيانات",
+                zeroRecords: "لم يتم العثور على نتائج",
+              },
+              initComplete: function () {
+                // Add placeholder to search input
+                $(".dataTables_filter input").attr(
+                  "placeholder",
+                  "ابحث في لجان التنمية..."
+                );
+              },
+            });
+          }
+        }, 100);
+      });
+    </script>
+
+    <div class="fixed-plugin">
+      <a
+        id="helpButton"
+        class="fixed-plugin-button text-dark position-fixed px-3 py-2"
+        style="bottom: 40px; z-index: 6000"
+      >
+        <i class="fa fa-question-circle py-2"> </i>
+      </a>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="libraries/js/popper-2.11.8.min.js"></script>
+    <script src="libraries/js/bootstrap-5.3.0-bundle.min.js"></script>
+    <script src="libraries/js/perfect-scrollbar-1.5.5.min.js"></script>
+    <script src="libraries/js/smooth-scrollbar-8.8.1.min.js"></script>
+    <script src="libraries/js/chart-4.4.1.umd.min.js"></script>
+    <script src="libraries/js/chartjs-plugin-datalabels-2.2.0.min.js"></script>
+
+    <!-- Language Toggle Script -->
+    <script>
+      const translations = {
+        ar: {
+          dir: "rtl",
+          dashboard: "لوحة التحكم",
+          configTables: "جداول الإعدادات",
+          manageUsers: "إدارة المستخدمين ",
+          langToggleText: "تغيير اللغة",
+          settingsText: "الإعدادات",
+          logoutText: "تسجيل الخروج",
+          neighborhoodCommittees: "إدارة لجان الأحياء",
+          developmentCommittees: "إدارة لجان التنمية",
+        },
+        en: {
+          dir: "ltr",
+          dashboard: "Dashboard",
+          configTables: "Configuration Tables",
+          manageUsers: "Manage Users",
+          langToggleText: "Change Language",
+          settingsText: "Settings",
+          logoutText: "Logout",
+          neighborhoodCommittees: "Neighborhood Committees",
+          developmentCommittees: "Development Committees",
+        },
+      };
+
+      let currentLang = "ar";
+
+      function switchLanguage(lang) {
+        try {
+          localStorage.setItem("preferredLanguage", lang);
+        } catch (error) {
+          console.error("Error saving language preference:", error);
+        }
+
+        const aside = document.getElementById("sidenav-main");
+        if (aside) {
+          aside.classList.remove("fixed-end", "fixed-start");
+          aside.classList.add(lang === "ar" ? "fixed-end" : "fixed-start");
+        }
+
+        const helpButton = document.getElementById("helpButton");
+        if (helpButton) {
+          helpButton.style.left = lang === "ar" ? "20px" : "auto";
+          helpButton.style.right = lang === "ar" ? "auto" : "20px";
+        }
+
+        currentLang = lang;
+        const t = translations[lang];
+
+        document.documentElement.lang = lang;
+        document.documentElement.dir = t.dir;
+        document.body.setAttribute("dir", t.dir);
+
+        // Update navigation
+        const navTexts = document.querySelectorAll(".nav-link .nav-link-text");
+        if (navTexts[0]) navTexts[0].textContent = t.dashboard;
+        if (navTexts[1]) navTexts[1].textContent = t.configTables;
+        if (navTexts[2]) navTexts[2].textContent = t.manageUsers;
+        if (navTexts[3]) navTexts[3].textContent = t.neighborhoodCommittees;
+        if (navTexts[4]) navTexts[4].textContent = t.developmentCommittees;
+
+        const langToggleText = document.getElementById("langToggleText");
+        if (langToggleText) langToggleText.textContent = t.langToggleText;
+
+        const settingsText = document.getElementById("settingsText");
+        if (settingsText) settingsText.textContent = t.settingsText;
+
+        const logoutText = document.getElementById("logoutText");
+        if (logoutText) logoutText.textContent = t.logoutText;
+
+        // Update page content for neighborhood committees
+        if (typeof currentPageLang !== "undefined") {
+          currentPageLang = lang;
+          updatePageContent();
+        }
+      }
+
+      function toggleLanguage() {
+        if (currentLang === "ar") {
+          switchLanguage("en");
+        } else {
+          switchLanguage("ar");
+        }
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById("menuDropdown");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        const helpButton = document.getElementById("helpButton");
+        if (helpButton) {
+          helpButton.style.left = "20px";
+          helpButton.style.right = "auto";
+        }
+
+        let savedLanguage;
+        try {
+          savedLanguage = localStorage.getItem("preferredLanguage");
+        } catch (error) {
+          console.error("Error retrieving language preference:", error);
+          savedLanguage = null;
+        }
+
+        const initialLang = savedLanguage || "ar";
+
+        // Switch language to ensure all UI elements are updated
+        switchLanguage(initialLang);
+
+        // Handle zoom level changes
+        function handleZoom() {
+          const sidenav = document.getElementById("sidenav-main");
+          const windowWidth = window.innerWidth;
+          const zoomLevel = window.devicePixelRatio;
+
+          if (sidenav) {
+            sidenav.style.display =
+              zoomLevel > 1.51 || windowWidth < 1200 ? "none" : "block";
+          }
+        }
+
+        handleZoom();
+        window.addEventListener("resize", handleZoom);
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("menuDropdown");
+        const menuBtn = document.getElementById("menuToggleBtn");
+        if (
+          menu &&
+          menuBtn &&
+          !menuBtn.contains(e.target) &&
+          !menu.contains(e.target)
+        ) {
+          menu.style.display = "none";
+        }
+      });
+    </script>
+
+    <!-- Common User Functions -->
+    <script src="assets/js/common-user-functions.js"></script>
+
+    <script src="libraries/js/bootstrap-5.3.0-bundle.min.js"></script>
+    <script>
+      // Comprehensive translations for the page
+      const pageTranslations = {
+        ar: {
+          // Page title and header
+          pageTitle: "لجان التنمية",
+          pageSubtitle: "إدارة وتنظيم لجان التنمية في مدينة حلب",
+          addCommitteeBtn: "إضافة لجنة جديدة",
+          committeesList: "قائمة لجان التنمية",
+          exportBtn: "تصدير",
+
+          // Table headers
+          neighborhoodName: "اسم الحي",
+          committeeName: "اسم اللجنة",
+          isActive: "هل اللجنة مفعّلة في هذا الحي",
+          hasCommittee: "هل توجد لجنة في الحي",
+          hasOffice: "هل يوجد مقر",
+          competence: "كفاءات لجان الأحياء",
+          notes: "ملاحظات",
+          actions: "الإجراءات",
+
+          // Member management
+          memberName: "اسم العضو",
+          gender: "الجنس",
+          age: "العمر",
+          education: "المؤهل التعليمي",
+          phone: "رقم الهاتف",
+          position: "المنصب",
+          addMember: "إضافة عضو",
+          editMember: "تعديل عضو",
+          memberManagement: "أعضاء اللجنة",
+          noMembers: "لا يوجد أعضاء مسجلون",
+
+          // Coordination
+          coordination: "التنسيق والتواصل",
+          coordinationRecord: "سجل التنسيق والتواصل",
+          addCoordination: "إضافة عملية تنسيق",
+          editCoordination: "تعديل عملية تنسيق",
+          memberId: "معرف العضو في اللجنة",
+          entityType: "نوع الجهة المنسق معها",
+          coordinationMethod: "وسيلة التنسيق والتواصل",
+          frequency: "التواتر",
+          needs: "الاحتياجات الناتجة عن التنسيق",
+          noCoordination: "لا يوجد عمليات تنسيق مسجلة",
+
+          // Form labels
+          isActiveLabel: "هل اللجنة مفعّلة في هذا الحي",
+          hasCommitteeLabel: "هل توجد لجنة في الحي",
+          hasOfficeLabel: "هل يوجد مقر",
+          competenceLabel: "كفاءات لجان الأحياء",
+          notesLabel: "ملاحظات",
+
+          // Gender options
+          male: "ذكر",
+          female: "أنثى",
+          selectOption: "اختر",
+
+          // Yes/No options
+          yes: "نعم",
+          no: "لا",
+
+          // Actions
+          edit: "تعديل",
+          delete: "حذف",
+          save: "حفظ",
+          cancel: "إلغاء",
+          confirm: "تأكيد",
+          addCommittee: "إضافة لجنة",
+          editCommittee: "تعديل لجنة",
+
+          // Confirmation messages
+          confirmDelete: "هل أنت متأكد من الحذف؟",
+          confirmDeleteMember: "هل أنت متأكد من حذف هذا العضو؟",
+          confirmDeleteCoordination: "هل أنت متأكد من حذف عملية التنسيق؟",
+          confirmDeleteCommittee: "هل أنت متأكد من حذف هذه اللجنة؟",
+          confirmDeleteTitle: "تأكيد الحذف",
+
+          // Success messages
+          memberAdded: "تمت إضافة العضو بنجاح",
+          memberEdited: "تم تعديل بيانات العضو بنجاح",
+          memberDeleted: "تم حذف العضو بنجاح",
+          coordinationAdded: "تمت إضافة عملية التنسيق بنجاح",
+          coordinationEdited: "تم تعديل عملية التنسيق بنجاح",
+          coordinationDeleted: "تم حذف عملية التنسيق بنجاح",
+          committeeAdded: "تمت إضافة اللجنة بنجاح",
+          committeeEdited: "تم تعديل بيانات اللجنة بنجاح",
+          committeeDeleted: "تم حذف اللجنة بنجاح",
+          dataExported: "تم تصدير البيانات بنجاح",
+
+          // Error messages
+          deleteError: "حدث خطأ أثناء الحذف",
+          exportError: "حدث خطأ أثناء تصدير البيانات",
+          noCommittees: "لا توجد لجان مسجلة",
+
+          // Search placeholder
+          searchPlaceholder: "ابحث في لجان التنمية...",
+
+          // DataTable language
+          showEntries: "عرض _MENU_ صف",
+          showing: "عرض _START_ إلى _END_ من أصل _TOTAL_ صف",
+          noData: "لا توجد بيانات",
+          noResults: "لم يتم العثور على نتائج",
+          previous: '<i class="fas fa-chevron-right"></i>',
+          next: '<i class="fas fa-chevron-left"></i>',
+
+          // Export data
+          exportFileName: "لجان_الاحياء_",
+
+          // Default data
+          defaultNeighborhoods: {
+            "حي حلب القديمة": "Old Aleppo District",
+            "حي النور": "Al-Nour District",
+            "حي الأمل": "Al-Amal District",
+          },
+
+          defaultCommittees: {
+            "اللجنة المركزية": "Central Development Committee",
+            "اللجنة الشمالية": "Northern Development Committee",
+            "اللجنة الجنوبية": "Southern Development Committee",
+          },
+
+          defaultCompetence: {
+            متوسطة: "Medium",
+            عالية: "High",
+            منخفضة: "Low",
+          },
+        },
+        en: {
+          // Page title and header
+          pageTitle: "Development Committees",
+          pageSubtitle:
+            "Management and organization of development committees in Aleppo city",
+          addCommitteeBtn: "Add New Committee",
+          committeesList: "Development Committees List",
+          exportBtn: "Export",
+
+          // Table headers
+          neighborhoodName: "Neighborhood Name",
+          committeeName: "Committee Name",
+          isActive: "Is Committee Active in this Neighborhood",
+          hasCommittee: "Is there a Committee in the Neighborhood",
+          hasOffice: "Is there an Office",
+          competence: "Development Committees Competencies",
+          notes: "Notes",
+          actions: "Actions",
+
+          // Member management
+          memberName: "Member Name",
+          gender: "Gender",
+          age: "Age",
+          education: "Education Level",
+          phone: "Phone Number",
+          position: "Position",
+          addMember: "Add Member",
+          editMember: "Edit Member",
+          memberManagement: "Committee Members",
+          noMembers: "No registered members",
+
+          // Coordination
+          coordination: "Coordination & Communication",
+          coordinationRecord: "Coordination & Communication Record",
+          addCoordination: "Add Coordination Process",
+          editCoordination: "Edit Coordination Process",
+          memberId: "Committee Member ID",
+          entityType: "Coordinating Entity Type",
+          coordinationMethod: "Coordination & Communication Method",
+          frequency: "Frequency",
+          needs: "Needs Resulting from Coordination",
+          noCoordination: "No registered coordination processes",
+
+          // Form labels
+          isActiveLabel: "Is Committee Active in this Neighborhood",
+          hasCommitteeLabel: "Is there a Committee in the Neighborhood",
+          hasOfficeLabel: "Is there an Office",
+          competenceLabel: "Development Committees Competencies",
+          notesLabel: "Notes",
+
+          // Gender options
+          male: "Male",
+          female: "Female",
+          selectOption: "Select",
+
+          // Yes/No options
+          yes: "Yes",
+          no: "No",
+
+          // Actions
+          edit: "Edit",
+          delete: "Delete",
+          save: "Save",
+          cancel: "Cancel",
+          confirm: "Confirm",
+          addCommittee: "Add Committee",
+          editCommittee: "Edit Committee",
+
+          // Confirmation messages
+          confirmDelete: "Are you sure you want to delete?",
+          confirmDeleteMember: "Are you sure you want to delete this member?",
+          confirmDeleteCoordination:
+            "Are you sure you want to delete this coordination process?",
+          confirmDeleteCommittee:
+            "Are you sure you want to delete this committee?",
+          confirmDeleteTitle: "Confirm Delete",
+
+          // Success messages
+          memberAdded: "Member added successfully",
+          memberEdited: "Member data updated successfully",
+          memberDeleted: "Member deleted successfully",
+          coordinationAdded: "Coordination process added successfully",
+          coordinationEdited: "Coordination process updated successfully",
+          coordinationDeleted: "Coordination process deleted successfully",
+          committeeAdded: "Committee added successfully",
+          committeeEdited: "Committee data updated successfully",
+          committeeDeleted: "Committee deleted successfully",
+          dataExported: "Data exported successfully",
+
+          // Error messages
+          deleteError: "Error occurred during deletion",
+          exportError: "Error occurred during data export",
+          noCommittees: "No committees registered",
+
+          // Search placeholder
+          searchPlaceholder: "Search in development committees...",
+
+          // DataTable language
+          showEntries: "Show _MENU_ entries",
+          showing: "Showing _START_ to _END_ of _TOTAL_ entries",
+          noData: "No data available",
+          noResults: "No results found",
+          previous: '<i class="fas fa-chevron-left"></i>',
+          next: '<i class="fas fa-chevron-right"></i>',
+
+          // Export data
+          exportFileName: "neighborhood_committees_",
+
+          // Default data
+          defaultNeighborhoods: {
+            "حي حلب القديمة": "Old Aleppo District",
+            "حي النور": "Al-Nour District",
+            "حي الأمل": "Al-Amal District",
+          },
+
+          defaultCommittees: {
+            "اللجنة المركزية": "Central Development Committee",
+            "اللجنة الشمالية": "Northern Development Committee",
+            "اللجنة الجنوبية": "Southern Development Committee",
+          },
+
+          defaultCompetence: {
+            متوسطة: "Medium",
+            عالية: "High",
+            منخفضة: "Low",
+          },
+        },
+      };
+
+      // Current language
+      let currentPageLang = "ar";
+
+      // Function to get translation
+      function getText(key) {
+        return pageTranslations[currentPageLang][key] || key;
+      }
+
+      // Function to switch page language
+      function switchPageLanguage(lang) {
+        currentPageLang = lang;
+        updatePageContent();
+      }
+
+      // Function to update all page content
+      function updatePageContent() {
+        // Update page title
+        const pageTitle = document.getElementById("pageTitle");
+        if (pageTitle) pageTitle.textContent = getText("pageTitle");
+
+        const pageSubtitle = document.getElementById("pageSubtitle");
+        if (pageSubtitle) pageSubtitle.textContent = getText("pageSubtitle");
+
+        // Update buttons
+        const addCommitteeBtnText = document.getElementById(
+          "addCommitteeBtnText"
+        );
+        if (addCommitteeBtnText)
+          addCommitteeBtnText.textContent = getText("addCommitteeBtn");
+
+        const exportBtnText = document.getElementById("exportBtnText");
+        if (exportBtnText) exportBtnText.textContent = getText("exportBtn");
+
+        // Update table headers
+        const thNeighborhood = document.getElementById("thNeighborhood");
+        if (thNeighborhood)
+          thNeighborhood.textContent = getText("neighborhoodName");
+
+        const thCommittee = document.getElementById("thCommittee");
+        if (thCommittee) thCommittee.textContent = getText("committeeName");
+
+        const thIsActive = document.getElementById("thIsActive");
+        if (thIsActive) thIsActive.textContent = getText("isActive");
+
+        const thHasCommittee = document.getElementById("thHasCommittee");
+        if (thHasCommittee)
+          thHasCommittee.textContent = getText("hasCommittee");
+
+        const thHasOffice = document.getElementById("thHasOffice");
+        if (thHasOffice) thHasOffice.textContent = getText("hasOffice");
+
+        const thCompetence = document.getElementById("thCompetence");
+        if (thCompetence) thCompetence.textContent = getText("competence");
+
+        const thNotes = document.getElementById("thNotes");
+        if (thNotes) thNotes.textContent = getText("notes");
+
+        const thActions = document.getElementById("thActions");
+        if (thActions) thActions.textContent = getText("actions");
+
+        // Update committees list title
+        const committeesListTitle = document.getElementById(
+          "committeesListTitle"
+        );
+        if (committeesListTitle)
+          committeesListTitle.textContent = getText("committeesList");
+
+        // Update modal content
+        updateModalContent();
+
+        // Update DataTable language
+        updateDataTableLanguage();
+
+        // Re-render tables
+        renderCommitteesTable();
+
+        // زر إضافة لجنة
+        const addCommitteeBtnCol =
+          document.getElementById("addCommitteeBtnCol");
+        if (addCommitteeBtnCol) {
+          if (currentPageLang === "en") {
+            addCommitteeBtnCol.classList.remove("justify-content-start");
+            addCommitteeBtnCol.classList.add("justify-content-end");
+          } else {
+            addCommitteeBtnCol.classList.remove("justify-content-end");
+            addCommitteeBtnCol.classList.add("justify-content-start");
+          }
+        }
+      }
+
+      // Function to update modal content
+      function updateModalContent() {
+        // Member modal
+        const memberFormTitle = document.getElementById("memberFormTitle");
+        if (memberFormTitle) {
+          memberFormTitle.textContent = getText("addMember");
+        }
+
+        // Member management title
+        const memberManagementTitle = document.getElementById(
+          "memberManagementTitle"
+        );
+        if (memberManagementTitle) {
+          memberManagementTitle.textContent = getText("memberManagement");
+        }
+
+        // Add member button text
+        const addMemberBtnText = document.getElementById("addMemberBtnText");
+        if (addMemberBtnText) {
+          addMemberBtnText.textContent = getText("addMember");
+        }
+
+        // Member form labels
+        const memberNameLabel = document.getElementById("memberNameLabel");
+        if (memberNameLabel)
+          memberNameLabel.textContent = getText("memberName");
+
+        const memberGenderLabel = document.getElementById("memberGenderLabel");
+        if (memberGenderLabel)
+          memberGenderLabel.textContent = getText("gender");
+
+        const memberAgeLabel = document.getElementById("memberAgeLabel");
+        if (memberAgeLabel) memberAgeLabel.textContent = getText("age");
+
+        const memberDegreeLabel = document.getElementById("memberDegreeLabel");
+        if (memberDegreeLabel)
+          memberDegreeLabel.textContent = getText("education");
+
+        const memberPhoneLabel = document.getElementById("memberPhoneLabel");
+        if (memberPhoneLabel) memberPhoneLabel.textContent = getText("phone");
+
+        const memberPositionLabel = document.getElementById(
+          "memberPositionLabel"
+        );
+        if (memberPositionLabel)
+          memberPositionLabel.textContent = getText("position");
+
+        // Member table headers
+        const memberThNeighborhood = document.getElementById(
+          "memberThNeighborhood"
+        );
+        if (memberThNeighborhood)
+          memberThNeighborhood.textContent = getText("neighborhoodName");
+
+        const memberThName = document.getElementById("memberThName");
+        if (memberThName) memberThName.textContent = getText("memberName");
+
+        const memberThGender = document.getElementById("memberThGender");
+        if (memberThGender) memberThGender.textContent = getText("gender");
+
+        const memberThAge = document.getElementById("memberThAge");
+        if (memberThAge) memberThAge.textContent = getText("age");
+
+        const memberThEducation = document.getElementById("memberThEducation");
+        if (memberThEducation)
+          memberThEducation.textContent = getText("education");
+
+        const memberThPhone = document.getElementById("memberThPhone");
+        if (memberThPhone) memberThPhone.textContent = getText("phone");
+
+        const memberThPosition = document.getElementById("memberThPosition");
+        if (memberThPosition)
+          memberThPosition.textContent = getText("position");
+
+        const memberThActions = document.getElementById("memberThActions");
+        if (memberThActions) memberThActions.textContent = getText("actions");
+
+        // Gender options
+        const selectOption = document.getElementById("selectOption");
+        if (selectOption)
+          selectOption.textContent = getText("selectOption") || "اختر";
+
+        const maleOption = document.getElementById("maleOption");
+        if (maleOption) maleOption.textContent = getText("male");
+
+        const femaleOption = document.getElementById("femaleOption");
+        if (femaleOption) femaleOption.textContent = getText("female");
+
+        // Member modal buttons
+        const memberCancelBtnText = document.getElementById(
+          "memberCancelBtnText"
+        );
+        if (memberCancelBtnText)
+          memberCancelBtnText.textContent = getText("cancel");
+
+        const memberSaveBtnText = document.getElementById("memberSaveBtnText");
+        if (memberSaveBtnText) memberSaveBtnText.textContent = getText("save");
+
+        // Coordination modal
+        const coordRecordTitle = document.getElementById("coordRecordTitle");
+        if (coordRecordTitle)
+          coordRecordTitle.textContent = getText("coordinationRecord");
+
+        const addCoordBtnText = document.getElementById("addCoordBtnText");
+        if (addCoordBtnText)
+          addCoordBtnText.textContent = getText("addCoordination");
+
+        // Coordination table headers
+        const coordThMemberId = document.getElementById("coordThMemberId");
+        if (coordThMemberId) coordThMemberId.textContent = getText("memberId");
+
+        const coordThEntityType = document.getElementById("coordThEntityType");
+        if (coordThEntityType)
+          coordThEntityType.textContent = getText("entityType");
+
+        const coordThMethod = document.getElementById("coordThMethod");
+        if (coordThMethod)
+          coordThMethod.textContent = getText("coordinationMethod");
+
+        const coordThFrequency = document.getElementById("coordThFrequency");
+        if (coordThFrequency)
+          coordThFrequency.textContent = getText("frequency");
+
+        const coordThNeeds = document.getElementById("coordThNeeds");
+        if (coordThNeeds) coordThNeeds.textContent = getText("needs");
+
+        const coordThActions = document.getElementById("coordThActions");
+        if (coordThActions) coordThActions.textContent = getText("actions");
+
+        // Committee modal
+        const committeeFormTitle =
+          document.getElementById("committeeFormTitle");
+        if (committeeFormTitle) {
+          committeeFormTitle.textContent = getText("addMember"); // Will be updated dynamically
+        }
+
+        // Coordination form modal
+        const coordFormTitle = document.getElementById("coordFormTitle");
+        if (coordFormTitle) {
+          coordFormTitle.textContent = getText("addCoordination"); // Will be updated dynamically
+        }
+
+        // Confirm delete modal
+        const confirmDeleteTitle =
+          document.getElementById("confirmDeleteTitle");
+        if (confirmDeleteTitle) {
+          confirmDeleteTitle.textContent = getText("confirmDeleteTitle");
+        }
+
+        // Committee form labels
+        const committeeNeighborhoodLabel = document.getElementById(
+          "committeeNeighborhoodLabel"
+        );
+        if (committeeNeighborhoodLabel)
+          committeeNeighborhoodLabel.textContent = getText("neighborhoodName");
+
+        const committeeNameLabel =
+          document.getElementById("committeeNameLabel");
+        if (committeeNameLabel)
+          committeeNameLabel.textContent = getText("committeeName");
+
+        const committeeIsActiveLabel = document.getElementById(
+          "committeeIsActiveLabel"
+        );
+        if (committeeIsActiveLabel)
+          committeeIsActiveLabel.textContent = getText("isActiveLabel");
+
+        const committeeHasCommitteeLabel = document.getElementById(
+          "committeeHasCommitteeLabel"
+        );
+        if (committeeHasCommitteeLabel)
+          committeeHasCommitteeLabel.textContent = getText("hasCommitteeLabel");
+
+        const committeeNeedsOfficeLabel = document.getElementById(
+          "committeeNeedsOfficeLabel"
+        );
+        if (committeeNeedsOfficeLabel)
+          committeeNeedsOfficeLabel.textContent = getText("hasOfficeLabel");
+
+        const committeeCompetenceLabel = document.getElementById(
+          "committeeCompetenceLabel"
+        );
+        if (committeeCompetenceLabel)
+          committeeCompetenceLabel.textContent = getText("competenceLabel");
+
+        const committeeChallengesLabel = document.getElementById(
+          "committeeChallengesLabel"
+        );
+        if (committeeChallengesLabel)
+          committeeChallengesLabel.textContent = getText("notesLabel");
+
+        // Committee Yes/No options
+        const committeeYes1 = document.getElementById("committeeYes1");
+        if (committeeYes1) committeeYes1.textContent = getText("yes");
+
+        const committeeNo1 = document.getElementById("committeeNo1");
+        if (committeeNo1) committeeNo1.textContent = getText("no");
+
+        const committeeYes2 = document.getElementById("committeeYes2");
+        if (committeeYes2) committeeYes2.textContent = getText("yes");
+
+        const committeeNo2 = document.getElementById("committeeNo2");
+        if (committeeNo2) committeeNo2.textContent = getText("no");
+
+        const committeeYes3 = document.getElementById("committeeYes3");
+        if (committeeYes3) committeeYes3.textContent = getText("yes");
+
+        const committeeNo3 = document.getElementById("committeeNo3");
+        if (committeeNo3) committeeNo3.textContent = getText("no");
+
+        // Committee modal buttons
+        const committeeCancelBtnText = document.getElementById(
+          "committeeCancelBtnText"
+        );
+        if (committeeCancelBtnText)
+          committeeCancelBtnText.textContent = getText("cancel");
+
+        const committeeSaveBtnText = document.getElementById(
+          "committeeSaveBtnText"
+        );
+        if (committeeSaveBtnText)
+          committeeSaveBtnText.textContent = getText("save");
+
+        // Coordination modal buttons
+        const coordCancelBtnText =
+          document.getElementById("coordCancelBtnText");
+        if (coordCancelBtnText)
+          coordCancelBtnText.textContent = getText("cancel");
+
+        const coordSaveBtnText = document.getElementById("coordSaveBtnText");
+        if (coordSaveBtnText) coordSaveBtnText.textContent = getText("save");
+
+        // Coordination form labels
+        const coordMemberIdLabel =
+          document.getElementById("coordMemberIdLabel");
+        if (coordMemberIdLabel)
+          coordMemberIdLabel.textContent = getText("memberId");
+
+        const coordEntityTypeLabel = document.getElementById(
+          "coordEntityTypeLabel"
+        );
+        if (coordEntityTypeLabel)
+          coordEntityTypeLabel.textContent = getText("entityType");
+
+        const coordMethodLabel = document.getElementById("coordMethodLabel");
+        if (coordMethodLabel)
+          coordMethodLabel.textContent = getText("coordinationMethod");
+
+        const coordFrequencyLabel = document.getElementById(
+          "coordFrequencyLabel"
+        );
+        if (coordFrequencyLabel)
+          coordFrequencyLabel.textContent = getText("frequency");
+
+        const coordNeedsLabel = document.getElementById("coordNeedsLabel");
+        if (coordNeedsLabel) coordNeedsLabel.textContent = getText("needs");
+
+        // Confirm delete modal buttons
+        const confirmDeleteCancelText = document.getElementById(
+          "confirmDeleteCancelText"
+        );
+        if (confirmDeleteCancelText)
+          confirmDeleteCancelText.textContent = getText("cancel");
+
+        const confirmDeleteConfirmText = document.getElementById(
+          "confirmDeleteConfirmText"
+        );
+        if (confirmDeleteConfirmText)
+          confirmDeleteConfirmText.textContent = getText("confirm");
+
+        // Confirm delete message
+        const confirmDeleteMessage = document.getElementById(
+          "confirmDeleteMessage"
+        );
+        if (confirmDeleteMessage)
+          confirmDeleteMessage.textContent = getText("confirmDelete");
+      }
+
+      // Function to update DataTable language
+      function updateDataTableLanguage() {
+        if ($.fn.DataTable.isDataTable("#logTable")) {
+          const table = $("#logTable").DataTable();
+          table.destroy();
+
+          $("#logTable").DataTable({
+            pageLength: 5,
+            lengthMenu: [5, 10, 20, 50],
+            responsive: true,
+            dom:
+              '<"row"<"col-sm-12 col-md-4"l><"col-sm-12 col-md-4"f><"col-sm-12 col-md-4"p>>' +
+              '<"row"<"col-sm-12"tr>>' +
+              '<"row"<"col-sm-12"i>>',
+            language: {
+              search: "",
+              lengthMenu: getText("showEntries"),
+              info: getText("showing"),
+              paginate: {
+                previous: getText("previous"),
+                next: getText("next"),
+              },
+              infoEmpty: getText("noData"),
+              zeroRecords: getText("noResults"),
+            },
+            initComplete: function () {
+              $(".dataTables_filter input").attr(
+                "placeholder",
+                getText("searchPlaceholder")
+              );
+            },
+          });
+        }
+      }
+
+      // Initialize page with language support
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get saved language from localStorage
+        let savedLanguage;
+        try {
+          savedLanguage = localStorage.getItem("preferredLanguage");
+        } catch (error) {
+          console.error("Error retrieving language preference:", error);
+          savedLanguage = null;
+        }
+
+        // Initialize with saved language or Arabic by default
+        currentPageLang = savedLanguage || "ar";
+        updatePageContent();
+
+        // Listen for language changes from header
+        window.addEventListener("storage", function (e) {
+          if (e.key === "preferredLanguage") {
+            const newLang = e.newValue || "ar";
+            if (newLang !== currentPageLang) {
+              currentPageLang = newLang;
+              updatePageContent();
+            }
+          }
+        });
+      });
+
+      // بيانات افتراضية للأعضاء لكل حي
+      const committeeMembers = {
+        "حي حلب القديمة": [
+          {
+            name: "أحمد النجار",
+            gender: "ذكر",
+            age: 40,
+            degree: "جامعي",
+            phone: "0991234567",
+            position: "رئيس اللجنة",
+          },
+          {
+            name: "سارة العلي",
+            gender: "أنثى",
+            age: 35,
+            degree: "ثانوي",
+            phone: "0997654321",
+            position: "نائب الرئيس",
+          },
+        ],
+        "حي النور": [
+          {
+            name: "علي حسن",
+            gender: "ذكر",
+            age: 38,
+            degree: "جامعي",
+            phone: "0991122334",
+            position: "أمين السر",
+          },
+          {
+            name: "منى يوسف",
+            gender: "أنثى",
+            age: 29,
+            degree: "معهد",
+            phone: "0995566778",
+            position: "عضو",
+          },
+        ],
+        "حي الأمل": [
+          {
+            name: "خالد عمر",
+            gender: "ذكر",
+            age: 45,
+            degree: "ثانوي",
+            phone: "0999988776",
+            position: "رئيس اللجنة",
+          },
+        ],
+        // أضف أحياء أخرى إذا رغبت
+      };
+
+      // فتح نافذة إدارة الأعضاء
+      $(document).on("click", ".btn-members", function () {
+        const neighborhood = $(this).data("neighborhood");
+        $("#modalNeighborhoodName").text(neighborhood);
+        renderMembersTable(neighborhood);
+        const modal = new bootstrap.Modal(
+          document.getElementById("membersModal")
+        );
+        modal.show();
+      });
+
+      // رسم جدول الأعضاء
+      function renderMembersTable(neighborhood) {
+        const members = committeeMembers[neighborhood] || [];
+        const tbody = $("#membersTable tbody");
+        tbody.empty();
+        if (members.length === 0) {
+          tbody.append(
+            `<tr><td colspan="8" class="text-center">${getText(
+              "noMembers"
+            )}</td></tr>`
+          );
+          return;
+        }
+        members.forEach((member, idx) => {
+          tbody.append(`
+            <tr>
+              <td>${neighborhood}</td>
+              <td>${member.name}</td>
+              <td>${member.gender}</td>
+              <td>${member.age}</td>
+              <td>${member.degree}</td>
+              <td>${member.phone}</td>
+              <td>${member.position || "-"}</td>
+              <td>
+                <button class="btn btn-sm btn-primary me-1 btn-edit-member" data-neighborhood="${neighborhood}" data-idx="${idx}" title="${getText(
+            "edit"
+          )}"><i class="fas fa-edit" style="color: var(--text-white);"></i></button>
+                <button class="btn btn-sm btn-danger" onclick="deleteMember('${neighborhood}', ${idx})" title="${getText(
+            "delete"
+          )}"><i class="fas fa-trash" style="color: var(--text-white);"></i></button>
+              </td>
+            </tr>
+          `);
+        });
+      }
+
+      // حذف عضو
+      function deleteMember(neighborhood, idx) {
+        if (confirm(getText("confirmDeleteMember"))) {
+          committeeMembers[neighborhood].splice(idx, 1);
+          renderMembersTable(neighborhood);
+        }
+      }
+
+      // فتح نافذة إضافة عضو
+      $("#addMemberBtn").on("click", function () {
+        const neighborhood = $("#modalNeighborhoodName").text();
+        $("#memberFormTitle").text(getText("addMember"));
+        $("#memberFormNeighborhood").val(neighborhood);
+        $("#memberFormIndex").val("");
+        $("#memberName").val("");
+        $("#memberGender").val("");
+        $("#memberAge").val("");
+        $("#memberDegree").val("");
+        $("#memberPhone").val("");
+        $("#memberPosition").val("");
+        const modal = new bootstrap.Modal(
+          document.getElementById("memberFormModal")
+        );
+        modal.show();
+      });
+
+      // فتح نافذة تعديل عضو
+      $(document).on("click", ".btn-edit-member", function () {
+        const neighborhood = $(this).data("neighborhood");
+        const idx = $(this).data("idx");
+        const member = committeeMembers[neighborhood][idx];
+        $("#memberFormTitle").text(getText("editMember"));
+        $("#memberFormNeighborhood").val(neighborhood);
+        $("#memberFormIndex").val(idx);
+        $("#memberName").val(member.name);
+        $("#memberGender").val(member.gender);
+        $("#memberAge").val(member.age);
+        $("#memberDegree").val(member.degree);
+        $("#memberPhone").val(member.phone);
+        $("#memberPosition").val(member.position);
+        const modal = new bootstrap.Modal(
+          document.getElementById("memberFormModal")
+        );
+        modal.show();
+      });
+
+      // حفظ بيانات العضو (إضافة أو تعديل)
+      $("#memberForm")
+        .off("submit")
+        .on("submit", function (e) {
+          e.preventDefault();
+          const neighborhood = $("#memberFormNeighborhood").val();
+          const idx = $("#memberFormIndex").val();
+          const name = $("#memberName").val();
+          const gender = $("#memberGender").val();
+          const age = $("#memberAge").val();
+          const degree = $("#memberDegree").val();
+          const phone = $("#memberPhone").val();
+          const position = $("#memberPosition").val();
+          if (!committeeMembers[neighborhood])
+            committeeMembers[neighborhood] = [];
+          if (idx === "" || idx === undefined) {
+            // إضافة
+            committeeMembers[neighborhood].push({
+              name,
+              gender,
+              age,
+              degree,
+              phone,
+              position,
+            });
+            showToast(getText("memberAdded"));
+          } else {
+            // تعديل
+            committeeMembers[neighborhood][idx] = {
+              name,
+              gender,
+              age,
+              degree,
+              phone,
+              position,
+            };
+            showToast(getText("memberEdited"));
+          }
+          renderMembersTable(neighborhood);
+          bootstrap.Modal.getInstance(
+            document.getElementById("memberFormModal")
+          ).hide();
+        });
+    </script>
+    <script>
+      // بيانات افتراضية للتنسيق والتواصل لكل حي
+      const coordData = {
+        "حي حلب القديمة": [
+          {
+            memberId: "1",
+            entityType: "بلدية",
+            method: "اجتماع مباشر",
+            frequency: 3,
+            needs: "معدات نظافة",
+          },
+          {
+            memberId: "2",
+            entityType: "منظمة أهلية",
+            method: "مكالمة هاتفية",
+            frequency: 5,
+            needs: "دعم مالي",
+          },
+        ],
+        "حي النور": [
+          {
+            memberId: "1",
+            entityType: "مدرسة",
+            method: "رسائل واتساب",
+            frequency: 2,
+            needs: "قرطاسية",
+          },
+        ],
+        // أضف أحياء أخرى إذا رغبت
+      };
+
+      // فتح نافذة التنسيق والتواصل
+      $(document).on("click", ".btn-coord", function () {
+        const neighborhood = $(this).closest("tr").data("neighborhood");
+        $("#coordNeighborhoodName").text(neighborhood);
+        renderCoordTable(neighborhood);
+        const modal = new bootstrap.Modal(
+          document.getElementById("coordModal")
+        );
+        modal.show();
+      });
+
+      // رسم جدول التنسيق والتواصل
+      function renderCoordTable(neighborhood) {
+        const items = coordData[neighborhood] || [];
+        const tbody = $("#coordTable tbody");
+        tbody.empty();
+        if (items.length === 0) {
+          tbody.append(
+            `<tr><td colspan="6" class="text-center">${getText(
+              "noCoordination"
+            )}</td></tr>`
+          );
+          return;
+        }
+        items.forEach((item, idx) => {
+          tbody.append(`
+            <tr>
+              <td>${item.memberId}</td>
+              <td>${item.entityType}</td>
+              <td>${item.method}</td>
+              <td>${item.frequency}</td>
+              <td>${item.needs}</td>
+              <td>
+                <button class="btn btn-sm btn-primary me-1 btn-edit-coord" data-neighborhood="${neighborhood}" data-idx="${idx}" title="${getText(
+            "edit"
+          )}"><i class="fas fa-edit" style="color: var(--text-white);"></i></button>
+                <button class="btn btn-sm btn-danger" onclick="deleteCoord('${neighborhood}', ${idx})" title="${getText(
+            "delete"
+          )}"><i class="fas fa-trash" style="color: var(--text-white);"></i></button>
+              </td>
+            </tr>
+          `);
+        });
+      }
+
+      // حذف عملية تنسيق
+      function deleteCoord(neighborhood, idx) {
+        if (confirm(getText("confirmDeleteCoordination"))) {
+          coordData[neighborhood].splice(idx, 1);
+          renderCoordTable(neighborhood);
+        }
+      }
+
+      // فتح نافذة إضافة عملية تنسيق
+      $("#addCoordBtn").on("click", function () {
+        const neighborhood = $("#coordNeighborhoodName").text();
+        $("#coordFormTitle").text(getText("addCoordination"));
+        $("#coordFormNeighborhood").val(neighborhood);
+        $("#coordFormIndex").val("");
+        $("#coordMemberId").val("");
+        $("#coordEntityType").val("");
+        $("#coordMethod").val("");
+        $("#coordFrequency").val("");
+        $("#coordNeeds").val("");
+        const modal = new bootstrap.Modal(
+          document.getElementById("coordFormModal")
+        );
+        modal.show();
+      });
+
+      // فتح نافذة تعديل عملية تنسيق
+      $(document).on("click", ".btn-edit-coord", function () {
+        const neighborhood = $(this).data("neighborhood");
+        const idx = $(this).data("idx");
+        const item = coordData[neighborhood][idx];
+        $("#coordFormTitle").text(getText("editCoordination"));
+        $("#coordFormNeighborhood").val(neighborhood);
+        $("#coordFormIndex").val(idx);
+        $("#coordMemberId").val(item.memberId);
+        $("#coordEntityType").val(item.entityType);
+        $("#coordMethod").val(item.method);
+        $("#coordFrequency").val(item.frequency);
+        $("#coordNeeds").val(item.needs);
+        const modal = new bootstrap.Modal(
+          document.getElementById("coordFormModal")
+        );
+        modal.show();
+      });
+
+      // حفظ بيانات عملية التنسيق (إضافة أو تعديل)
+      $("#coordForm")
+        .off("submit")
+        .on("submit", function (e) {
+          e.preventDefault();
+          const neighborhood = $("#coordFormNeighborhood").val();
+          const idx = $("#coordFormIndex").val();
+          const memberId = $("#coordMemberId").val();
+          const entityType = $("#coordEntityType").val();
+          const method = $("#coordMethod").val();
+          const frequency = $("#coordFrequency").val();
+          const needs = $("#coordNeeds").val();
+          if (!coordData[neighborhood]) coordData[neighborhood] = [];
+          if (idx === "" || idx === undefined) {
+            // إضافة
+            coordData[neighborhood].push({
+              memberId,
+              entityType,
+              method,
+              frequency,
+              needs,
+            });
+            showToast(getText("coordinationAdded"));
+          } else {
+            // تعديل
+            coordData[neighborhood][idx] = {
+              memberId,
+              entityType,
+              method,
+              frequency,
+              needs,
+            };
+            showToast(getText("coordinationEdited"));
+          }
+          renderCoordTable(neighborhood);
+          bootstrap.Modal.getInstance(
+            document.getElementById("coordFormModal")
+          ).hide();
+        });
+    </script>
+    <script>
+      // ... existing code ...
+
+      // Toast function
+      function showToast(message, isError = false) {
+        const toast = document.getElementById("customToast");
+        toast.textContent = message;
+        toast.style.background = isError ? "#d32f2f" : "#323232";
+        toast.style.opacity = "1";
+        toast.style.display = "block";
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          setTimeout(() => {
+            toast.style.display = "none";
+          }, 400);
+        }, 2200);
+      }
+
+      // --- حذف مع تأكيد ---
+      let deleteType = null;
+      let deleteNeighborhood = null;
+      let deleteIdx = null;
+
+      function openDeleteModal(type, neighborhood, idx) {
+        deleteType = type;
+        deleteNeighborhood = neighborhood;
+        deleteIdx = idx;
+        let msg = getText("confirmDelete");
+        if (type === "member") msg = getText("confirmDeleteMember");
+        if (type === "coord") msg = getText("confirmDeleteCoordination");
+        const confirmDeleteMessage = document.getElementById(
+          "confirmDeleteMessage"
+        );
+        if (confirmDeleteMessage) confirmDeleteMessage.textContent = msg;
+        const modal = new bootstrap.Modal(
+          document.getElementById("confirmDeleteModal")
+        );
+        modal.show();
+      }
+
+      document.getElementById("confirmDeleteBtn").onclick = function () {
+        if (deleteType === "member") {
+          if (committeeMembers[deleteNeighborhood]) {
+            committeeMembers[deleteNeighborhood].splice(deleteIdx, 1);
+            renderMembersTable(deleteNeighborhood);
+            showToast(getText("memberDeleted"));
+          } else {
+            showToast(getText("deleteError"), true);
+          }
+        } else if (deleteType === "coord") {
+          if (coordData[deleteNeighborhood]) {
+            coordData[deleteNeighborhood].splice(deleteIdx, 1);
+            renderCoordTable(deleteNeighborhood);
+            showToast(getText("coordinationDeleted"));
+          } else {
+            showToast(getText("deleteError"), true);
+          }
+        }
+        deleteType = null;
+        deleteNeighborhood = null;
+        deleteIdx = null;
+        bootstrap.Modal.getInstance(
+          document.getElementById("confirmDeleteModal")
+        ).hide();
+      };
+
+      // استبدال عمليات الحذف القديمة
+      function deleteMember(neighborhood, idx) {
+        openDeleteModal("member", neighborhood, idx);
+      }
+      function deleteCoord(neighborhood, idx) {
+        openDeleteModal("coord", neighborhood, idx);
+      }
+
+      // عند إضافة أو تعديل عضو
+      $("#memberForm")
+        .off("submit")
+        .on("submit", function (e) {
+          e.preventDefault();
+          const neighborhood = $("#memberFormNeighborhood").val();
+          const idx = $("#memberFormIndex").val();
+          const name = $("#memberName").val();
+          const gender = $("#memberGender").val();
+          const age = $("#memberAge").val();
+          const degree = $("#memberDegree").val();
+          const phone = $("#memberPhone").val();
+          const position = $("#memberPosition").val();
+          if (!committeeMembers[neighborhood])
+            committeeMembers[neighborhood] = [];
+          if (idx === "" || idx === undefined) {
+            // إضافة
+            committeeMembers[neighborhood].push({
+              name,
+              gender,
+              age,
+              degree,
+              phone,
+              position,
+            });
+            showToast(getText("memberAdded"));
+          } else {
+            // تعديل
+            committeeMembers[neighborhood][idx] = {
+              name,
+              gender,
+              age,
+              degree,
+              phone,
+              position,
+            };
+            showToast(getText("memberEdited"));
+          }
+          renderMembersTable(neighborhood);
+          bootstrap.Modal.getInstance(
+            document.getElementById("memberFormModal")
+          ).hide();
+        });
+
+      // عند إضافة أو تعديل عملية تنسيق
+      $("#coordForm")
+        .off("submit")
+        .on("submit", function (e) {
+          e.preventDefault();
+          const neighborhood = $("#coordFormNeighborhood").val();
+          const idx = $("#coordFormIndex").val();
+          const memberId = $("#coordMemberId").val();
+          const entityType = $("#coordEntityType").val();
+          const method = $("#coordMethod").val();
+          const frequency = $("#coordFrequency").val();
+          const needs = $("#coordNeeds").val();
+          if (!coordData[neighborhood]) coordData[neighborhood] = [];
+          if (idx === "" || idx === undefined) {
+            // إضافة
+            coordData[neighborhood].push({
+              memberId,
+              entityType,
+              method,
+              frequency,
+              needs,
+            });
+            showToast(getText("coordinationAdded"));
+          } else {
+            // تعديل
+            coordData[neighborhood][idx] = {
+              memberId,
+              entityType,
+              method,
+              frequency,
+              needs,
+            };
+            showToast(getText("coordinationEdited"));
+          }
+          renderCoordTable(neighborhood);
+          bootstrap.Modal.getInstance(
+            document.getElementById("coordFormModal")
+          ).hide();
+        });
+
+      // ... existing code ...
+    </script>
+    <script>
+      // بيانات لجان الاحياء (مصفوفة ديناميكية)
+      // ملاحظة: needsOffice يشير إلى "هل يوجد مقر" و challenges يشير إلى "ملاحظات"
+      let committees = [
+        {
+          neighborhood: "حي حلب القديمة",
+          committeeName: "اللجنة المركزية",
+          isActive: true,
+          hasCommittee: true,
+          needsOffice: true,
+          competence: "متوسطة",
+          challenges: "نقص في التمويل ",
+        },
+        {
+          neighborhood: "حي النور",
+          committeeName: "اللجنة الشمالية",
+          isActive: true,
+          hasCommittee: true,
+          needsOffice: false,
+          competence: "عالية",
+          challenges: "نقص في الكوادر ",
+        },
+        {
+          neighborhood: "حي الأمل",
+          committeeName: "اللجنة الجنوبية",
+          isActive: false,
+          hasCommittee: true,
+          needsOffice: true,
+          competence: "منخفضة",
+          challenges: "عدم وجود مقر ",
+        },
+        // أضف المزيد حسب الحاجة
+      ];
+
+      // رسم جدول لجان الاحياء
+      function renderCommitteesTable() {
+        // 1. دمر DataTable إذا كان مفعلاً
+        if ($.fn.DataTable.isDataTable("#logTable")) {
+          $("#logTable").DataTable().destroy();
+        }
+
+        // 2. عبئ tbody يدويًا
+        const tbody = document.getElementById("committeesTbody");
+        tbody.innerHTML = "";
+        if (committees.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="8" class="text-center">${getText(
+            "noCommittees"
+          )}</td></tr>`;
+        } else {
+          committees.forEach((c, idx) => {
+            tbody.innerHTML += `
+            <tr data-neighborhood="${c.neighborhood}">
+              <td>${c.neighborhood}</td>
+              <td>${c.committeeName}</td>
+              <td><span class="badge ${
+                c.isActive ? "bg-success" : "bg-danger"
+              }">${c.isActive ? getText("yes") : getText("no")}</span></td>
+              <td><span class="badge ${
+                c.hasCommittee ? "bg-success" : "bg-danger"
+              }">${c.hasCommittee ? getText("yes") : getText("no")}</span></td>
+              <td><span class="badge ${
+                c.needsOffice ? "bg-warning" : "bg-success"
+              }">${c.needsOffice ? getText("yes") : getText("no")}</span></td>
+              <td>${c.competence || "-"}</td>
+              <td>${c.challenges || "-"}</td>
+              <td class="${currentPageLang === "en" ? "actions-ltr" : ""}">
+                <button class="btn btn-sm btn-primary me-1 btn-coord" title="${getText(
+                  "coordination"
+                )}">
+                  <i class="fas fa-comments" style="color: var(--text-white);"></i>
+                </button>
+                <button class="btn btn-sm btn-success btn-members" title="${getText(
+                  "memberManagement"
+                )}" data-neighborhood="${c.neighborhood}">
+                  <i class="fas fa-users-cog" style="color: var(--text-white);"></i>
+                </button>
+                <button class="btn btn-sm btn-secondary me-1 btn-edit-committee" title="${getText(
+                  "edit"
+                )}" data-idx="${idx}"><i class="fas fa-edit" style="color: var(--text-white);"></i></button>
+                <button class="btn btn-sm btn-danger btn-delete-committee" title="${getText(
+                  "delete"
+                )}" data-idx="${idx}"><i class="fas fa-trash" style="color: var(--text-white);"></i></button>
+              </td>
+            </tr>
+          `;
+          });
+        }
+
+        // 3. أعد تهيئة DataTable
+        $("#logTable").DataTable({
+          pageLength: 5,
+          lengthMenu: [5, 10, 20, 50],
+          responsive: true,
+          dom:
+            '<"row"<"col-sm-12 col-md-4"l><"col-sm-12 col-md-4"f><"col-sm-12 col-md-4"p>>' +
+            '<"row"<"col-sm-12"tr>>' +
+            '<"row"<"col-sm-12"i>>',
+          language: {
+            search: "",
+            lengthMenu: getText("showEntries"),
+            info: getText("showing"),
+            paginate: {
+              previous: getText("previous"),
+              next: getText("next"),
+            },
+            infoEmpty: getText("noData"),
+            zeroRecords: getText("noResults"),
+          },
+          initComplete: function () {
+            $(".dataTables_filter input").attr(
+              "placeholder",
+              getText("searchPlaceholder")
+            );
+          },
+        });
+
+        // 4. تحديث الإحصائيات
+        // تم حذف دالة updateStatistics() لأنها لم تعد مطلوبة
+
+        // Update table headers after re-rendering
+        const tableHeaders = document.querySelectorAll("#logTable thead th");
+        if (tableHeaders.length >= 8) {
+          tableHeaders[0].textContent = getText("neighborhoodName");
+          tableHeaders[1].textContent = getText("committeeName");
+          tableHeaders[2].textContent = getText("isActive");
+          tableHeaders[3].textContent = getText("hasCommittee");
+          tableHeaders[4].textContent = getText("hasOffice");
+          tableHeaders[5].textContent = getText("competence");
+          tableHeaders[6].textContent = getText("notes");
+          tableHeaders[7].textContent = getText("actions");
+        }
+      }
+
+      // عند تحميل الصفحة، رسم الجدول أول مرة
+      $(document).ready(function () {
+        renderCommitteesTable();
+
+        // إضافة وظائف الأزرار الجديدة
+        $("#exportBtn").on("click", function () {
+          exportData();
+        });
+      });
+
+      // وظيفة تصدير البيانات
+      function exportData() {
+        try {
+          // تحضير البيانات للتصدير
+          const exportData = committees.map((committee) => ({
+            [getText("neighborhoodName")]: committee.neighborhood,
+            [getText("committeeName")]: committee.committeeName,
+            [getText("isActive")]: committee.isActive
+              ? getText("yes")
+              : getText("no"),
+            [getText("hasCommittee")]: committee.hasCommittee
+              ? getText("yes")
+              : getText("no"),
+            [getText("hasOffice")]: committee.needsOffice
+              ? getText("yes")
+              : getText("no"), // needsOffice يشير إلى وجود مقر
+            [getText("competence")]: committee.competence,
+            [getText("notes")]: committee.challenges, // challenges يشير إلى الملاحظات
+          }));
+
+          // تحويل إلى CSV
+          const headers = Object.keys(exportData[0]);
+          const csvContent = [
+            headers.join(","),
+            ...exportData.map((row) =>
+              headers.map((header) => `"${row[header]}"`).join(",")
+            ),
+          ].join("\n");
+
+          // إنشاء ملف للتحميل
+          const blob = new Blob([csvContent], {
+            type: "text/csv;charset=utf-8;",
+          });
+          const link = document.createElement("a");
+          const url = URL.createObjectURL(blob);
+          link.setAttribute("href", url);
+          link.setAttribute(
+            "download",
+            `${getText("exportFileName")}${new Date().toLocaleDateString(
+              "ar-SA"
+            )}.csv`
+          );
+          link.style.visibility = "hidden";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          showToast(getText("dataExported"));
+        } catch (error) {
+          console.error("Error exporting data:", error);
+          showToast(getText("exportError"), true);
+        }
+      }
+
+      // فتح مودال إضافة لجنة
+      $("#addCommitteeBtn").on("click", function () {
+        $("#committeeFormTitle").text(getText("addCommittee"));
+        $("#committeeFormIndex").val("");
+        $("#committeeNeighborhood").val("");
+        $("#committeeName").val("");
+        $("#committeeIsActive").val("true");
+        $("#committeeHasCommittee").val("true");
+
+        $("#committeeNeedsOffice").val("true");
+        $("#committeeCompetence").val("");
+        $("#committeeChallenges").val("");
+        const modal = new bootstrap.Modal(
+          document.getElementById("committeeFormModal")
+        );
+        modal.show();
+      });
+
+      // فتح مودال تعديل لجنة
+      $(document).on("click", ".btn-edit-committee", function () {
+        const idx = parseInt($(this).data("idx"));
+        if (isNaN(idx) || !committees[idx]) return;
+        const c = committees[idx];
+        $("#committeeFormTitle").text(getText("editCommittee"));
+        $("#committeeFormIndex").val(idx);
+        $("#committeeNeighborhood").val(c.neighborhood);
+        $("#committeeName").val(c.committeeName);
+        $("#committeeIsActive").val(c.isActive ? "true" : "false");
+        $("#committeeHasCommittee").val(c.hasCommittee ? "true" : "false");
+
+        $("#committeeNeedsOffice").val(c.needsOffice ? "true" : "false");
+        $("#committeeCompetence").val(c.competence);
+        $("#committeeChallenges").val(c.challenges);
+        const modal = new bootstrap.Modal(
+          document.getElementById("committeeFormModal")
+        );
+        modal.show();
+      });
+
+      // حفظ لجنة (إضافة أو تعديل)
+      $("#committeeForm").on("submit", function (e) {
+        e.preventDefault();
+        let idx = $("#committeeFormIndex").val();
+        idx = idx === "" ? -1 : parseInt(idx);
+        const committee = {
+          neighborhood: $("#committeeNeighborhood").val(),
+          committeeName: $("#committeeName").val(),
+          isActive: $("#committeeIsActive").val() === "true",
+          hasCommittee: $("#committeeHasCommittee").val() === "true",
+          needsOffice: $("#committeeNeedsOffice").val() === "true", // هل يوجد مقر
+          competence: $("#committeeCompetence").val(),
+          challenges: $("#committeeChallenges").val(), // ملاحظات
+        };
+        if (idx === -1 || isNaN(idx)) {
+          committees.push(committee);
+          showToast(getText("committeeAdded"));
+        } else if (committees[idx]) {
+          committees[idx] = committee;
+          showToast(getText("committeeEdited"));
+        }
+        renderCommitteesTable();
+        bootstrap.Modal.getInstance(
+          document.getElementById("committeeFormModal")
+        ).hide();
+      });
+
+      // حذف لجنة مع تأكيد
+      $(document).on("click", ".btn-delete-committee", function () {
+        const idx = parseInt($(this).data("idx"));
+        if (
+          !isNaN(idx) &&
+          committees[idx] &&
+          confirm(getText("confirmDeleteCommittee"))
+        ) {
+          committees.splice(idx, 1);
+          showToast(getText("committeeDeleted"));
+          renderCommitteesTable();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/UN_Habitat_Icon.svg"
+      type="image/x-icon"
+    />
+    <title>Neighborhood Map</title>
+
+    <!-- Simplified Arabic Font -->
+    <link href="../libraries/css/noto-naskh-arabic.css" rel="stylesheet" />
+    <link
+      href="../libraries/fonts/google-fonts/material-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="js/lib/fontawesome.min.css" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="js/lib/leaflet.css" />
+
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="js/lib/markercluster.css" />
+    <link rel="stylesheet" href="js/lib/markercluster.default.css" />
+
+    <!-- Leaflet Draw CSS -->
+    <link rel="stylesheet" href="js/lib/leaflet.draw.css" />
+
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="js/lib/animate.min.css" />
+
+    <!-- Material Icons -->
+    <link
+      href="../libraries/fonts/google-fonts/material-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- html2canvas for screenshot -->
+    <script src="js/lib/html2canvas.min.js"></script>
+    <!-- jsPDF for PDF export -->
+    <script src="js/lib/jspdf.umd.min.js"></script>
+
+    <!-- Leaflet Measure CSS -->
+    <link rel="stylesheet" href="js/lib/leaflet-measure.css" />
+
+    <!-- Application CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header id="mainHeader" class="no-translate" style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="flex: 1; display: flex; align-items: center; justify-content: flex-start; gap: 10px;">
+        <img src="../assets/img/aleppo.jfif" alt="Logo 1" class="header-logo" title="Aleppo Governorate" onclick="window.location.href = '../welcome.html';" style="cursor: pointer;" />
+      </div>
+      <div class="header-title text-center" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="title-ar">نظام إدارة المعلومات الحضرية _ مدينة حلب</div>
+        <div class="title-en">Urban Information Management System - Aleppo City</div>
+      </div>
+      <div class="header-logos right-logos" style="flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+        <div class="menu-dropdown">
+          <button
+            class="menu-toggle"
+            id="menuToggleBtn"
+            onclick="toggleMenu()"
+          ></button>
+          <div class="menu-dropdown-content" id="menuDropdown">
+            <a
+              href="#"
+              class="menu-item"
+              id="langToggleBtn"
+              onclick="toggleLanguage();"
+            >
+              <i class="fas fa-language"></i>
+              <span id="langToggleText">تغيير اللغة</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="settingsBtn"
+              onclick="window.location.href = '../profile.html';"
+            >
+              <i class="fas fa-cog"></i>
+              <span id="settingsText">الإعدادات</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="logoutBtn"
+              onclick="logoutUser();"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span id="logoutText">تسجيل الخروج</span>
+            </a>
+          </div>
+        </div>
+        <a href="../welcome.html" title="UN Habitat">
+          <img
+            src="../assets/img/unhabitat.png"
+            alt="Logo 3"
+            class="header-logo"
+            style="background-color: #fff;margin-top: 7px;cursor: default;"
+          />
+        </a>
+        <img src="../assets/img/japan.jpg" alt="Logo 2" class="header-logo" title="From the People of Japanese " />
+      </div>
+    </header>
+
+    <div class="mainContent">
+      <!-- Sidebar Overlay for mobile -->
+      <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+      <!-- Sidebar Toggle Buttons -->
+      <button
+        title="تبديل الشريط الجانبي"
+        id="toggleLeftSidebar"
+        class="sidebar-toggle sidebar-toggle-left"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <button
+        title="تبديل الشريط الجانبي الأيمن"
+        id="toggleRightSidebar"
+        class="sidebar-toggle sidebar-toggle-right"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <div class="main-content">
+        <div class="map-container">
+          <div class="tabs-container">
+            <div class="tabs-header">
+              <button class="tab-button active" data-tab="التزود الأساسي">
+                <i class="fas fa-boxes tab-icon"></i>
+                <span>التزود الأساسي</span>
+              </button>
+              <button class="tab-button" data-tab="الخدمة الصحية المركزية">
+                <i class="fas fa-hospital tab-icon"></i>
+                <span>الخدمة الصحية المركزية</span>
+              </button>
+              <button class="tab-button" data-tab="مرافق البنية التحتية">
+                <i class="fas fa-cogs tab-icon"></i>
+                <span>مرافق البنية التحتية</span>
+              </button>
+              <button class="tab-button" data-tab="الخدمات الإدارية">
+                <i class="fas fa-building tab-icon"></i>
+                <span>الخدمات الإدارية</span>
+              </button>
+              <button class="tab-button" data-tab="الخدمات الأخرى">
+                <i class="fas fa-ellipsis-h tab-icon"></i>
+                <span>الخدمات الأخرى</span>
+              </button>
+              <button class="tab-button" data-tab="قسم النظافة">
+                <i class="fas fa-broom tab-icon"></i>
+                <span>قسم النظافة</span>
+              </button>
+              <button
+                class="tab-button"
+                data-tab="الاقتصاد المحلي"
+              >
+                <i class="fas fa-industry tab-icon"></i>
+                <span>الاقتصاد المحلي</span>
+              </button>
+              <button class="tab-button" data-tab="الاقتصاد الزراعي">
+                <i class="fas fa-seedling tab-icon"></i>
+                <span>الاقتصاد الزراعي</span>
+              </button>
+              <button
+                class="tab-button"
+                data-tab="تحليل علاقة الشركاء الفاعلين"
+              >
+                <i class="fas fa-handshake tab-icon"></i>
+                <span>تحليل علاقة الشركاء الفاعلين</span>
+              </button>
+              <button class="tab-button" data-tab="الوحدات الإدارية">
+                <i class="fas fa-sitemap tab-icon"></i>
+                <span>الوحدات الإدارية</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Map Toolbar -->
+          <div class="map-toolbar">
+            <button id="zoom-in-btn" title="تكبير">
+              <i class="fas fa-search-plus"></i>
+            </button>
+            <button id="zoom-out-btn" title="تصغير">
+              <i class="fas fa-search-minus"></i>
+            </button>
+            <button id="home-btn" title="الرئيسية">
+              <i class="fas fa-home"></i>
+            </button>
+            <button id="measure-btn" title="قياس">
+              <i class="fas fa-ruler"></i>
+            </button>
+            <button id="draw-btn" title="رسم">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button id="printMapBtn" title="طباعة الخريطة">
+              <i class="fas fa-print"></i>
+            </button>
+            <button id="tabsToggleBtn" title="تبديل الألسنة">
+              <!-- <i class="fas fa-layer-group"></i> -->
+              <i class="fa-solid fa-table-columns"></i>
+            </button>
+          </div>
+
+          <!-- Measurement Tools Dropdown -->
+          <div class="measurement-tools-toolbar" id="measurement-tools-toolbar">
+            <button id="measure-distance-btn" title="قياس مسافة">
+              <i class="fas fa-ruler"></i>
+              <span>قياس مسافة</span>
+            </button>
+            <button id="measure-area-btn" title="قياس مساحة">
+              <i class="fas fa-expand-arrows-alt"></i>
+              <span>قياس مساحة</span>
+            </button>
+          </div>
+
+          <!-- Drawing Tools Dropdown -->
+          <div class="drawing-tools-toolbar" id="drawing-tools-toolbar">
+            <button id="draw-polyline-btn" title="رسم خط">
+              <i class="fas fa-slash"></i>
+              <span>رسم خط</span>
+            </button>
+            <button id="draw-polygon-btn" title="رسم مضلع">
+              <i class="fas fa-shapes"></i>
+              <span>رسم مضلع</span>
+            </button>
+            <button id="draw-rectangle-btn" title="رسم مستطيل">
+              <i class="far fa-square"></i>
+              <span>رسم مستطيل</span>
+            </button>
+            <button id="draw-circle-btn" title="رسم دائرة">
+              <i class="far fa-circle"></i>
+              <span>رسم دائرة</span>
+            </button>
+            <button id="draw-marker-btn" title="إضافة نقطة">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>إضافة نقطة</span>
+            </button>
+          </div>
+
+          <!-- Basemap Gallery Modal -->
+          <div id="basemap-gallery" class="basemap-gallery-modal">
+            <div class="basemap-thumb" data-basemap="osm" title="خريطة الشارع">
+              <div class="basemap-icon-container basemap-street">
+                <i class="fas fa-map basemap-icon-street"></i>
+              </div>
+              <div class="basemap-label">خريطة الشارع</div>
+            </div>
+            <div class="basemap-thumb" data-basemap="satellite" title="أقمار صناعية">
+              <div class="basemap-icon-container basemap-satellite">
+                <i class="fas fa-satellite basemap-icon-satellite"></i>
+              </div>
+              <div class="basemap-label">أقمار صناعية</div>
+            </div>
+            <div class="basemap-thumb" data-basemap="terrain" title="تضاريس">
+              <div class="basemap-icon-container basemap-terrain">
+                <i class="fas fa-mountain basemap-icon-terrain"></i>
+              </div>
+              <div class="basemap-label">تضاريس</div>
+            </div>
+            <div class="basemap-thumb" data-basemap="dark" title="داكن">
+              <div class="basemap-icon-container basemap-dark">
+                <i class="fas fa-moon basemap-icon-dark"></i>
+              </div>
+              <div class="basemap-label">داكن</div>
+            </div>
+          </div>
+
+          <!-- Compass (bottom right) -->
+          <div class="map-compass" title="الشمال">
+            <img src="../assets/img/map-compass.jpg" alt="الشمال" />
+          </div>
+
+          <!-- Full Screen Popup Window -->
+          <div id="fullscreen-popup" class="fullscreen-popup">
+            <div class="fullscreen-popup-content">
+              <button
+                id="fullscreen-popup-close"
+                class="fullscreen-popup-close"
+                title="إغلاق"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+              <div class="fullscreen-popup-body">
+                <div id="popup-loading" class="popup-loading">
+                  <div class="loading-spinner"></div>
+                  <p>جاري التحميل...</p>
+                </div>
+                <div
+                  id="popup-content-container"
+                  class="popup-content-container popup-container-hidden"
+                >
+                  <!-- Content from window.html will be loaded here -->
+                </div>
+                <!-- Urban Sectoral Functionality Calculation Container -->
+                <div
+                  id="sectoral-functionality-container"
+                  class="popup-content-container popup-container-flex-column"
+                >
+                  <h3 class="section-heading section-heading-centered">
+                    حساب الوظائف القطاعية الحضرية
+                  </h3>
+                  <div class="flex-container-gap">
+                    <button
+                      id="randomize-functionality-btn"
+                      class="sidebar-button"
+                    >
+                      <i class="fas fa-sync-alt"></i> تحديث الفعالية القطاعية
+                    </button>
+                    <button
+                      id="apply-sectoral-mapping-btn"
+                      class="sidebar-button"
+                      class="btn-gradient-blue"
+                    >
+                      <i class="fas fa-map-marked-alt"></i> تطبيق الفعالية
+                      القطاعية على الأحياء
+                    </button>
+                  </div>
+                  <div class="scrollable-content">
+                    <table id="sectoral-functionality-table" class="info-table">
+                      <thead>
+                        <tr>
+                          <th>اسم الحي</th>
+                          <th>تاريخ التعديل</th>
+                          <th>التدخلات الإنسانية</th>
+                          <th>الأسواق الأساسية</th>
+                          <th>إدارة النفايات الصلبة</th>
+                          <th>شبكة الكهرباء</th>
+                          <th>شبكة الاتصالات</th>
+                          <th>إمدادات المياه</th>
+                          <th>شبكة الصرف الصحي</th>
+                          <th>أضرار الإسكان</th>
+                          <th>النسيج الحضري</th>
+                          <th>التغيرات السكانية</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Table rows will be populated by JavaScript -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Composite Urban Functionality Container -->
+                <div
+                  id="composite-functionality-container"
+                  class="popup-content-container popup-container-flex-column"
+                >
+                  <div class="flex-container-space-between">
+                    <h3 class="section-heading">
+                      <i class="fas fa-calculator calculator-icon"></i>
+                      الفعالية العمرانية المجردة
+                    </h3>
+                  </div>
+
+                  <!-- Weights Section -->
+                  <div class="weights-section-bg">
+                    <h4 class="section-heading-secondary">
+                      <i class="fas fa-balance-scale"></i> تحديد أوزان القطاعات
+                    </h4>
+                    <div id="weightsGrid" class="weights-grid">
+                      <!-- Weights will be populated by JavaScript -->
+                    </div>
+
+                    <div class="weight-summary-container">
+                      <span class="weight-label">مجموع الأوزان:</span>
+                      <span id="totalWeight" class="weight-total">0</span>
+                      <span class="weight-divider">/ 100</span>
+                    </div>
+
+                    <div class="button-container-center">
+                      <button
+                        id="calculateCompositeBtn"
+                        class="sidebar-button btn-gradient-green"
+                      >
+                        <i class="fas fa-calculator"></i> حساب الفعالية المجردة
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Results Section -->
+                  <div
+                    id="compositeResultsSection"
+                    class="results-section-hidden"
+                  >
+                    <h4 class="section-heading-secondary">
+                      <i class="fas fa-chart-bar"></i> نتائج الفعالية العمرانية
+                      المركبة
+                    </h4>
+
+                    <div class="results-table-container">
+                      <table id="composite-results-table" class="info-table">
+                        <thead>
+                          <tr>
+                            <th>اسم الحي</th>
+                            <th>الفعالية المركبة (%)</th>
+                            <th>التصنيف</th>
+                            <th>اللون</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Results will be populated by JavaScript -->
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="flex-container-center">
+                      <button
+                        id="applyCompositeColoringBtn"
+                        class="sidebar-button btn-gradient-blue"
+                      >
+                        <i class="fas fa-paint-brush"></i> تطبيق التلوين على
+                        الخريطة
+                      </button>
+
+                      <!-- Temporary Debug Button -->
+                      <button
+                        onclick="window.diagnoseMapLayers()"
+                        class="debug-button"
+                        title="تشخيص طبقات الخريطة (للمطورين)"
+                      >
+                        <i class="fas fa-bug"></i> تشخيص
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sectoral Mapping Interface Container -->
+                <div
+                  id="sectoral-mapping-container"
+                  class="popup-content-container popup-container-flex-column"
+                >
+                  <div class="sectoral-mapping-header">
+                    <h3 class="section-heading">
+                      <i class="fas fa-map-marked-alt map-marked-icon"></i>
+                      تطبيق الفعالية القطاعية على الأحياء
+                    </h3>
+                    <button
+                      onclick="showSectoralFunctionalityCalculation()"
+                      class="back-button"
+                      title="العودة للجدول"
+                    >
+                      <i class="fas fa-arrow-left"></i> العودة للجدول
+                    </button>
+                  </div>
+
+                  <div class="sectoral-mapping-content">
+                    <!-- Sector Selection Grid -->
+                    <div id="sectoralMappingGrid" class="sectoral-mapping-grid">
+                      <!-- Sectoral mapping cards will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Legend for Blue Gradient -->
+                    <div id="blueGradientLegend" class="blue-gradient-legend">
+                      <h5 class="legend-title">مفتاح الألوان</h5>
+                      <div class="legend-items">
+                        <div class="legend-item">
+                          <div
+                            class="legend-color-box legend-color-excellent"
+                          ></div>
+                          <span class="legend-text">ممتاز (80%+)</span>
+                        </div>
+                        <div class="legend-item">
+                          <div class="legend-color-box legend-color-good"></div>
+                          <span class="legend-text">جيد (65-79%)</span>
+                        </div>
+                        <div class="legend-item">
+                          <div
+                            class="legend-color-box legend-color-average"
+                          ></div>
+                          <span class="legend-text">متوسط (50-64%)</span>
+                        </div>
+                        <div class="legend-item">
+                          <div class="legend-color-box legend-color-poor"></div>
+                          <span class="legend-text">ضعيف (30-49%)</span>
+                        </div>
+                        <div class="legend-item">
+                          <div class="legend-color-box legend-color-bad"></div>
+                          <span class="legend-text">سيء (أقل من 30%)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="map"></div>
+          <!-- Map Information Bar -->
+          <div id="map-info-bar" class="map-info-bar">
+            <div class="info-item">
+              <i class="fas fa-ruler-horizontal"></i>
+              <span id="map-scale">المقياس: 1:100000</span>
+            </div>
+            <div class="info-divider">|</div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span id="map-center">المركز: 36.2021, 37.1343</span>
+            </div>
+          </div>
+          <div class="tab-content">
+            <!-- Tab content will be dynamically added here -->
+          </div>
+
+          <!-- Info Panel -->
+          <div id="modal-backdrop" class="modal-backdrop"></div>
+          <div id="info-panel" class="info-panel">
+            <button id="close-info-panel" class="close-btn" title="إغلاق">&times;</button>
+            <h3 id="info-title"></h3>
+            <div id="info-content"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left Sidebar - Layers Management -->
+      <aside id="leftSidebar" class="sidebar left-sidebar sidebar-margin-top">
+        <div class="sidebar-header">
+          <h3>إدارة الطبقات</h3>
+        </div>
+        <!-- Indicador de cierre automático -->
+        <div id="leftSidebarAutoCloseIndicator" class="auto-close-indicator">
+          <span class="auto-close-countdown"></span>
+          <span id="left-auto-close-message">سيتم الإغلاق تلقائيًا</span>
+        </div>
+        <div class="sidebar-content sidebar-content-margin">
+          <!-- Base Layers Section -->
+
+          <div class="sidebar-section">
+            <div class="layers-header">
+              <h4><i class="fas fa-layer-group"></i> إدارة الطبقات</h4>
+            </div>
+
+            <div id="layersList" class="advanced-layer-list">
+              <!-- Advanced layer management will be populated dynamically -->
+              <div class="layer-group" data-layer-group="main-layers">
+                <div class="layer-group-header">
+                  <button class="layer-group-toggle" data-expanded="true">
+                    <i class="fas fa-chevron-down"></i>
+                  </button>
+                  <div class="layer-group-checkbox">
+                    <input type="checkbox" id="group-main-layers" checked />
+                  </div>
+                  <div class="layer-group-icon">
+                    <i class="fas fa-layer-group"></i>
+                  </div>
+                  <span class="layer-group-name">الطبقات الرئيسية</span>
+                  <div class="layer-group-actions">
+                    <button
+                      class="layer-action-btn"
+                      data-action="zoom"
+                      data-layer="main-layers"
+                      title="تكبير للطبقات"
+                    >
+                      <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button
+                      class="layer-action-btn"
+                      data-action="properties"
+                      data-layer="main-layers"
+                      title="خصائص المجموعة"
+                    >
+                      <i class="fas fa-info-circle"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="layer-group-content">
+                  <!-- Aleppo City Sub-Group -->
+                  <div class="layer-group" data-layer-group="aleppo-city">
+                    <div class="layer-group-header">
+                      <button class="layer-group-toggle" data-expanded="true">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                      <div class="layer-group-checkbox">
+                        <input type="checkbox" id="group-aleppo-city" checked />
+                      </div>
+                      <div class="layer-group-icon">
+                        <i class="fas fa-city"></i>
+                      </div>
+                      <span class="layer-group-name">مدينة حلب</span>
+                      <div class="layer-group-actions">
+                        <button
+                          class="layer-action-btn"
+                          data-action="zoom"
+                          data-layer="aleppo-city"
+                          title="تكبير للطبقة"
+                        >
+                          <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button
+                          class="layer-action-btn"
+                          data-action="properties"
+                          data-layer="aleppo-city"
+                          title="خصائص الطبقة"
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </button>
+                        <button
+                          class="layer-drag-handle"
+                          title="سحب لإعادة الترتيب"
+                        >
+                          <i class="fas fa-grip-vertical"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="layer-group-content">
+                      <!-- Aleppo City sub-layers -->
+                      <div
+                        class="layer-item"
+                        data-layer="aleppo-city-boundaries"
+                        draggable="true"
+                      >
+                        <div class="layer-indent"></div>
+                        <div class="layer-checkbox">
+                          <input
+                            type="checkbox"
+                            id="layer-aleppo-city-boundaries"
+                            checked
+                          />
+                        </div>
+                        <div class="layer-icon">
+                          <i class="fas fa-vector-square layer-icon-city"></i>
+                        </div>
+                        <span class="layer-name">حدود مدينة حلب</span>
+                        <div class="layer-actions">
+                          <button
+                            class="layer-action-btn"
+                            data-action="style"
+                            data-layer="aleppo-city-boundaries"
+                            title="تنسيق الطبقة"
+                          >
+                            <i class="fas fa-palette"></i>
+                          </button>
+                          <button
+                            class="layer-action-btn"
+                            data-action="table"
+                            data-layer="aleppo-city-boundaries"
+                            title="جدول البيانات"
+                          >
+                            <i class="fas fa-table"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Neighborhoods Sub-Group -->
+                  <div class="layer-group" data-layer-group="neighborhoods">
+                    <div class="layer-group-header">
+                      <button class="layer-group-toggle" data-expanded="true">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                      <div class="layer-group-checkbox">
+                        <input
+                          type="checkbox"
+                          id="group-neighborhoods"
+                          checked
+                        />
+                      </div>
+                      <div class="layer-group-icon">
+                        <i class="fas fa-home"></i>
+                      </div>
+                      <span class="layer-group-name">الأحياء</span>
+                      <div class="layer-group-actions">
+                        <button
+                          class="layer-action-btn"
+                          data-action="zoom"
+                          data-layer="neighborhoods"
+                          title="تكبير للطبقة"
+                        >
+                          <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button
+                          class="layer-action-btn"
+                          data-action="properties"
+                          data-layer="neighborhoods"
+                          title="خصائص الطبقة"
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </button>
+                        <button
+                          class="layer-drag-handle"
+                          title="سحب لإعادة الترتيب"
+                        >
+                          <i class="fas fa-grip-vertical"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="layer-group-content">
+                      <!-- Neighborhoods sub-layers -->
+                      <div
+                        class="layer-item"
+                        data-layer="neighborhoods-polygons"
+                        draggable="true"
+                      >
+                        <div class="layer-indent"></div>
+                        <div class="layer-checkbox">
+                          <input
+                            type="checkbox"
+                            id="layer-neighborhoods-polygons"
+                            checked
+                          />
+                        </div>
+                        <div class="layer-icon">
+                          <i
+                            class="fas fa-vector-square layer-icon-neighborhoods"
+                          ></i>
+                        </div>
+                        <span class="layer-name">حدود الأحياء</span>
+                        <div class="layer-actions">
+                          <button
+                            class="layer-action-btn"
+                            data-action="style"
+                            data-layer="neighborhoods-polygons"
+                            title="تنسيق الطبقة"
+                          >
+                            <i class="fas fa-palette"></i>
+                          </button>
+                          <button
+                            class="layer-action-btn"
+                            data-action="table"
+                            data-layer="neighborhoods-polygons"
+                            title="جدول البيانات"
+                          >
+                            <i class="fas fa-table"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div
+                        class="layer-item"
+                        data-layer="neighborhoods-labels"
+                        draggable="true"
+                      >
+                        <div class="layer-indent"></div>
+                        <div class="layer-checkbox">
+                          <input
+                            type="checkbox"
+                            id="layer-neighborhoods-labels"
+                          />
+                        </div>
+                        <div class="layer-icon">
+                          <i class="fas fa-font layer-icon-labels"></i>
+                        </div>
+                        <span class="layer-name">مسميات الأحياء</span>
+                        <div class="layer-actions">
+                          <button
+                            class="layer-action-btn"
+                            data-action="style"
+                            data-layer="neighborhoods-labels"
+                            title="تنسيق النصوص"
+                          >
+                            <i class="fas fa-text-height"></i>
+                          </button>
+                          <button
+                            class="layer-action-btn"
+                            data-action="visibility"
+                            data-layer="neighborhoods-labels"
+                            title="إعدادات الرؤية"
+                          >
+                            <i class="fas fa-eye"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Service Sectors Layer Group -->
+                  <div class="layer-group" data-layer-group="service-sectors">
+                    <div class="layer-group-header">
+                      <button class="layer-group-toggle" data-expanded="true">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                      <div class="layer-group-checkbox">
+                        <input
+                          type="checkbox"
+                          id="group-service-sectors"
+                          checked
+                        />
+                      </div>
+                      <div class="layer-group-icon">
+                        <i class="fas fa-cogs"></i>
+                      </div>
+                      <span class="layer-group-name">دوائر الخدمات</span>
+                      <div class="layer-group-actions">
+                        <button
+                          class="layer-action-btn"
+                          data-action="zoom"
+                          data-layer="service-sectors"
+                          title="تكبير للطبقة"
+                        >
+                          <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button
+                          class="layer-action-btn"
+                          data-action="properties"
+                          data-layer="service-sectors"
+                          title="خصائص الطبقة"
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </button>
+                        <button
+                          class="layer-drag-handle"
+                          title="سحب لإعادة الترتيب"
+                        >
+                          <i class="fas fa-grip-vertical"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="layer-group-content">
+                      <!-- Service sectors sub-layers -->
+                      <div
+                        class="layer-item"
+                        data-layer="service-sectors-polygons"
+                        draggable="true"
+                      >
+                        <div class="layer-indent"></div>
+                        <div class="layer-checkbox">
+                          <input
+                            type="checkbox"
+                            id="layer-service-sectors-polygons"
+                            checked
+                          />
+                        </div>
+                        <div class="layer-icon">
+                          <i
+                            class="fas fa-vector-square layer-icon-service-sectors"
+                          ></i>
+                        </div>
+                        <span class="layer-name">حدود دوائر الخدمات</span>
+                        <div class="layer-actions">
+                          <button
+                            class="layer-action-btn"
+                            data-action="style"
+                            data-layer="service-sectors-polygons"
+                            title="تنسيق الطبقة"
+                          >
+                            <i class="fas fa-palette"></i>
+                          </button>
+                          <button
+                            class="layer-action-btn"
+                            data-action="table"
+                            data-layer="service-sectors-polygons"
+                            title="جدول البيانات"
+                          >
+                            <i class="fas fa-table"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div
+                        class="layer-item"
+                        data-layer="service-sectors-labels"
+                        draggable="true"
+                      >
+                        <div class="layer-indent"></div>
+                        <div class="layer-checkbox">
+                          <input
+                            type="checkbox"
+                            id="layer-service-sectors-labels"
+                          />
+                        </div>
+                        <div class="layer-icon">
+                          <i class="fas fa-font layer-icon-service-labels"></i>
+                        </div>
+                        <span class="layer-name">مسميات دوائر الخدمات</span>
+                        <div class="layer-actions">
+                          <button
+                            class="layer-action-btn"
+                            data-action="style"
+                            data-layer="service-sectors-labels"
+                            title="تنسيق النصوص"
+                          >
+                            <i class="fas fa-text-height"></i>
+                          </button>
+                          <button
+                            class="layer-action-btn"
+                            data-action="visibility"
+                            data-layer="service-sectors-labels"
+                            title="إعدادات الرؤية"
+                          >
+                            <i class="fas fa-eye"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="import-export-header">
+              <h4><i class="fas fa-exchange-alt"></i> إدارة البيانات</h4>
+            </div>
+
+            <div class="import-export-controls">
+              <!-- Import Section -->
+              <div class="data-operation-group">
+                <h5><i class="fas fa-file-import"></i> استيراد البيانات</h5>
+                <div class="import-options">
+                  <div class="import-method">
+                    <button
+                      id="importLayerBtn"
+                      class="operation-button import-btn"
+                    >
+                      <i class="fas fa-upload"></i>
+                      <span>استيراد ملف</span>
+                    </button>
+                    <div class="import-formats">
+                      <small
+                        >الصيغ المدعومة: GeoJSON, KML, Shapefile, CSV</small
+                      >
+                    </div>
+                  </div>
+
+                  <div class="import-method">
+                    <button
+                      id="importFromUrlBtn"
+                      class="operation-button import-btn"
+                    >
+                      <i class="fas fa-link"></i>
+                      <span>استيراد من رابط</span>
+                    </button>
+                  </div>
+
+                  <div class="import-method">
+                    <button
+                      id="importFromServiceBtn"
+                      class="operation-button import-btn"
+                    >
+                      <i class="fas fa-server"></i>
+                      <span>استيراد من خدمة</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Hidden file inputs -->
+                <input
+                  type="file"
+                  id="layerFileInput"
+                  accept=".geojson,.kml,.shp,.zip,.csv"
+                  class="file-input-hidden"
+                />
+                <input
+                  type="file"
+                  id="multipleFilesInput"
+                  accept=".geojson,.kml,.shp,.zip,.csv"
+                  multiple
+                  class="file-input-hidden"
+                />
+              </div>
+
+              <!-- Export Section -->
+              <div class="data-operation-group">
+                <h5><i class="fas fa-file-export"></i> تصدير البيانات</h5>
+                <div class="export-options">
+                  <div class="layer-selector">
+                    <label for="exportLayerSelect">اختر الطبقة للتصدير:</label>
+                    <select id="exportLayerSelect" class="sidebar-select">
+                      <option value="">-- اختر طبقة --</option>
+                      <option value="aleppo-city">مدينة حلب (حدود)</option>
+                      <option value="neighborhoods">الأحياء (حدود)</option>
+                      <option value="neighborhood-labels">
+                        الأحياء (مسميات)
+                      </option>
+                      <option value="service-sectors">
+                        دوائر الخدمات (حدود)
+                      </option>
+                      <option value="service-sector-labels">
+                        دوائر الخدمات (مسميات)
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="format-selector">
+                    <label for="exportFormat">صيغة التصدير:</label>
+                    <select id="exportFormat" class="sidebar-select">
+                      <option value="geojson">GeoJSON</option>
+                      <option value="kml">KML</option>
+                      <option value="csv">CSV</option>
+                      <option value="shp">Shapefile</option>
+                    </select>
+                  </div>
+
+                  <div class="export-actions">
+                    <button
+                      id="exportLayerBtn"
+                      class="operation-button export-btn"
+                    >
+                      <i class="fas fa-download"></i>
+                      <span>تصدير الطبقة</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h4>الرموز والألوان</h4>
+            <div id="symbolEditor" class="symbol-editor">
+              <select
+                title="اختيار الشريط الجانبي"
+                id="layerStyleSelect"
+                class="sidebar-select"
+              >
+                <option value="">اختر طبقة...</option>
+                <option value="aleppo-city">مدينة حلب</option>
+                <option value="neighborhoods">الأحياء</option>
+                <option value="service-sectors">دوائر الخدمات</option>
+              </select>
+
+              <div class="style-options" id="styleOptions">
+
+
+                <div class="style-option">
+                  <label id="colorLabel">اللون:</label>
+                  <input
+                    title="لون الطبقة"
+                    type="color"
+                    id="layerColor"
+                    value="#1e40af"
+                  />
+                </div>
+
+                <div class="style-option">
+                  <label id="opacityLabel">الشفافية:</label>
+                  <input
+                    title="الشفافية"
+                    type="range"
+                    id="layerOpacity"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value="0.8"
+                  />
+                  <span id="opacityValue">0.8</span>
+                </div>
+
+                <div class="style-option">
+                  <label id="lineWeightLabel">سمك الخط:</label>
+                  <input
+                    title="سمك الخط"
+                    type="range"
+                    id="layerLineWeight"
+                    min="1"
+                    max="10"
+                    step="1"
+                    value="2"
+                  />
+                  <span id="lineWeightValue">2</span>
+                </div>
+
+                <div class="style-option">
+                  <label id="lineColorLabel">لون الخط:</label>
+                  <input
+                    title="لون الخط"
+                    type="color"
+                    id="layerLineColor"
+                    value="#000000"
+                  />
+                </div>
+                <button
+                  id="applyStyleBtn"
+                  class="sidebar-button btn-apply-style"
+                >
+                  <i class="fas fa-check"></i> تطبيق
+                </button>
+
+                <button
+                  id="resetStyleBtn"
+                  class="sidebar-button btn-reset-style"
+                >
+                  <i class="fas fa-undo"></i> إعادة الضبط
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Sidebar - Analysis and Queries -->
+      <aside id="rightSidebar" class="sidebar right-sidebar sidebar-margin-top">
+        <div class="sidebar-header">
+          <h3>التحليلات والاستعلامات</h3>
+        </div>
+        <!-- Auto-close indicator -->
+        <div id="rightSidebarAutoCloseIndicator" class="auto-close-indicator">
+          <span class="auto-close-countdown"></span>
+          <span id="auto-close-message">سيتم الإغلاق تلقائيًا</span>
+        </div>
+        <div class="sidebar-content sidebar-content-margin-small">
+          <!-- Query Builder Section -->
+          <div class="sidebar-section">
+            <h4>منشئ الاستعلامات</h4>
+            <div id="queryBuilder" class="query-builder">
+              <div class="query-builder-row">
+                <select
+                  title="اختيار جدول الاستعلام"
+                  id="queryTableSelect"
+                  class="sidebar-select"
+                >
+                  <option value="">اختر طبقة...</option>
+                  <option value="aleppo-city" id="query-aleppo-city-option">
+                    مدينة حلب
+                  </option>
+                  <option value="neighborhoods" id="query-neighborhoods-option">
+                    الأحياء
+                  </option>
+                  <option
+                    value="service-sectors"
+                    id="query-service-sectors-option"
+                  >
+                    دوائر الخدمات
+                  </option>
+                </select>
+              </div>
+
+              <div class="query-builder-row">
+                <select
+                  title="اختيار حقل الاستعلام"
+                  id="queryFieldSelect"
+                  class="sidebar-select"
+                >
+                  <option value="">اختر حقل...</option>
+                </select>
+              </div>
+
+              <div class="query-builder-row">
+                <select
+                  title="اختيار عملية الاستعلام"
+                  id="queryOperatorSelect"
+                  class="sidebar-select"
+                >
+                  <option value="">اختر العملية...</option>
+                  <option value="=">=</option>
+                  <option value="<>">≠</option>
+                  <option value=">">&gt;</option>
+                  <option value="<">&lt;</option>
+                  <option value=">=">≥</option>
+                  <option value="<=">≤</option>
+                  <option value="like" id="query-contains-option">يحتوي</option>
+                </select>
+              </div>
+
+              <div class="query-builder-row">
+                <div class="value-input-container">
+                  <input
+                    type="text"
+                    id="queryValueInput"
+                    class="sidebar-input"
+                    placeholder="أدخل القيمة"
+                  />
+                  <button
+                    title="زر قائمة القيم"
+                    id="valueListBtn"
+                    class="sidebar-button small-button btn-value-list"
+                  >
+                    <i class="fas fa-list"></i>
+                  </button>
+                </div>
+              </div>
+
+              <button
+                id="addConditionBtn"
+                class="sidebar-button btn-add-condition"
+              >
+                <i class="fas fa-plus"></i> إضافة شرط
+              </button>
+
+              <div id="queryConditions" class="query-conditions">
+                <!-- Conditions will be added here -->
+              </div>
+
+              <button
+                id="runQueryBtn"
+                class="sidebar-button primary-button btn-run-query"
+              >
+                <i class="fas fa-play"></i> تنفيذ الاستعلام
+              </button>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <div id="queryResults" class="query-results">
+              <div class="empty-state">
+                قم بإنشاء استعلام وتنفيذه لعرض النتائج
+              </div>
+            </div>
+          </div>
+
+          <!-- Spatial Analysis Section -->
+          <div class="sidebar-section">
+            <h4 id="spatial-analysis-title">
+              <i class="fas fa-chart-area icon-chart-area"></i> التحليل المكاني
+            </h4>
+            <div
+              id="buffer-analysis-section"
+              class="effectiveness-subsection effectiveness-subsection-red"
+            >
+              <div class="buffer-analysis-margin">
+                <label
+                  for="buffer-radius-km"
+                  class="buffer-label"
+                  id="buffer-radius-label"
+                  >نصف القطر (بالكيلومتر):</label
+                >
+                <input
+                  type="number"
+                  id="buffer-radius-km"
+                  value="1"
+                  min="0.1"
+                  step="0.1"
+                  class="buffer-radius-input"
+                />
+              </div>
+
+              <button id="select-center-btn" class="btn-select-center">
+                <i class="fas fa-crosshairs"></i>
+                <span id="select-center-btn-text"
+                  >1. تحديد المركز على الخريطة</span
+                >
+              </button>
+
+              <button
+                id="run-analysis-btn"
+                disabled
+                class="btn-run-analysis-disabled"
+              >
+                <i class="fas fa-chart-area"></i>
+                <span id="run-analysis-btn-text">2. حساب تقرير النطاق</span>
+              </button>
+
+              <button id="cancel-analysis-btn" class="btn-cancel-analysis">
+                <i class="fas fa-times"></i>
+                <span id="cancel-analysis-btn-text">إلغاء الحساب</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Buffer Analysis Report Modal -->
+    <div id="report-modal" class="modal-hidden report-modal-overlay">
+      <div class="modal-content report-modal-content">
+        <div class="report-modal-header">
+          <h4 class="section-title-modal">
+            <i class="fas fa-chart-area icon-chart-area-modal"></i>
+            <span id="report-modal-title">نتائج تحليل النطاق</span>
+          </h4>
+          <span class="close-button report-close-button" title="إغلاق">&times;</span>
+        </div>
+        <div id="report-results" class="report-results-content"></div>
+      </div>
+    </div>
+
+    <!-- Simple Basemap Button and Gallery -->
+    <div id="simple-basemap-button" class="simple-basemap-btn" title="اختر الخريطة الأساسية">
+      <i class="fas fa-map"></i>
+    </div>
+
+    <div id="simple-basemap-gallery" class="simple-basemap-gallery">
+      <div class="basemap-selector-title">اختر الخريطة الأساسية</div>
+      <div class="basemap-options-grid">
+        <div
+          class="simple-basemap-option simple-basemap-option-osm"
+          data-type="osm"
+          title="خريطة الشارع"
+        >
+          <div class="basemap-option-icon">
+            <i class="fas fa-map"></i>
+          </div>
+          <div class="basemap-option-label">خريطة الشارع</div>
+        </div>
+
+        <div
+          class="simple-basemap-option simple-basemap-option-satellite"
+          data-type="satellite"
+          title="أقمار صناعية"
+        >
+          <div class="basemap-option-icon-satellite">
+            <i class="fas fa-satellite"></i>
+          </div>
+          <div class="basemap-option-label">أقمار صناعية</div>
+        </div>
+
+        <div
+          class="simple-basemap-option simple-basemap-option-terrain"
+          data-type="terrain"
+          title="تضاريس"
+        >
+          <div class="basemap-option-icon-terrain">
+            <i class="fas fa-mountain"></i>
+          </div>
+          <div class="basemap-option-label">تضاريس</div>
+        </div>
+
+        <div
+          class="simple-basemap-option simple-basemap-option-dark"
+          data-type="dark"
+          title="داكن"
+        >
+          <div class="basemap-option-icon-dark">
+            <i class="fas fa-moon"></i>
+          </div>
+          <div class="basemap-option-label">داكن</div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Leaflet JS -->
+    <script src="js/lib/leaflet.js"></script>
+    <!-- shpjs for Shapefile import -->
+    <script src="js/lib/shp.min.js"></script>
+
+    <!-- JSZip for creating ZIP files -->
+    <script src="js/lib/jszip.min.js"></script>
+
+    <!-- shp-write for Shapefile export -->
+    <script src="js/lib/shpwrite.js"></script>
+
+    <!-- XLSX for Excel export -->
+    <script src="js/lib/xlsx.full.min.js"></script>
+
+    <!-- Leaflet Plugins -->
+    <script src="js/lib/leaflet.markercluster.js"></script>
+    <!-- Leaflet Draw JS -->
+    <script src="js/lib/leaflet.draw.js"></script>
+    <!-- Leaflet Measure JS -->
+    <script src="js/lib/leaflet-measure.js"></script>
+
+    <!-- Turf.js for spatial analysis -->
+    <script src="js/lib/turf.min.js"></script>
+
+    <!-- Chart.js for data visualization -->
+    <script src="../libraries/js/chart-4.4.1.umd.min.js"></script>
+
+    <!-- Application Data & Scripts -->
+    <script src="js/attached_assets/aleppo-data.js"></script>
+    <script src="js/attached_assets/aleppo-city-data.js"></script>
+    <script src="js/attached_assets/neighborhoods-data.js"></script>
+    <script src="js/attached_assets/aleppo-analysis.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/service-sectors.js"></script>
+    <script src="js/sectoral-analysis.js"></script>
+    <script src="js/field-translations.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/map2.js"></script>
+    <script src="js/exportReportPDF.js"></script>
+    <script src="js/query.js"></script>
+    <script src="js/import-export.js"></script>
+    <script src="js/features.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/info-panel-formatter.js"></script>
+    <script src="js/advanced-layer-manager.js"></script>
+    <script src="js/buffer-analysis.js"></script>
+  </body>
+</html>

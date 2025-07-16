@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Arial'), local('Tahoma'), local('Segoe UI'), local('sans-serif');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial'), local('Tahoma'), local('Segoe UI'), local('sans-serif');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Arial'), local('Tahoma'), local('Segoe UI'), local('sans-serif');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Arial'), local('Tahoma'), local('Segoe UI'), local('sans-serif');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Arial'), local('Tahoma'), local('Segoe UI'), local('sans-serif');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Arial'), local('Tahoma'), local('Segoe UI'), local('sans-serif');
+}

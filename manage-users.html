@@ -1,0 +1,2843 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/img/UN_Habitat_Icon.svg"
+      type="image/x-icon"
+    />
+    <title>Manage Users</title>
+    <!-- Fonts and icons -->
+    <link href="libraries/css/inter.css" rel="stylesheet" />
+    <link href="libraries/css/fontawesome-6.5.1.min.css" rel="stylesheet" />
+    <link
+      href="libraries/fonts/google-fonts/noto-naskh-arabic.css"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="assets/css/soft-ui-dashboard.css?v=1.1.0"
+      rel="stylesheet"
+    />
+
+    <!-- Simplified Arabic Font -->
+    <!-- Github buttons -->
+    <!-- Common User Functions -->
+
+    <script src="assets/js/common-user-functions.js"></script>
+
+    <script src="libraries/js/buttons.js" async defer></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="libraries/js/soft-ui-dashboard-1.1.0.min.js"></script>
+    <!--   Core JS Files   -->
+    <script src="libraries/js/popper-2.11.8.min.js"></script>
+    <script src="libraries/js/bootstrap-5.3.2.min.js"></script>
+    <script src="libraries/js/perfect-scrollbar-1.5.5.min.js"></script>
+    <script src="libraries/js/smooth-scrollbar-8.8.4.js"></script>
+    <script src="libraries/js/chart-4.4.1.umd.min.js"></script>
+
+    <!-- Common styles -->
+    <link href="assets/css/styles.css" rel="stylesheet" />
+
+    <style>
+      .menu-item i {
+        margin-left: 8px;
+        width: 20px;
+        text-align: center;
+      }
+
+      .menu-item:hover {
+        background-color: #f5f5f5;
+      }
+
+      body[dir="ltr"] .menu-dropdown-content {
+        right: auto;
+        left: 0;
+      }
+
+      body[dir="ltr"] .menu-item i {
+        margin-left: 0;
+        margin-right: 8px;
+      }
+
+      /* Enhanced Table Header Styles */
+      .card-header h6 {
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        color: #344767 !important;
+        margin-bottom: 0.5rem !important;
+      }
+
+      .table thead th {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        color: #344767 !important;
+        padding: 1rem 0.75rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        border-bottom: 2px solid #e9ecef !important;
+        background-color: #f8f9fa !important;
+      }
+
+      .table thead th.text-uppercase {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+      }
+
+      /* Font Awesome icon styles */
+      .fa,
+      .fab,
+      .fas,
+      .far,
+      i.fa,
+      i.fab,
+      i.fas,
+      i.far,
+      i.fa-facebook-f,
+      i.fa-x-twitter,
+      i.fa-instagram,
+      i.fa-linkedin-in,
+      i.fa-whatsapp {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+        display: inline-block !important;
+        visibility: visible !important;
+      }
+
+      /* Enhanced Notification System Styles */
+      #notificationContainer {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        max-width: 400px;
+        pointer-events: none;
+      }
+
+      body[dir="ltr"] #notificationContainer {
+        right: auto;
+        left: 20px;
+      }
+
+      .notification {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 10px;
+        padding: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        opacity: 0;
+        transform: translateX(100%);
+        animation: slideIn 0.3s ease-out forwards;
+        pointer-events: auto;
+        border-left: 4px solid;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body[dir="ltr"] .notification {
+        transform: translateX(-100%);
+        border-left: none;
+        border-right: 4px solid;
+      }
+
+      .notification.success {
+        border-left-color: #28a745;
+        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      }
+
+      body[dir="ltr"] .notification.success {
+        border-right-color: #28a745;
+      }
+
+      .notification.error {
+        border-left-color: #dc3545;
+        background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+      }
+
+      body[dir="ltr"] .notification.error {
+        border-right-color: #dc3545;
+      }
+
+      .notification.warning {
+        border-left-color: #ffc107;
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+      }
+
+      body[dir="ltr"] .notification.warning {
+        border-right-color: #ffc107;
+      }
+
+      .notification.info {
+        border-left-color: #17a2b8;
+        background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+      }
+
+      body[dir="ltr"] .notification.info {
+        border-right-color: #17a2b8;
+      }
+
+      .notification-icon {
+        font-size: 20px;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .notification.success .notification-icon {
+        color: #155724;
+      }
+
+      .notification.error .notification-icon {
+        color: #721c24;
+      }
+
+      .notification.warning .notification-icon {
+        color: #856404;
+      }
+
+      .notification.info .notification-icon {
+        color: #0c5460;
+      }
+
+      .notification-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .notification-title {
+        font-weight: bold;
+        margin-bottom: 4px;
+        color: #2c3e50;
+        font-size: 14px;
+      }
+
+      .notification-message {
+        color: #34495e;
+        font-size: 13px;
+        line-height: 1.4;
+        word-wrap: break-word;
+      }
+
+      .notification-close {
+        background: none;
+        border: none;
+        color: #6c757d;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      .notification-close:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #495057;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .notification.slide-out {
+        animation: slideOut 0.3s ease-in forwards;
+      }
+
+      @keyframes slideOut {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes slideInLtr {
+        from {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideOutLtr {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+      }
+
+      body[dir="ltr"] .notification {
+        animation: slideInLtr 0.3s ease-out forwards;
+      }
+
+      body[dir="ltr"] .notification.slide-out {
+        animation: slideOutLtr 0.3s ease-in forwards;
+      }
+
+      .notification::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 100%
+        );
+        pointer-events: none;
+      }
+    </style>
+  </head>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img
+          src="assets/img/aleppo.jfif"
+          alt="Logo 1"
+          class="header-logo"
+          onclick="window.location.href = './welcome.html';"
+          style="cursor: pointer"
+          title="Aleppo Governorate"
+        />
+      </div>
+
+      <div class="header-title text-center">
+        <div class="title-ar">نظام إدارة المعلومات الحضرية _ مدينة حلب</div>
+        <div class="title-en">
+          Urban Information Management System - Aleppo City
+        </div>
+      </div>
+
+      <div class="header-logos right-logos">
+        <div class="menu-dropdown">
+          <button
+            class="menu-toggle"
+            id="menuToggleBtn"
+            onclick="toggleMenu()"
+          ></button>
+          <div class="menu-dropdown-content" id="menuDropdown">
+            <a
+              href="#"
+              class="menu-item"
+              id="langToggleBtn"
+              onclick="toggleLanguage();"
+            >
+              <i class="fas fa-language"></i>
+              <span id="langToggleText">تغيير اللغة</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="settingsBtn"
+              onclick="window.location.href = './profile.html';"
+            >
+              <i class="fas fa-cog"></i>
+              <span id="settingsText">الإعدادات</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="logoutBtn"
+              onclick="logoutUser();"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span id="logoutText">تسجيل الخروج</span>
+            </a>
+          </div>
+        </div>
+          <img
+            src="assets/img/unhabitat.png"
+            alt="Logo 3"
+            class="header-logo"
+            title="UN Habitat"
+            style="background-color: #fff;"
+          />
+        <img src="assets/img/japan.jpg" alt="Logo 2" class="header-logo" title="From the People of Japanese "/>
+      </div>
+    </header>
+
+    <aside
+      class="sidenav navbar navbar-vertical navbar-expand-xs border-0 my-3 fixed-end bg-gray-300"
+      id="sidenav-main"
+      style="max-height: calc(100vh - 66px); overflow-y: visible"
+    >
+      <div class="sidenav-header">
+        <i
+          class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true"
+          id="iconSidenav"
+        ></i>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-tachometer-alt"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-table"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">configuration Tables </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="ManageUsers.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #007bff 0%,
+                    #0056b3 100%
+                  ) !important;
+                "
+              >
+                <i
+                  class="fas fa-users-cog"
+                  style="color: white; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Manage users</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="neighborhoodCommitteesManagement.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-users"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان الأحياء</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="developmentCommitteesManagement.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-chart-line"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان التنمية</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidenav-footer mx-3"></div>
+    </aside>
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
+    >
+      <!-- Table Section -->
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4 mt-5">
+              <div class="card-header pb-0">
+                <h6>قائمة المستخدمين</h6>
+                <button
+                  class="btn btn-sm float-end"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addUserModal"
+                  style="
+                    background-color: #0d6efd;
+                    border-color: #0d6efd;
+                    color: white;
+                  "
+                >
+                  <i class="fas fa-plus"></i> إضافة مستخدم
+                </button>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          اسم المستخدم
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          البريد الإلكتروني
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          المحافظة
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          المنطقة
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          الإجراءات
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div
+                              class="d-flex flex-column justify-content-center"
+                            >
+                              <h6 class="mb-0 text-sm">أحمد محمد</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">
+                            ahmed@example.com
+                          </p>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">حلب</p>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">الحمدانية</p>
+                        </td>
+                        <td class="align-middle text-center">
+                          <a
+                            href="#"
+                            class="btn btn-link text-dark px-3 mb-0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editUserModal"
+                          >
+                            <i
+                              class="fas fa-pencil-alt text-dark me-2"
+                              aria-hidden="true"
+                            ></i
+                            >تعديل
+                          </a>
+                          <a
+                            href="#"
+                            class="btn btn-link text-danger text-gradient px-3 mb-0"
+                          >
+                            <i
+                              class="far fa-trash-alt me-2"
+                              aria-hidden="true"
+                            ></i
+                            >حذف
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div
+                              class="d-flex flex-column justify-content-center"
+                            >
+                              <h6 class="mb-0 text-sm">سارة علي</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">
+                            sara@example.com
+                          </p>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">دمشق</p>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">المزة</p>
+                        </td>
+                        <td class="align-middle text-center">
+                          <a
+                            href="#"
+                            class="btn btn-link text-dark px-3 mb-0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editUserModal"
+                          >
+                            <i
+                              class="fas fa-pencil-alt text-dark me-2"
+                              aria-hidden="true"
+                            ></i
+                            >تعديل
+                          </a>
+                          <a
+                            href="#"
+                            class="btn btn-link text-danger text-gradient px-3 mb-0"
+                          >
+                            <i
+                              class="far fa-trash-alt me-2"
+                              aria-hidden="true"
+                            ></i
+                            >حذف
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Add User Modal -->
+    <div
+      class="modal fade"
+      id="addUserModal"
+      tabindex="-1"
+      aria-labelledby="addUserModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="false"
+    >
+      <div class="modal-dialog pt-5">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addUserModalLabel">
+              إضافة مستخدم جديد
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="username" class="form-label">اسم المستخدم</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="أدخل اسم المستخدم"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="first_name" class="form-label">الاسم الأول</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="first_name"
+                  placeholder="أدخل الاسم الأول"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="last_name" class="form-label">الاسم الأخير</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="last_name"
+                  placeholder="أدخل الاسم الأخير"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="أدخل البريد الإلكتروني"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">كلمة المرور</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="أدخل كلمة المرور"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="province" class="form-label">المحافظة</label>
+                <select class="form-control" id="province">
+                  <option value="">اختر المحافظة</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="area" class="form-label">المنطقة</label>
+                <select class="form-control" id="area">
+                  <option value="">اختر المنطقة</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              إغلاق
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="
+                background-color: #0d6efd;
+                border-color: #0d6efd;
+                color: white;
+              "
+            >
+              حفظ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div
+      class="modal fade"
+      id="editUserModal"
+      tabindex="-1"
+      aria-labelledby="editUserModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="false"
+    >
+      <div class="modal-dialog pt-5">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editUserModalLabel">تعديل المستخدم</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="editUsername" class="form-label"
+                  >اسم المستخدم</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editUsername"
+                  placeholder="أدخل اسم المستخدم"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editFirstName" class="form-label"
+                  >الاسم الأول</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editFirstName"
+                  placeholder="أدخل الاسم الأول"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editLastName" class="form-label"
+                  >الاسم الأخير</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editLastName"
+                  placeholder="أدخل الاسم الأخير"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editEmail" class="form-label"
+                  >البريد الإلكتروني</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="editEmail"
+                  placeholder="أدخل البريد الإلكتروني"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editPassword" class="form-label"
+                  >كلمة المرور الجديدة <span class="text-danger">*</span></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="editPassword"
+                  placeholder="أدخل كلمة المرور الجديدة"
+                  required
+                />
+                <small class="text-muted">كلمة المرور مطلوبة للتحديث</small>
+              </div>
+              <div class="mb-3">
+                <label for="editProvince" class="form-label">المحافظة</label>
+                <select class="form-control" id="editProvince">
+                  <option value="">اختر المحافظة</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="editArea" class="form-label">المنطقة</label>
+                <select class="form-control" id="editArea">
+                  <option value="">اختر المنطقة</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              إغلاق
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="
+                background-color: #0d6efd;
+                border-color: #0d6efd;
+                color: white;
+              "
+            >
+              حفظ التغييرات
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fixed-plugin">
+      <a
+        id="helpButton"
+        class="fixed-plugin-button text-dark position-fixed px-3 py-2"
+        style="bottom: 40px; z-index: 6000"
+      >
+        <i class="fa fa-question-circle py-2"> </i>
+      </a>
+    </div>
+
+    <script>
+      // Wait for DOM to be fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to handle zoom level changes
+        function handleZoom() {
+          const sidenav = document.getElementById("sidenav-main");
+          const windowWidth = window.innerWidth;
+          const zoomLevel = window.devicePixelRatio;
+
+          if (zoomLevel > 1.51 || windowWidth < 1200) {
+            sidenav.style.display = "none";
+          } else {
+            sidenav.style.display = "block";
+          }
+        }
+
+        // Initial check
+        handleZoom();
+
+        // Listen for zoom changes
+        window.addEventListener("resize", handleZoom);
+
+        // Initialize charts only if the canvas elements exist
+        try {
+          // Line chart
+          if (document.getElementById("chart-line")) {
+            var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+            var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+            gradientStroke1.addColorStop(1, "rgba(203,12,159,0.2)");
+            gradientStroke1.addColorStop(0.2, "rgba(72,72,176,0.0)");
+            gradientStroke1.addColorStop(0, "rgba(203,12,159,0)"); //purple colors
+
+            var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+            gradientStroke2.addColorStop(1, "rgba(20,23,39,0.2)");
+            gradientStroke2.addColorStop(0.2, "rgba(72,72,176,0.0)");
+            gradientStroke2.addColorStop(0, "rgba(20,23,39,0)"); //purple colors
+
+            window.lineChart = new Chart(ctx2, {
+              type: "line",
+              data: {
+                labels: [
+                  "Apr",
+                  "May",
+                  "Jun",
+                  "Jul",
+                  "Aug",
+                  "Sep",
+                  "Oct",
+                  "Nov",
+                  "Dec",
+                ],
+                datasets: [
+                  {
+                    label: "Foods",
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 0,
+                    borderColor: "#cb0c9f",
+                    backgroundColor: gradientStroke1,
+                    fill: true,
+                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                    maxBarThickness: 6,
+                  },
+                  {
+                    label: "Health",
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 0,
+                    borderColor: "#3A416F",
+                    backgroundColor: gradientStroke2,
+                    fill: true,
+                    data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+                    maxBarThickness: 6,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+                interaction: {
+                  intersect: false,
+                  mode: "index",
+                },
+                scales: {
+                  y: {
+                    grid: {
+                      drawBorder: false,
+                      display: true,
+                      drawOnChartArea: true,
+                      drawTicks: false,
+                      borderDash: [5, 5],
+                    },
+                    ticks: {
+                      display: true,
+                      padding: 10,
+                      color: "#b2b9bf",
+                      font: {
+                        size: 11,
+                        family: "Inter",
+                        style: "normal",
+                        lineHeight: 2,
+                      },
+                    },
+                  },
+                  x: {
+                    grid: {
+                      drawBorder: false,
+                      display: false,
+                      drawOnChartArea: false,
+                      drawTicks: false,
+                      borderDash: [5, 5],
+                    },
+                    ticks: {
+                      display: true,
+                      color: "#b2b9bf",
+                      padding: 20,
+                      font: {
+                        size: 11,
+                        family: "Inter",
+                        style: "normal",
+                        lineHeight: 2,
+                      },
+                    },
+                  },
+                },
+              },
+            });
+          }
+
+          // Service supply data
+          if (document.getElementById("serviceChart")) {
+            window.serviceChart = new Chart(
+              document.getElementById("serviceChart"),
+              {
+                type: "pie",
+                data: {
+                  labels: ["مياه", "كهرباء", "صرف صحي", "لا شيء"],
+                  datasets: [
+                    {
+                      data: [120, 140, 100, 30],
+                      backgroundColor: [
+                        "#0d6efd",
+                        "#198754",
+                        "#ffc107",
+                        "#dc3545",
+                      ],
+                    },
+                  ],
+                },
+              }
+            );
+          }
+
+          // Construction status data
+          if (document.getElementById("constructionChart")) {
+            window.constructionChart = new Chart(
+              document.getElementById("constructionChart"),
+              {
+                type: "bar",
+                data: {
+                  labels: ["صالح", "متصدع", "متهالك", "جيد"],
+                  datasets: [
+                    {
+                      label: "عدد المنشآت",
+                      data: [85, 20, 10, 40],
+                      backgroundColor: "#198754",
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: { beginAtZero: true },
+                  },
+                },
+              }
+            );
+          }
+
+          // Health status data
+          if (document.getElementById("healthChart")) {
+            window.healthChart = new Chart(
+              document.getElementById("healthChart"),
+              {
+                type: "bar",
+                data: {
+                  labels: ["مشفى", "مستوصف", "عيادة متنقلة", "عيادة"],
+                  datasets: [
+                    {
+                      label: "عدد المراكز الصحية",
+                      data: [85, 30, 15, 55],
+                      backgroundColor: "blue",
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: { beginAtZero: true },
+                  },
+                },
+              }
+            );
+          }
+
+          // Educational status data
+          if (document.getElementById("educationChart")) {
+            window.educationChart = new Chart(
+              document.getElementById("educationChart"),
+              {
+                type: "bar",
+                data: {
+                  labels: ["جامعة", "مدرسة", "مدارس خاصة", "روضات"],
+                  datasets: [
+                    {
+                      label: " عدد المنشآت التعليمية ",
+                      data: [2, 80, 30, 20],
+                      backgroundColor: "yellow",
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: { beginAtZero: true },
+                  },
+                },
+              }
+            );
+          }
+        } catch (error) {
+          console.error("Error initializing charts:", error);
+        }
+
+        // Initialize scrollbar
+        var win = navigator.platform.indexOf("Win") > -1;
+        if (win && document.querySelector("#sidenav-scrollbar")) {
+          var options = {
+            damping: "0.5",
+          };
+          Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+        }
+      });
+    </script>
+    <script>
+      var win = navigator.platform.indexOf("Win") > -1;
+      if (win && document.querySelector("#sidenav-scrollbar")) {
+        var options = {
+          damping: "0.5",
+        };
+        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+      }
+    </script>
+
+    <!-- Language Toggle Script -->
+    <script>
+      const translations = {
+        ar: {
+          dir: "rtl",
+          dashboard: "لوحة التحكم",
+          configTables: "جداول الإعدادات",
+          maps: "الخرائط",
+          manageUsers: "إدارة المستخدمين ",
+          langToggleText: "تغيير اللغة",
+          signIn: "تسجيل الدخول",
+          signUp: "إنشاء حساب",
+          permissionsList: "قائمة المستخدمين",
+          addPermission: "إضافة مستخدم",
+          editPermission: "تعديل الدور",
+          permissionName: "اسم الدور",
+          permissionDescription: "الوصف",
+          enterPermissionName: "أدخل اسم الدور",
+          enterPermissionDescription: "أدخل وصف الدور",
+          close: "إغلاق",
+          save: "حفظ",
+          saveChanges: "حفظ التغييرات",
+          actions: "الإجراءات",
+          edit: "تعديل",
+          delete: "حذف",
+          confirmDelete: "هل أنت متأكد من حذف هذا الدور؟",
+          fillAllFields: "الرجاء ملء جميع الحقول",
+          families: "عدد الأسر",
+          validBuildings: "منشآت صالحة",
+          residentialBuildings: "منشآت سكنية",
+          threatened: "مهددة بالإزالة",
+          constructionStatus: "الوضع الإنشائي",
+          educationStatus: "الوضع التعليمي",
+          healthStatus: "الوضع الصحي",
+          footerText: "© 2025، جميع الحقوق محفوظة،",
+          companyName: "دار التقنية الحديثة",
+          settingsText: "الإعدادات",
+          logoutText: "تسجيل الخروج",
+          neighborhoodCommittees: "إدارة لجان الأحياء",
+          developmentCommittees: "إدارة لجان التنمية والتطوع",
+          projectsOverview: "نظرة عامة على المشاريع",
+          moreIn2024: "زيادة بنسبة 4% في 2024",
+          projectCompletion: "معدل إكمال المشاريع في حلب",
+          foodProjects: "مشاريع الغذاء",
+          healthProjects: "مشاريع الصحة",
+          clothingProjects: "مشاريع الملابس والمساعدات السكنية",
+          viewAllProjects: "عرض جميع المشاريع",
+          projects: "المشاريع",
+          projectName: "اسم المشروع",
+          type: "النوع",
+          budget: "الميزانية",
+          status: "الحالة",
+          projectOrders: "طلبات المشاريع",
+          thisMonth: "هذا الشهر",
+          timeline: [
+            { title: "أغذية", date: "٢٨ كانون الأول ٢٠٢٥" },
+            { title: "صحة", date: "١٦ نيسان ٢٠٢٥" },
+            { title: "ملابس ومساعدات سكنية", date: "١٧ نيسان ٢٠٢٥" },
+            { title: "سكن وإقامة", date: "٢٠ كانون الأول ٢٠٢٥" },
+            { title: "تعليم", date: "٠٥ تشرين الثاني ٢٠٢٥" },
+            { title: "دعم نفسي وأسري", date: "١٧ كانون الأول ٢٠٢٥" },
+          ],
+          chartLabels: {
+            construction: ["صالح", "متصدع", "متهالك", "جيد"],
+            health: ["مشفى", "مستوصف", "عيادة متنقلة", "عيادة"],
+            education: ["جامعة", "مدرسة", "مدارس خاصة", "روضات"],
+            service: ["مياه", "كهرباء", "صرف صحي", "لا شيء"],
+          },
+          notifications: {
+            userAdded: "تم إضافة المستخدم بنجاح",
+            userUpdated: "تم تحديث المستخدم بنجاح",
+            userDeleted: "تم حذف المستخدم بنجاح",
+            addUserFailed: "فشل في إضافة المستخدم",
+            updateUserFailed: "فشل في تحديث المستخدم",
+            deleteUserFailed: "فشل في حذف المستخدم",
+            fetchUsersFailed: "فشل في جلب قائمة المستخدمين",
+            fetchRolesFailed: "فشل في جلب قائمة الأدوار",
+            validationError: "خطأ في البيانات المدخلة",
+            networkError: "خطأ في الاتصال بالخادم",
+            sessionExpired: "انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى",
+            loadingData: "جاري تحميل البيانات...",
+            dataLoaded: "تم تحميل البيانات بنجاح",
+            fillAllFields: "الرجاء ملء جميع الحقول المطلوبة",
+            invalidEmail: "صيغة البريد الإلكتروني غير صحيحة",
+
+            passwordTooShort: "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+            fetchProvincesFailed: "فشل في جلب قائمة المحافظات",
+            fetchAreasFailed: "فشل في جلب قائمة المناطق",
+          },
+          userTable: {
+            username: "اسم المستخدم",
+            email: "البريد الإلكتروني",
+            province: "المحافظة",
+            area: "المنطقة",
+            role: "الدور",
+            actions: "الإجراءات",
+            admin: "مدير",
+            user: "مستخدم",
+            edit: "تعديل",
+            delete: "حذف",
+            confirmDelete: "هل أنت متأكد من حذف هذا المستخدم؟",
+            addUserTitle: "إضافة مستخدم جديد",
+            editUserTitle: "تعديل المستخدم",
+            usernameLabel: "اسم المستخدم",
+            usernamePlaceholder: "أدخل اسم المستخدم",
+            firstNameLabel: "الاسم الأول",
+            firstNamePlaceholder: "أدخل الاسم الأول",
+            lastNameLabel: "الاسم الأخير",
+            lastNamePlaceholder: "أدخل الاسم الأخير",
+            emailLabel: "البريد الإلكتروني",
+            emailPlaceholder: "أدخل البريد الإلكتروني",
+            passwordLabel: "كلمة المرور",
+            passwordPlaceholder: "أدخل كلمة المرور",
+            editPasswordLabel: "كلمة المرور الجديدة *",
+            editPasswordPlaceholder: "أدخل كلمة المرور الجديدة",
+            editPasswordHelp: "كلمة المرور مطلوبة للتحديث",
+            provinceLabel: "المحافظة",
+            provincePlaceholder: "اختر المحافظة",
+            areaLabel: "المنطقة",
+            areaPlaceholder: "اختر المنطقة",
+            roleLabel: "الدور",
+            adminOption: "مدير",
+            userOption: "مستخدم",
+            close: "إغلاق",
+            save: "حفظ",
+            saveChanges: "حفظ التغييرات",
+          },
+        },
+        en: {
+          neighborhoodCommittees: "Neighborhood Comm",
+          developmentCommittees: "Development Comm",
+          dir: "ltr",
+          dashboard: "Dashboard",
+          configTables: "Configuration Tables",
+          maps: "Maps",
+          manageUsers: "Manage Users",
+          langToggleText: "Change Language",
+          signIn: "Sign In",
+          signUp: "Sign Up",
+          permissionsList: "Users List",
+          addPermission: "Add User",
+          editPermission: "Edit User",
+          permissionName: "Username",
+          permissionDescription: "Description",
+          enterPermissionName: "Enter username",
+          enterPermissionDescription: "Enter user description",
+          close: "Close",
+          save: "Save",
+          saveChanges: "Save Changes",
+          actions: "Actions",
+          edit: "Edit",
+          delete: "Delete",
+          confirmDelete: "Are you sure you want to delete this user?",
+          fillAllFields: "Please fill all fields",
+          families: "Families",
+          validBuildings: "Valid Buildings",
+          residentialBuildings: "Residential Buildings",
+          threatened: "Threatened with Removal",
+          constructionStatus: "Construction Status",
+          educationStatus: "Education Status",
+          healthStatus: "Health Status",
+          footerText: " 2025, All rights reserved,",
+          companyName: "Hi-Tech House",
+          settingsText: "Settings",
+          logoutText: "Logout",
+          projectsOverview: "Projects Foods And Health overview",
+          moreIn2024: "4% more in 2024",
+          projectCompletion: "Project completion rate in Aleppo",
+          foodProjects: "Food Projects",
+          healthProjects: "Health Projects",
+          clothingProjects: "Clothing and housing benefits Projects",
+          viewAllProjects: "View all Projects",
+          projects: "Projects",
+          projectName: "NAME OF PROJECT",
+          type: "TYPE",
+          budget: "BUDGET",
+          status: "STATUS",
+          projectOrders: "Projects Orders overview",
+          thisMonth: "this month",
+          timeline: [
+            { title: "Foods", date: "28 DEC 2025" },
+            { title: "Health", date: "16 Apr 2025" },
+            { title: "Clothing and housing benefits", date: "17 Apr 2025" },
+            { title: "Housing and accommodation", date: "20 DEC 2025" },
+            { title: "Education", date: "05 Nov 2025" },
+            { title: "Psychological and family support", date: "17 DEC 2025" },
+          ],
+          chartLabels: {
+            construction: ["Valid", "Cracked", "Dilapidated", "Good"],
+            health: ["Hospital", "Clinic", "Mobile Clinic", "Polyclinic"],
+            education: [
+              "University",
+              "School",
+              "Private Schools",
+              "Kindergartens",
+            ],
+            service: ["Water", "Electricity", "Sanitation", "None"],
+          },
+          notifications: {
+            userAdded: "User added successfully",
+            userUpdated: "User updated successfully",
+            userDeleted: "User deleted successfully",
+            addUserFailed: "Failed to add user",
+            updateUserFailed: "Failed to update user",
+            deleteUserFailed: "Failed to delete user",
+            fetchUsersFailed: "Failed to fetch users list",
+            fetchRolesFailed: "Failed to fetch roles list",
+            validationError: "Validation error",
+            networkError: "Network connection error",
+            sessionExpired: "Session expired, please login again",
+            loadingData: "Loading data...",
+            dataLoaded: "Data loaded successfully",
+            fillAllFields: "Please fill all required fields",
+            invalidEmail: "Invalid email format",
+
+            passwordTooShort: "Password must be at least 6 characters",
+            fetchProvincesFailed: "Failed to fetch provinces list",
+            fetchAreasFailed: "Failed to fetch areas list",
+          },
+          userTable: {
+            username: "Username",
+            email: "Email",
+            province: "Province",
+            area: "Area",
+            role: "Role",
+            actions: "Actions",
+            admin: "Admin",
+            user: "User",
+            edit: "Edit",
+            delete: "Delete",
+            confirmDelete: "Are you sure you want to delete this user?",
+            addUserTitle: "Add New User",
+            editUserTitle: "Edit User",
+            usernameLabel: "Username",
+            usernamePlaceholder: "Enter username",
+            firstNameLabel: "First Name",
+            firstNamePlaceholder: "Enter first name",
+            lastNameLabel: "Last Name",
+            lastNamePlaceholder: "Enter last name",
+            emailLabel: "Email",
+            emailPlaceholder: "Enter email",
+            passwordLabel: "Password",
+            passwordPlaceholder: "Enter password",
+            editPasswordLabel: "New Password *",
+            editPasswordPlaceholder: "Enter new password",
+            editPasswordHelp: "Password is required for update",
+            provinceLabel: "Province",
+            provincePlaceholder: "Select Province",
+            areaLabel: "Area",
+            areaPlaceholder: "Select Area",
+            roleLabel: "Role",
+            adminOption: "Admin",
+            userOption: "User",
+            close: "Close",
+            save: "Save",
+            saveChanges: "Save Changes",
+          },
+        },
+      };
+
+      let currentLang = "ar";
+
+      function switchLanguage(lang) {
+        // Store the language preference in localStorage
+        try {
+          localStorage.setItem("preferredLanguage", lang);
+        } catch (error) {
+          console.error("Error saving language preference:", error);
+        }
+
+        // Update aside (sidebar) position based on language
+        const aside = document.getElementById("sidenav-main");
+
+        aside.classList.remove("fixed-end", "fixed-start");
+
+        // Update dropdown button container alignment based on language
+        const dropdownContainer = document.getElementById(
+          "dropdownButtonContainer"
+        );
+        const projectsTitleContainer = document.getElementById(
+          "projectsTitleContainer"
+        );
+        const helpButton = document.getElementById("helpButton");
+
+        if (lang === "ar") {
+          aside.classList.add("fixed-end");
+          // For RTL (Arabic)
+          if (dropdownContainer) {
+            dropdownContainer.classList.remove("text-end");
+            dropdownContainer.classList.add("text-start");
+          }
+          if (projectsTitleContainer) {
+            projectsTitleContainer.classList.remove("text-start");
+            projectsTitleContainer.classList.add("text-end");
+          }
+          // Position help button on the left side for Arabic
+          if (helpButton) {
+            helpButton.style.left = "20px";
+            helpButton.style.right = "auto";
+          }
+        } else {
+          aside.classList.add("fixed-start");
+          // For LTR (English)
+          if (dropdownContainer) {
+            dropdownContainer.classList.remove("text-start");
+            dropdownContainer.classList.add("text-end");
+          }
+          if (projectsTitleContainer) {
+            projectsTitleContainer.classList.remove("text-end");
+            projectsTitleContainer.classList.add("text-start");
+          }
+
+          // Position help button on the right side for English
+          if (helpButton) {
+            helpButton.style.right = "20px";
+            helpButton.style.left = "auto";
+          }
+        }
+
+        // Update document direction
+
+        currentLang = lang;
+        const t = translations[lang];
+
+        // Update document direction
+        document.documentElement.lang = lang;
+        document.documentElement.dir = t.dir;
+
+        // Update aside (sidebar) text
+        const navTexts = document.querySelectorAll(".nav-link .nav-link-text");
+        if (navTexts[0]) navTexts[0].textContent = t.dashboard;
+        if (navTexts[1]) navTexts[1].textContent = t.configTables;
+        if (navTexts[2]) navTexts[2].textContent = t.manageUsers;
+        if (navTexts[3]) navTexts[3].textContent = t.neighborhoodCommittees;
+        if (navTexts[4]) navTexts[4].textContent = t.developmentCommittees;
+
+        const langToggleText = document.getElementById("langToggleText");
+        if (langToggleText) langToggleText.textContent = t.langToggleText;
+
+        // Update header menu items (settings/logout)
+        const settingsText = document.getElementById("settingsText");
+        if (settingsText) settingsText.textContent = t.settingsText;
+        const logoutText = document.getElementById("logoutText");
+        if (logoutText) logoutText.textContent = t.logoutText;
+
+        // Update main cards
+        const cardTitles = document.querySelectorAll(".card-title");
+        if (cardTitles[0]) cardTitles[0].textContent = t.families;
+        if (cardTitles[1]) cardTitles[1].textContent = t.validBuildings;
+        if (cardTitles[2]) cardTitles[2].textContent = t.residentialBuildings;
+        if (cardTitles[3]) cardTitles[3].textContent = t.threatened;
+
+        // Update chart card titles
+        const chartTitles = document.querySelectorAll(
+          "h5.card-title.text-center"
+        );
+        if (chartTitles[0]) chartTitles[0].textContent = t.constructionStatus;
+        if (chartTitles[1]) chartTitles[1].textContent = t.educationStatus;
+        if (chartTitles[2]) chartTitles[2].textContent = t.healthStatus;
+
+        // Update chart labels and datasets
+        if (window.constructionChart) {
+          constructionChart.data.labels = t.chartLabels.construction;
+          constructionChart.data.datasets[0].label =
+            lang === "ar" ? "عدد المنشآت" : "Number of Buildings";
+          constructionChart.update();
+        }
+        if (window.healthChart) {
+          healthChart.data.labels = t.chartLabels.health;
+          healthChart.data.datasets[0].label =
+            lang === "ar" ? "عدد المراكز الصحية" : "Number of Health Centers";
+          healthChart.update();
+        }
+        if (window.educationChart) {
+          educationChart.data.labels = t.chartLabels.education;
+          educationChart.data.datasets[0].label =
+            lang === "ar"
+              ? "عدد المنشآت التعليمية"
+              : "Number of Educational Facilities";
+          educationChart.update();
+        }
+        if (window.serviceChart) {
+          serviceChart.data.labels = t.chartLabels.service;
+          serviceChart.update();
+        }
+
+        // Update projects section title
+        const projectsTitle = document.getElementById("projectsTitle");
+        if (projectsTitle) projectsTitle.textContent = t.projects;
+
+        // Update Projects Orders overview section title
+        const projectsOrdersTitle = document.getElementById(
+          "projectsOrdersTitle"
+        );
+        if (projectsOrdersTitle)
+          projectsOrdersTitle.textContent = t.projectOrders;
+
+        // Update other elements as before...
+        const moreIn2024 = document.querySelector(".text-sm .font-weight-bold");
+        if (moreIn2024) moreIn2024.textContent = t.moreIn2024;
+
+        const projectCompletion = document.querySelector(".card-header .mb-0");
+        if (projectCompletion)
+          projectCompletion.textContent = t.projectCompletion;
+
+        // Update project list items
+        const projectItems = document.querySelectorAll(
+          ".list-group-item .text-sm.font-weight-bold.text-dark"
+        );
+        if (projectItems[0]) projectItems[0].textContent = t.foodProjects;
+        if (projectItems[1]) projectItems[1].textContent = t.healthProjects;
+        if (projectItems[2]) projectItems[2].textContent = t.clothingProjects;
+
+        // Update view all projects button
+        const viewAllBtn = document.querySelector(".btn-dark.mb-0");
+        if (viewAllBtn) viewAllBtn.textContent = t.viewAllProjects;
+
+        // Update projects table headers
+        const tableHeaders = document.querySelectorAll("th.text-uppercase");
+        if (tableHeaders[0]) tableHeaders[0].textContent = t.projectName;
+        if (tableHeaders[1]) tableHeaders[1].textContent = t.type;
+        if (tableHeaders[2]) tableHeaders[2].textContent = t.budget;
+        if (tableHeaders[3]) tableHeaders[3].textContent = t.status;
+
+        // Update project orders section
+        const thisMonthText = document.querySelectorAll(
+          ".text-sm .font-weight-bold"
+        )[1];
+        if (thisMonthText) thisMonthText.textContent = t.thisMonth;
+
+        // Update timeline
+        const timelineBlocks = document.querySelectorAll(
+          ".timeline-block .timeline-content h6"
+        );
+        const timelineDates = document.querySelectorAll(
+          ".timeline-block .timeline-content p"
+        );
+        t.timeline.forEach((item, idx) => {
+          if (timelineBlocks[idx]) timelineBlocks[idx].textContent = item.title;
+          if (timelineDates[idx]) timelineDates[idx].textContent = item.date;
+        });
+
+        // Update projects overview and section titles
+        const projectsOverviewTitle = document.getElementById(
+          "projectsOverviewTitle"
+        );
+        if (projectsOverviewTitle)
+          projectsOverviewTitle.textContent = t.projectsOverview;
+
+        updateUserTableTexts();
+      }
+
+      function toggleLanguage() {
+        if (currentLang === "ar") {
+          switchLanguage("en");
+        } else {
+          switchLanguage("ar");
+        }
+      }
+
+      // Add menu functionality
+      function toggleMenu() {
+        const menu = document.getElementById("menuDropdown");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Close menu when clicking outside
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("menuDropdown");
+        const menuBtn = document.getElementById("menuToggleBtn");
+
+        if (menu && menuBtn) {
+          if (!menuBtn.contains(e.target) && !menu.contains(e.target)) {
+            menu.style.display = "none";
+          }
+        }
+      });
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize scrollbar for Windows platform
+        var win = navigator.platform.indexOf("Win") > -1;
+        if (win && document.querySelector("#sidenav-scrollbar")) {
+          var options = {
+            damping: "0.5",
+          };
+          Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+        }
+        // Set initial classes for RTL layout
+        const dropdownContainer = document.getElementById(
+          "dropdownButtonContainer"
+        );
+        const projectsTitleContainer = document.getElementById(
+          "projectsTitleContainer"
+        );
+        const helpButton = document.getElementById("helpButton");
+
+        if (dropdownContainer && projectsTitleContainer) {
+          // Initial setup for Arabic (RTL)
+          dropdownContainer.classList.add("text-start");
+          projectsTitleContainer.classList.add("text-end");
+        }
+
+        // Initial position for help button (Arabic - RTL)
+        if (helpButton) {
+          helpButton.style.left = "20px";
+          helpButton.style.right = "auto";
+        }
+
+        // Check if there's a saved language preference in localStorage
+        let savedLanguage;
+        try {
+          savedLanguage = localStorage.getItem("preferredLanguage");
+        } catch (error) {
+          console.error("Error retrieving language preference:", error);
+          savedLanguage = null;
+        }
+
+        // Set initial language based on saved preference or default to Arabic
+        const initialLang = savedLanguage || "ar";
+        switchLanguage(initialLang);
+
+        // Initialize language toggle functionality
+        // The language toggle is now handled through the menu dropdown
+
+        // Load initial data
+        loadAllData();
+
+        // Add event listeners for user management
+        const addUserButton = document.querySelector(
+          "#addUserModal .btn-primary"
+        );
+        if (addUserButton) {
+          addUserButton.addEventListener("click", addUser);
+          console.log("Add user button event listener added");
+        } else {
+          console.warn("Add user button not found");
+        }
+
+        const saveEditButton = document.querySelector(
+          "#editUserModal .btn-primary"
+        );
+        if (saveEditButton) {
+          saveEditButton.addEventListener("click", saveUserEdit);
+          console.log("Save edit button event listener added");
+        } else {
+          console.warn("Save edit button not found");
+        }
+
+        // Add event listeners for province change
+        const provinceSelect = document.getElementById("province");
+        if (provinceSelect) {
+          provinceSelect.addEventListener("change", function () {
+            const provinceId = this.value;
+            populateAreas("area", provinceId);
+          });
+        }
+
+        const editProvinceSelect = document.getElementById("editProvince");
+        if (editProvinceSelect) {
+          editProvinceSelect.addEventListener("change", function () {
+            const provinceId = this.value;
+            populateAreas("editArea", provinceId);
+          });
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (e) {
+          const menu = document.getElementById("menuDropdown");
+          const menuBtn = document.getElementById("menuToggleBtn");
+          if (
+            menu &&
+            menuBtn &&
+            !menuBtn.contains(e.target) &&
+            !menu.contains(e.target)
+          ) {
+            menu.style.display = "none";
+          }
+        });
+      });
+
+      // Global variables
+      let users = [];
+      let provinces = [];
+      let areas = [];
+
+      // API Configuration - use window.API_BASE_URL from common-user-functions.js
+      // let API_BASE_URL = "http://127.0.0.1:8000/api";
+
+      // Get JWT token from localStorage
+      function getAuthToken() {
+        return localStorage.getItem("access_token");
+      }
+
+      // API Helper function
+      async function apiCall(endpoint, options = {}) {
+        const token = getAuthToken();
+        const defaultHeaders = {
+          "Content-Type": "application/json",
+        };
+
+        if (token) {
+          defaultHeaders["Authorization"] = `Bearer ${token}`;
+        }
+
+        const config = {
+          headers: defaultHeaders,
+          ...options,
+          headers: {
+            ...defaultHeaders,
+            ...options.headers,
+          },
+        };
+
+        try {
+          const apiBaseUrl = window.API_BASE_URL || "http://127.0.0.1:8000";
+          console.log(
+            `Making ${
+              config.method || "GET"
+            } request to: ${apiBaseUrl}${endpoint}`
+          );
+          if (config.body) {
+            console.log("Request body:", config.body);
+          }
+
+          const response = await fetch(`${apiBaseUrl}${endpoint}`, config);
+
+          console.log(`Response status: ${response.status}`);
+
+          if (!response.ok) {
+            if (response.status === 401) {
+              showErrorNotification("sessionExpired");
+              setTimeout(() => {
+                window.location.href = "./index.html";
+              }, 2000);
+              return null;
+            }
+
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(
+              errorData.detail ||
+                errorData.message ||
+                `HTTP error! status: ${response.status}`
+            );
+          }
+
+          // Check if response has content before trying to parse JSON
+          const contentType = response.headers.get("content-type");
+          const contentLength = response.headers.get("content-length");
+
+          // If no content-type header or content-length is 0, or content-type is not JSON
+          if (
+            !contentType ||
+            contentLength === "0" ||
+            !contentType.includes("application/json")
+          ) {
+            // For successful responses without JSON content (like DELETE), return a success indicator
+            return { success: true, status: response.status };
+          }
+
+          // Try to parse JSON, but handle empty responses gracefully
+          const text = await response.text();
+          if (!text || text.trim() === "") {
+            return { success: true, status: response.status };
+          }
+
+          try {
+            return JSON.parse(text);
+          } catch (parseError) {
+            console.warn("Failed to parse JSON response:", text);
+            return { success: true, status: response.status, raw: text };
+          }
+        } catch (error) {
+          console.error("API call failed:", error);
+          throw error;
+        }
+      }
+
+      // Enhanced Notification System
+      function showNotification(type, message, title = "") {
+        const notificationContainer = document.getElementById(
+          "notificationContainer"
+        );
+
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.className = `notification ${type}`;
+
+        // Select appropriate icon based on type
+        let icon = "";
+        switch (type) {
+          case "success":
+            icon = "fas fa-check-circle";
+            break;
+          case "error":
+            icon = "fas fa-exclamation-circle";
+            break;
+          case "warning":
+            icon = "fas fa-exclamation-triangle";
+            break;
+          case "info":
+            icon = "fas fa-info-circle";
+            break;
+          default:
+            icon = "fas fa-info-circle";
+        }
+
+        notification.innerHTML = `
+          <i class="${icon} notification-icon"></i>
+          <div class="notification-content">
+            ${title ? `<div class="notification-title">${title}</div>` : ""}
+            <div class="notification-message">${message}</div>
+          </div>
+          <button class="notification-close" onclick="closeNotification(this.parentElement)">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+
+        // Add notification to container
+        notificationContainer.appendChild(notification);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+          if (notification.parentElement) {
+            closeNotification(notification);
+          }
+        }, 5000);
+      }
+
+      function closeNotification(notification) {
+        notification.classList.add("slide-out");
+        setTimeout(() => {
+          if (notification.parentElement) {
+            notification.parentElement.removeChild(notification);
+          }
+        }, 300);
+      }
+
+      // Helper functions for specific notification types
+      function showSuccessNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("success", message, title);
+      }
+
+      function showErrorNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("error", message, title);
+      }
+
+      function showInfoNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("info", message, title);
+      }
+
+      function showWarningNotification(
+        messageKey,
+        title = "",
+        customMessage = ""
+      ) {
+        const message =
+          customMessage || translations[currentLang].notifications[messageKey];
+        showNotification("warning", message, title);
+      }
+
+      // Legacy support function to maintain compatibility
+      function showNotificationLegacy(message, type = "info") {
+        showNotification(type, message);
+      }
+
+      // Fetch all provinces from API
+      async function fetchProvinces() {
+        try {
+          const data = await apiCall("/api/provinces/");
+          if (data === null) {
+            provinces = [];
+            return [];
+          }
+          provinces = Array.isArray(data) ? data : (data && data.results) || [];
+          return provinces;
+        } catch (error) {
+          console.error("Error fetching provinces:", error);
+          showErrorNotification("fetchProvincesFailed", "", error.message);
+          return [];
+        }
+      }
+
+      // Fetch all areas from API
+      async function fetchAreas() {
+        try {
+          const data = await apiCall("/api/areas/");
+          if (data === null) {
+            areas = [];
+            return [];
+          }
+          areas = Array.isArray(data) ? data : (data && data.results) || [];
+          return areas;
+        } catch (error) {
+          console.error("Error fetching areas:", error);
+          showErrorNotification("fetchAreasFailed", "", error.message);
+          return [];
+        }
+      }
+
+      // Fetch areas by province
+      async function fetchAreasByProvince(provinceId) {
+        try {
+          const data = await apiCall(
+            `/api/areas/by_province/?province_id=${provinceId}`
+          );
+          if (data === null) {
+            return [];
+          }
+          return Array.isArray(data) ? data : (data && data.results) || [];
+        } catch (error) {
+          console.error("Error fetching areas by province:", error);
+          return [];
+        }
+      }
+
+      // Fetch all users from API
+      async function fetchUsers() {
+        try {
+          const data = await apiCall("/api/users/");
+          if (data === null) {
+            users = [];
+            return [];
+          }
+          users = Array.isArray(data) ? data : (data && data.results) || [];
+          return users;
+        } catch (error) {
+          console.error("Error fetching users:", error);
+          showErrorNotification("fetchUsersFailed", "", error.message);
+          return [];
+        }
+      }
+
+      // Function to populate province dropdown
+      function populateProvinces(selectId = "province") {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+
+        const t = translations[currentLang].userTable;
+        select.innerHTML = `<option value="">${t.provincePlaceholder}</option>`;
+
+        provinces.forEach((province) => {
+          const option = document.createElement("option");
+          option.value = province.id;
+          option.textContent =
+            currentLang === "ar" ? province.name_ar : province.name_en;
+          select.appendChild(option);
+        });
+      }
+
+      // Function to populate area dropdown
+      function populateAreas(selectId = "area", provinceId = null) {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+
+        const t = translations[currentLang].userTable;
+        select.innerHTML = `<option value="">${t.areaPlaceholder}</option>`;
+
+        let filteredAreas = areas;
+        if (provinceId) {
+          filteredAreas = areas.filter((area) => area.province == provinceId);
+        }
+
+        filteredAreas.forEach((area) => {
+          const option = document.createElement("option");
+          option.value = area.id;
+          option.textContent =
+            currentLang === "ar" ? area.name_ar : area.name_en;
+          select.appendChild(option);
+        });
+      }
+
+      // Function to display users in the table
+      function displayUsers() {
+        const tbody = document.querySelector("tbody");
+        if (!tbody) return;
+
+        tbody.innerHTML = "";
+
+        users.forEach((user) => {
+          const tr = document.createElement("tr");
+          const t = translations[currentLang].userTable;
+
+          tr.innerHTML = `
+        <td>
+          <div class="d-flex px-2 py-1">
+            <div class="d-flex flex-column justify-content-center">
+              <h6 class="mb-0 text-sm">${
+                user.username || user.first_name + " " + user.last_name
+              }</h6>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="text-xs font-weight-bold mb-0">${user.email}</p>
+        </td>
+        <td>
+          <p class="text-xs font-weight-bold mb-0">${
+            user.province_name || "-"
+          }</p>
+        </td>
+        <td>
+          <p class="text-xs font-weight-bold mb-0">${user.area_name || "-"}</p>
+        </td>
+        <td class="align-middle text-center">
+          <a href="#" class="btn btn-link text-dark px-3 mb-0" onclick="editUser(${
+            user.id
+          })" data-bs-toggle="modal" data-bs-target="#editUserModal">
+            <i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>${
+              t.edit
+            }
+          </a>
+          <a href="#" class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="deleteUser(${
+            user.id
+          })">
+            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>${t.delete}
+          </a>
+        </td>
+      `;
+          tbody.appendChild(tr);
+        });
+
+        // Update card title and add button
+        const cardTitle = document.querySelector(".card-header h6");
+        const t = translations[currentLang];
+        if (cardTitle) cardTitle.textContent = t.permissionsList; // Using the same translation key
+
+        const addButton = document.querySelector(".card-header .btn-primary");
+        if (addButton) {
+          addButton.innerHTML = `<i class="fas fa-plus"></i> ${t.addPermission}`;
+        }
+      }
+
+      // Function to add new user
+      async function addUser() {
+        const username = document.getElementById("username").value.trim();
+        const first_name = document.getElementById("first_name").value.trim();
+        const last_name = document.getElementById("last_name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const province = document.getElementById("province").value;
+        const area = document.getElementById("area").value;
+
+        // Validation checks
+        if (!username || !email || !password) {
+          showWarningNotification("fillAllFields");
+          return;
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showWarningNotification("invalidEmail");
+          return;
+        }
+
+        // Validate password length
+        if (password.length < 6) {
+          showWarningNotification("passwordTooShort");
+          return;
+        }
+
+        try {
+          const userData = {
+            username: username,
+            email: email,
+            password: password,
+          };
+
+          // Add optional fields if they have values
+          if (first_name) userData.first_name = first_name;
+          if (last_name) userData.last_name = last_name;
+          if (province) userData.province = parseInt(province);
+          if (area) userData.area = parseInt(area);
+
+          console.log("Adding user data:", {
+            ...userData,
+            password: "[HIDDEN]",
+          });
+
+          const response = await apiCall("/api/users/", {
+            method: "POST",
+            body: JSON.stringify(userData),
+          });
+
+          if (response) {
+            showSuccessNotification("userAdded");
+            await fetchUsers(); // Refresh users list
+            displayUsers();
+
+            // Clear form and close modal
+            document.getElementById("username").value = "";
+            document.getElementById("first_name").value = "";
+            document.getElementById("last_name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("province").value = "";
+            document.getElementById("area").value = "";
+
+            const modal = bootstrap.Modal.getInstance(
+              document.getElementById("addUserModal")
+            );
+            modal.hide();
+          }
+        } catch (error) {
+          console.error("Error adding user:", error);
+          showErrorNotification("addUserFailed", "", error.message);
+        }
+      }
+
+      // Function to edit user
+      function editUser(id) {
+        const user = users.find((u) => u.id === id);
+        if (!user) {
+          showErrorNotification("validationError", "", "المستخدم غير موجود");
+          return;
+        }
+
+        console.log("Editing user:", user);
+
+        document.getElementById("editUsername").value = user.username || "";
+        document.getElementById("editFirstName").value = user.first_name || "";
+        document.getElementById("editLastName").value = user.last_name || "";
+        document.getElementById("editEmail").value = user.email || "";
+        document.getElementById("editPassword").value = ""; // Always start empty
+        document.getElementById("editProvince").value = user.province || "";
+        document.getElementById("editArea").value = user.area || "";
+
+        // Update areas based on selected province
+        if (user.province) {
+          populateAreas("editArea", user.province);
+          document.getElementById("editArea").value = user.area || "";
+        }
+
+        document.getElementById("editUserModal").dataset.userId = id;
+      }
+
+      // Function to save edited user
+      async function saveUserEdit() {
+        const id = parseInt(
+          document.getElementById("editUserModal").dataset.userId
+        );
+        const username = document.getElementById("editUsername").value.trim();
+        const first_name = document
+          .getElementById("editFirstName")
+          .value.trim();
+        const last_name = document.getElementById("editLastName").value.trim();
+        const email = document.getElementById("editEmail").value.trim();
+        const password = document.getElementById("editPassword").value;
+        const province = document.getElementById("editProvince").value;
+        const area = document.getElementById("editArea").value;
+
+        // Validation checks
+        if (!username || !email || !password) {
+          showWarningNotification("fillAllFields");
+          return;
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showWarningNotification("invalidEmail");
+          return;
+        }
+
+        // Validate password length
+        if (password && password.length < 6) {
+          showWarningNotification("passwordTooShort");
+          return;
+        }
+
+        try {
+          // Prepare user data - always include required fields
+          const userData = {
+            username: username,
+            email: email,
+            password: password.trim(),
+          };
+
+          // Add optional fields if they have values
+          if (first_name) {
+            userData.first_name = first_name;
+          }
+          if (last_name) {
+            userData.last_name = last_name;
+          }
+          if (province) {
+            userData.province = parseInt(province);
+          }
+          if (area) {
+            userData.area = parseInt(area);
+          }
+
+          console.log("Updating user data:", {
+            ...userData,
+            password: "[HIDDEN]",
+          });
+          console.log("User ID:", id);
+
+          const response = await apiCall(`/api/users/${id}/`, {
+            method: "PUT",
+            body: JSON.stringify(userData),
+          });
+
+          if (response) {
+            showSuccessNotification("userUpdated");
+            await fetchUsers(); // Refresh users list
+            displayUsers();
+
+            const modal = bootstrap.Modal.getInstance(
+              document.getElementById("editUserModal")
+            );
+            modal.hide();
+          }
+        } catch (error) {
+          console.error("Error updating user:", error);
+          showErrorNotification("updateUserFailed", "", error.message);
+        }
+      }
+
+      // Function to delete user
+      async function deleteUser(id) {
+        const t = translations[currentLang];
+        if (
+          confirm(
+            t.userTable.confirmDelete ||
+              t.confirmDelete ||
+              "هل أنت متأكد من حذف هذا المستخدم؟"
+          )
+        ) {
+          try {
+            console.log("Deleting user with ID:", id);
+
+            const response = await apiCall(`/api/users/${id}/`, {
+              method: "DELETE",
+            });
+
+            console.log("Delete response:", response);
+
+            // DELETE requests typically return success indicator
+            showSuccessNotification("userDeleted");
+            await fetchUsers(); // Refresh users list
+            displayUsers();
+          } catch (error) {
+            console.error("Error deleting user:", error);
+            showErrorNotification("deleteUserFailed", "", error.message);
+          }
+        }
+      }
+
+      // Load all data from API
+      async function loadAllData() {
+        try {
+          showInfoNotification("loadingData");
+
+          // Fetch all data
+          await Promise.all([fetchProvinces(), fetchAreas(), fetchUsers()]);
+
+          // Update UI
+          populateProvinces("province");
+          populateProvinces("editProvince");
+          populateAreas("area");
+          populateAreas("editArea");
+          displayUsers();
+
+          showSuccessNotification("dataLoaded");
+        } catch (error) {
+          console.error("Error loading data:", error);
+          showErrorNotification("networkError", "", error.message);
+        }
+      }
+
+      // Update modal content when language changes
+      function updateModals() {
+        // All modal updates now handled by updateAddUserModalTexts() and the original switchLanguage function
+      }
+
+      // Modify the switchLanguage function to update user interface
+      const originalSwitchLanguage = switchLanguage;
+      switchLanguage = function (lang) {
+        originalSwitchLanguage(lang);
+        updateModals();
+        displayUsers();
+      };
+
+      // Add event listeners when document is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        displayUsers();
+        updateUserTableTexts();
+        updateAddUserModalTexts();
+
+        const addUserButton = document.querySelector(
+          "#addUserModal .btn-primary"
+        );
+        if (addUserButton) {
+          addUserButton.addEventListener("click", addUser);
+          console.log("Add user button event listener added (second location)");
+        } else {
+          console.warn("Add user button not found (second location)");
+        }
+
+        const saveEditButton = document.querySelector(
+          "#editUserModal .btn-primary"
+        );
+        if (saveEditButton) {
+          saveEditButton.addEventListener("click", saveUserEdit);
+          console.log(
+            "Save edit button event listener added (second location)"
+          );
+        } else {
+          console.warn("Save edit button not found (second location)");
+        }
+      });
+
+      function updateUserTableTexts() {
+        const t = translations[currentLang].userTable;
+        // تحديث عناوين الأعمدة فقط
+        const ths = document.querySelectorAll(".table thead th");
+        if (ths[0]) ths[0].textContent = t.username;
+        if (ths[1]) ths[1].textContent = t.email;
+        if (ths[2]) ths[2].textContent = t.province;
+        if (ths[3]) ths[3].textContent = t.area;
+        if (ths[4]) ths[4].textContent = t.actions;
+        // تحديث نصوص الأزرار فقط
+        document.querySelectorAll(".btn-link.text-dark").forEach((e) => {
+          if (e.textContent.match(/تعديل|Edit/))
+            e.innerHTML = `<i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>${t.edit}`;
+        });
+        document.querySelectorAll(".btn-link.text-danger").forEach((e) => {
+          if (e.textContent.match(/حذف|Delete/))
+            e.innerHTML = `<i class="far fa-trash-alt me-2" aria-hidden="true"></i>${t.delete}`;
+        });
+      }
+
+      if (typeof window.originalSwitchLanguage === "undefined") {
+        window.originalSwitchLanguage = switchLanguage;
+        switchLanguage = function (lang) {
+          window.originalSwitchLanguage(lang);
+          updateUserTableTexts();
+          updateAddUserModalTexts();
+          displayUsers();
+        };
+      }
+      // استدعاء تحديث الجدول عند تحميل الصفحة
+      document.addEventListener("DOMContentLoaded", function () {
+        updateUserTableTexts();
+      });
+
+      function updateAddUserModalTexts() {
+        const t = translations[currentLang].userTable;
+        const modal = document.getElementById("addUserModal");
+        if (!modal) return;
+        // العنوان
+        const title = modal.querySelector(".modal-title");
+        if (title) title.textContent = t.addUserTitle;
+        // اسم المستخدم
+        const usernameLabel = modal.querySelector('label[for="username"]');
+        if (usernameLabel) usernameLabel.textContent = t.usernameLabel;
+        const usernameInput = modal.querySelector("#username");
+        if (usernameInput) usernameInput.placeholder = t.usernamePlaceholder;
+
+        // الاسم الأول
+        const firstNameLabel = modal.querySelector('label[for="first_name"]');
+        if (firstNameLabel) firstNameLabel.textContent = t.firstNameLabel;
+        const firstNameInput = modal.querySelector("#first_name");
+        if (firstNameInput) firstNameInput.placeholder = t.firstNamePlaceholder;
+
+        // الاسم الأخير
+        const lastNameLabel = modal.querySelector('label[for="last_name"]');
+        if (lastNameLabel) lastNameLabel.textContent = t.lastNameLabel;
+        const lastNameInput = modal.querySelector("#last_name");
+        if (lastNameInput) lastNameInput.placeholder = t.lastNamePlaceholder;
+
+        // البريد الإلكتروني
+        const emailLabel = modal.querySelector('label[for="email"]');
+        if (emailLabel) emailLabel.textContent = t.emailLabel;
+        const emailInput = modal.querySelector("#email");
+        if (emailInput) emailInput.placeholder = t.emailPlaceholder;
+
+        // كلمة المرور
+        const passwordLabel = modal.querySelector('label[for="password"]');
+        if (passwordLabel) passwordLabel.textContent = t.passwordLabel;
+        const passwordInput = modal.querySelector("#password");
+        if (passwordInput) passwordInput.placeholder = t.passwordPlaceholder;
+
+        // المحافظة
+        const provinceLabel = modal.querySelector('label[for="province"]');
+        if (provinceLabel) provinceLabel.textContent = t.provinceLabel;
+
+        // المنطقة
+        const areaLabel = modal.querySelector('label[for="area"]');
+        if (areaLabel) areaLabel.textContent = t.areaLabel;
+
+        // الأزرار
+        const closeBtn = modal.querySelector(".btn-secondary");
+        if (closeBtn) closeBtn.textContent = t.close;
+        const saveBtn = modal.querySelector(".btn-primary");
+        if (saveBtn) saveBtn.textContent = t.save;
+
+        // Also update Edit User Modal
+        const editModal = document.getElementById("editUserModal");
+        if (!editModal) return;
+        // العنوان
+        const editTitle = editModal.querySelector(".modal-title");
+        if (editTitle)
+          editTitle.textContent = t.editUserTitle || "تعديل المستخدم";
+        // اسم المستخدم
+        const editUsernameLabel = editModal.querySelector(
+          'label[for="editUsername"]'
+        );
+        if (editUsernameLabel) editUsernameLabel.textContent = t.usernameLabel;
+        const editUsernameInput = editModal.querySelector("#editUsername");
+        if (editUsernameInput)
+          editUsernameInput.placeholder = t.usernamePlaceholder;
+
+        // الاسم الأول
+        const editFirstNameLabel = editModal.querySelector(
+          'label[for="editFirstName"]'
+        );
+        if (editFirstNameLabel)
+          editFirstNameLabel.textContent = t.firstNameLabel;
+        const editFirstNameInput = editModal.querySelector("#editFirstName");
+        if (editFirstNameInput)
+          editFirstNameInput.placeholder = t.firstNamePlaceholder;
+
+        // الاسم الأخير
+        const editLastNameLabel = editModal.querySelector(
+          'label[for="editLastName"]'
+        );
+        if (editLastNameLabel) editLastNameLabel.textContent = t.lastNameLabel;
+        const editLastNameInput = editModal.querySelector("#editLastName");
+        if (editLastNameInput)
+          editLastNameInput.placeholder = t.lastNamePlaceholder;
+
+        // البريد الإلكتروني
+        const editEmailLabel = editModal.querySelector(
+          'label[for="editEmail"]'
+        );
+        if (editEmailLabel) editEmailLabel.textContent = t.emailLabel;
+        const editEmailInput = editModal.querySelector("#editEmail");
+        if (editEmailInput) editEmailInput.placeholder = t.emailPlaceholder;
+
+        // كلمة المرور الجديدة
+        const editPasswordLabel = editModal.querySelector(
+          'label[for="editPassword"]'
+        );
+        if (editPasswordLabel)
+          editPasswordLabel.textContent = t.editPasswordLabel;
+        const editPasswordInput = editModal.querySelector("#editPassword");
+        if (editPasswordInput)
+          editPasswordInput.placeholder = t.editPasswordPlaceholder;
+        const editPasswordHelp = editModal.querySelector("small.text-muted");
+        if (editPasswordHelp) editPasswordHelp.textContent = t.editPasswordHelp;
+
+        // المحافظة
+        const editProvinceLabel = editModal.querySelector(
+          'label[for="editProvince"]'
+        );
+        if (editProvinceLabel) editProvinceLabel.textContent = t.provinceLabel;
+
+        // المنطقة
+        const editAreaLabel = editModal.querySelector('label[for="editArea"]');
+        if (editAreaLabel) editAreaLabel.textContent = t.areaLabel;
+
+        // الأزرار
+        const editCloseBtn = editModal.querySelector(".btn-secondary");
+        if (editCloseBtn) editCloseBtn.textContent = t.close;
+        const editSaveBtn = editModal.querySelector(".btn-primary");
+        if (editSaveBtn)
+          editSaveBtn.textContent = t.saveChanges || "حفظ التغييرات";
+      }
+
+      // Ensure we don't define switchLanguage multiple times
+      if (typeof window.userSwitchLanguage === "undefined") {
+        window.userSwitchLanguage = switchLanguage;
+        switchLanguage = function (lang) {
+          window.userSwitchLanguage(lang);
+          updateUserTableTexts();
+          updateAddUserModalTexts();
+
+          // Re-populate dropdowns with translated text
+          const currentProvince = document.getElementById("province").value;
+          const currentEditProvince =
+            document.getElementById("editProvince").value;
+          const currentArea = document.getElementById("area").value;
+          const currentEditArea = document.getElementById("editArea").value;
+
+          populateProvinces("province");
+          populateProvinces("editProvince");
+          populateAreas("area", currentProvince);
+          populateAreas("editArea", currentEditProvince);
+
+          // Restore selected values
+          if (currentProvince)
+            document.getElementById("province").value = currentProvince;
+          if (currentEditProvince)
+            document.getElementById("editProvince").value = currentEditProvince;
+          if (currentArea) document.getElementById("area").value = currentArea;
+          if (currentEditArea)
+            document.getElementById("editArea").value = currentEditArea;
+
+          displayUsers();
+        };
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        updateUserTableTexts();
+        updateAddUserModalTexts();
+      });
+
+      // 1. بيانات mock افتراضية للمستخدمين والمحافظات والمناطق
+      const MOCK_USERS = [
+        {
+          id: 1,
+          username: "ahmed",
+          first_name: "أحمد",
+          last_name: "محمد",
+          email: "ahmed@example.com",
+          province: 1,
+          area: 1,
+          province_name: "حلب",
+          area_name: "الحمدانية"
+        },
+        {
+          id: 2,
+          username: "sara",
+          first_name: "سارة",
+          last_name: "علي",
+          email: "sara@example.com",
+          province: 2,
+          area: 3,
+          province_name: "دمشق",
+          area_name: "المزة"
+        }
+      ];
+      const MOCK_PROVINCES = [
+        { id: 1, name_ar: "حلب", name_en: "Aleppo" },
+        { id: 2, name_ar: "دمشق", name_en: "Damascus" }
+      ];
+      const MOCK_AREAS = [
+        { id: 1, province: 1, name_ar: "الحمدانية", name_en: "Al-Hamdaniya" },
+        { id: 2, province: 1, name_ar: "الجميلية", name_en: "Al-Jamilia" },
+        { id: 3, province: 2, name_ar: "المزة", name_en: "Al-Mazzeh" },
+        { id: 4, province: 2, name_ar: "برزة", name_en: "Barzeh" }
+      ];
+      const STORAGE_KEYS = {
+        USERS: 'mock_users',
+        PROVINCES: 'mock_provinces',
+        AREAS: 'mock_areas'
+      };
+
+      function initializeMockData() {
+        if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+          localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(MOCK_USERS));
+        }
+        if (!localStorage.getItem(STORAGE_KEYS.PROVINCES)) {
+          localStorage.setItem(STORAGE_KEYS.PROVINCES, JSON.stringify(MOCK_PROVINCES));
+        }
+        if (!localStorage.getItem(STORAGE_KEYS.AREAS)) {
+          localStorage.setItem(STORAGE_KEYS.AREAS, JSON.stringify(MOCK_AREAS));
+        }
+      }
+
+      function getUsers() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+      }
+      function getProvinces() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.PROVINCES) || '[]');
+      }
+      function getAreas() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.AREAS) || '[]');
+      }
+      function saveUsers(users) {
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+      }
+
+      // 2. تحميل البيانات عند بدء الصفحة
+      function loadAllData() {
+        initializeMockData();
+        users = getUsers();
+        provinces = getProvinces();
+        areas = getAreas();
+        populateProvinces('province');
+        populateProvinces('editProvince');
+        populateAreas('area');
+        populateAreas('editArea');
+        displayUsers();
+        showSuccessNotification('dataLoaded');
+      }
+
+      // 3. عرض المستخدمين
+      function displayUsers() {
+        const tbody = document.querySelector('tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        users.forEach((user) => {
+          const tr = document.createElement('tr');
+          const t = translations[currentLang].userTable;
+          tr.innerHTML = `
+            <td><div class="d-flex px-2 py-1"><div class="d-flex flex-column justify-content-center"><h6 class="mb-0 text-sm">${user.username || user.first_name + ' ' + user.last_name}</h6></div></div></td>
+            <td><p class="text-xs font-weight-bold mb-0">${user.email}</p></td>
+            <td><p class="text-xs font-weight-bold mb-0">${user.province_name || provinceName(user.province) || '-'}</p></td>
+            <td><p class="text-xs font-weight-bold mb-0">${user.area_name || areaName(user.area) || '-'}</p></td>
+            <td class="align-middle text-center">
+              <a href="#" class="btn btn-link text-dark px-3 mb-0" onclick="editUser(${user.id})" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>${t.edit}</a>
+              <a href="#" class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="deleteUser(${user.id})"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>${t.delete}</a>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+      function provinceName(id) {
+        const p = provinces.find((x) => x.id == id);
+        return p ? (currentLang === 'ar' ? p.name_ar : p.name_en) : '';
+      }
+      function areaName(id) {
+        const a = areas.find((x) => x.id == id);
+        return a ? (currentLang === 'ar' ? a.name_ar : a.name_en) : '';
+      }
+
+      // 4. إضافة مستخدم
+      async function addUser() {
+        const username = document.getElementById('username').value.trim();
+        const first_name = document.getElementById('first_name').value.trim();
+        const last_name = document.getElementById('last_name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const province = document.getElementById('province').value;
+        const area = document.getElementById('area').value;
+        if (!username || !email || !password) {
+          showWarningNotification('fillAllFields');
+          return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showWarningNotification('invalidEmail');
+          return;
+        }
+        if (password.length < 6) {
+          showWarningNotification('passwordTooShort');
+          return;
+        }
+        const usersArr = getUsers();
+        const newId = usersArr.length ? Math.max(...usersArr.map(u => u.id)) + 1 : 1;
+        const newUser = {
+          id: newId,
+          username,
+          first_name,
+          last_name,
+          email,
+          province: province ? parseInt(province) : undefined,
+          area: area ? parseInt(area) : undefined,
+          province_name: provinceName(province),
+          area_name: areaName(area)
+        };
+        usersArr.push(newUser);
+        saveUsers(usersArr);
+        users = usersArr;
+        displayUsers();
+        showSuccessNotification('userAdded');
+        document.getElementById('username').value = '';
+        document.getElementById('first_name').value = '';
+        document.getElementById('last_name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('province').value = '';
+        document.getElementById('area').value = '';
+        const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+        modal.hide();
+      }
+
+      // 5. تعديل مستخدم
+      function editUser(id) {
+        const user = users.find(u => u.id === id);
+        if (!user) {
+          showErrorNotification('validationError', '', 'المستخدم غير موجود');
+          return;
+        }
+        document.getElementById('editUsername').value = user.username || '';
+        document.getElementById('editFirstName').value = user.first_name || '';
+        document.getElementById('editLastName').value = user.last_name || '';
+        document.getElementById('editEmail').value = user.email || '';
+        document.getElementById('editPassword').value = '';
+        document.getElementById('editProvince').value = user.province || '';
+        populateAreas('editArea', user.province);
+        document.getElementById('editArea').value = user.area || '';
+        document.getElementById('editUserModal').dataset.userId = id;
+      }
+      async function saveUserEdit() {
+        const id = parseInt(document.getElementById('editUserModal').dataset.userId);
+        const username = document.getElementById('editUsername').value.trim();
+        const first_name = document.getElementById('editFirstName').value.trim();
+        const last_name = document.getElementById('editLastName').value.trim();
+        const email = document.getElementById('editEmail').value.trim();
+        const password = document.getElementById('editPassword').value;
+        const province = document.getElementById('editProvince').value;
+        const area = document.getElementById('editArea').value;
+        if (!username || !email || !password) {
+          showWarningNotification('fillAllFields');
+          return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showWarningNotification('invalidEmail');
+          return;
+        }
+        if (password.length < 6) {
+          showWarningNotification('passwordTooShort');
+          return;
+        }
+        let usersArr = getUsers();
+        const idx = usersArr.findIndex(u => u.id === id);
+        if (idx === -1) {
+          showErrorNotification('updateUserFailed', '', 'المستخدم غير موجود');
+          return;
+        }
+        usersArr[idx] = {
+          ...usersArr[idx],
+          username,
+          first_name,
+          last_name,
+          email,
+          province: province ? parseInt(province) : undefined,
+          area: area ? parseInt(area) : undefined,
+          province_name: provinceName(province),
+          area_name: areaName(area)
+        };
+        saveUsers(usersArr);
+        users = usersArr;
+        displayUsers();
+        showSuccessNotification('userUpdated');
+        const modal = bootstrap.Modal.getInstance(document.getElementById('editUserModal'));
+        modal.hide();
+      }
+
+      // 6. حذف مستخدم
+      function deleteUser(id) {
+        const t = translations[currentLang];
+        if (confirm(t.userTable.confirmDelete || t.confirmDelete || 'هل أنت متأكد من حذف هذا المستخدم؟')) {
+          let usersArr = getUsers();
+          usersArr = usersArr.filter(u => u.id !== id);
+          saveUsers(usersArr);
+          users = usersArr;
+          displayUsers();
+          showSuccessNotification('userDeleted');
+        }
+      }
+
+      // 7. المحافظات والمناطق
+      function populateProvinces(selectId = 'province') {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+        const t = translations[currentLang].userTable;
+        select.innerHTML = `<option value="">${t.provincePlaceholder}</option>`;
+        provinces.forEach((province) => {
+          const option = document.createElement('option');
+          option.value = province.id;
+          option.textContent = currentLang === 'ar' ? province.name_ar : province.name_en;
+          select.appendChild(option);
+        });
+      }
+      function populateAreas(selectId = 'area', provinceId = null) {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+        const t = translations[currentLang].userTable;
+        select.innerHTML = `<option value="">${t.areaPlaceholder}</option>`;
+        let filteredAreas = areas;
+        if (provinceId) {
+          filteredAreas = areas.filter((area) => area.province == provinceId);
+        }
+        filteredAreas.forEach((area) => {
+          const option = document.createElement('option');
+          option.value = area.id;
+          option.textContent = currentLang === 'ar' ? area.name_ar : area.name_en;
+          select.appendChild(option);
+        });
+      }
+
+      // 8. عند تحميل الصفحة
+      // أزل كل استدعاءات API وبدّلها بتحميل البيانات المحلية
+      window.addEventListener('DOMContentLoaded', function () {
+        loadAllData();
+        // إشعار التحميل يظهر مرة واحدة فقط
+      });
+    </script>
+  </body>
+</html>

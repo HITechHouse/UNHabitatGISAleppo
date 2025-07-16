@@ -1,0 +1,2612 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/img/UN_Habitat_Icon.svg"
+      type="image/x-icon"
+    />
+    <title>Tables</title>
+    <!-- Fonts and icons -->
+    <link href="libraries/css/inter.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link href="libraries/css/fontawesome-6.5.1.min.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="assets/css/soft-ui-dashboard.css?v=1.1.0"
+      rel="stylesheet"
+    />
+
+    <!-- Simplified Arabic Font -->
+    <link href="libraries/css/noto-naskh-arabic.css" rel="stylesheet" />
+
+    <!-- Github buttons -->
+    <!-- Common User Functions -->
+
+    <script src="assets/js/common-user-functions.js"></script>
+
+    <script src="libraries/js/buttons.js" async defer></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="libraries/js/soft-ui-dashboard-1.1.0.min.js"></script>
+
+    <!-- Common styles -->
+    <link href="assets/css/styles.css" rel="stylesheet" />
+
+    <link href="assets/css/tables_style.css" rel="stylesheet" />
+  </head>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <!-- Header -->
+    <header id="mainHeader">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img
+          src="assets/img/aleppo.jfif"
+          alt="Logo 1"
+          class="header-logo"
+          onclick="window.location.href = './welcome.html';"
+          style="cursor: pointer"
+          title="Aleppo Governorate"
+        />
+      </div>
+
+      <div class="header-title text-center">
+        <div class="title-ar">نظام إدارة المعلومات الحضرية _ مدينة حلب</div>
+        <div class="title-en">
+          Urban Information Management System - Aleppo City
+        </div>
+      </div>
+
+      <div class="header-logos right-logos">
+        <div class="menu-dropdown">
+          <button
+            class="menu-toggle"
+            id="menuToggleBtn"
+            onclick="toggleMenu()"
+          ></button>
+          <div class="menu-dropdown-content" id="menuDropdown">
+            <a
+              href="#"
+              class="menu-item"
+              id="langToggleBtn"
+              onclick="toggleLanguage();"
+            >
+              <i class="fas fa-language"></i>
+              <span id="langToggleText">تغيير اللغة</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="settingsBtn"
+              onclick="window.location.href = './profile.html';"
+            >
+              <i class="fas fa-cog"></i>
+              <span id="settingsText">الإعدادات</span>
+            </a>
+            <a
+              href="#"
+              class="menu-item"
+              id="logoutBtn"
+              onclick="logoutUser();"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span id="logoutText">تسجيل الخروج</span>
+            </a>
+          </div>
+        </div>
+          <img
+            src="assets/img/unhabitat.png"
+            alt="Logo 3"
+            class="header-logo"
+            title="UN Habitat"
+            style="background-color: #fff;"
+          />
+        <img src="assets/img/japan.jpg" alt="Logo 2" class="header-logo" title="From the People of Japanese "/>
+      </div>
+    </header>
+
+    <aside
+      class="sidenav navbar navbar-vertical navbar-expand-xs border-0 my-3 fixed-end bg-gray-300"
+      id="sidenav-main"
+      style="max-height: calc(100vh - 66px); overflow-y: visible"
+    >
+      <div class="sidenav-header">
+        <i
+          class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true"
+          id="iconSidenav"
+        ></i>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-tachometer-alt"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="tables.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #007bff 0%,
+                    #0056b3 100%
+                  ) !important;
+                "
+              >
+                <i
+                  class="fas fa-table"
+                  style="color: white; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">configuration Tables </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="ManageUsers.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-users-cog"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Manage users</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="neighborhoodCommitteesManagement.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-users"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان الأحياء</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="developmentCommitteesManagement.html">
+              <div
+                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 ms-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-chart-line"
+                  style="color: black; font-size: 20px"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">إدارة لجان التنمية</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidenav-footer mx-3"></div>
+    </aside>
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
+    >
+      <!-- Navbar -->
+
+      <div class="container-fluid py-4">
+        <div class="section-card">
+          <div class="section-title">
+            <i class="fas fa-layer-group"></i>
+            <h4
+              id="projectTablesTitle"
+              data-ar="تهيئة بيانات الأنشطة التنفيذية ولجان الأحياء"
+              data-en="Configuration of Executive Activities and Neighborhood Committees Data"
+            >
+              تهيئة بيانات الأنشطة التنفيذية ولجان الأحياء
+            </h4>
+          </div>
+          <div class="grid-container">
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#needItemsModal"
+            >
+              <i class="fas fa-clipboard-list fa-2x"></i>
+              <h3 data-ar="عناصر الاحتياج" data-en="Need Items">
+                عناصر الاحتياج
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#committeeRolesModal"
+            >
+              <i class="fas fa-user-tag fa-2x"></i>
+              <h3 data-ar="أدوار اللجنة" data-en="Committee Roles">
+                أدوار اللجنة
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#coordinationTypeModal"
+            >
+              <i class="fas fa-handshake fa-2x"></i>
+              <h3 data-ar="أنواع التنسيق" data-en="Coordination Types">
+                أنواع التنسيق
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#projectTypesModal"
+            >
+              <i class="fas fa-project-diagram fa-2x"></i>
+              <h3 data-ar="أنواع المشاريع" data-en="Project Types">
+                أنواع المشاريع
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#projectStatusesModal"
+            >
+              <i class="fas fa-tasks fa-2x"></i>
+              <h3 data-ar="حالات المشاريع" data-en="Project Statuses">
+                حالات المشاريع
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#projectNamesModal"
+            >
+              <i class="fas fa-clipboard-list fa-2x"></i>
+              <h3 data-ar="أسماء المشاريع" data-en="Project Names">
+                أسماء المشاريع
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#functionalityLevelsModal"
+            >
+              <i class="fas fa-chart-line fa-2x"></i>
+              <h3 data-ar="مستويات الضرر على الحي" data-en="Neighborhood Damage Levels">
+                مستويات الضرر على الحي
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">
+            <i class="fas fa-cogs"></i>
+            <h4
+              id="generalTablesTitle"
+              data-ar="تهيئة جداول حساب الفعالية العمرانية"
+              data-en="Configuration Tables for Urban Effectiveness Calculation"
+            >
+              تهيئة جداول حساب الفعالية العمرانية
+            </h4>
+          </div>
+          <div class="grid-container">
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#interventionPrioritiesModal"
+            >
+              <i class="fas fa-list-ol fa-2x"></i>
+              <h3>أولوية التدخل</h3>
+              <!-- <h4>Intervention Priorities</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#infrastructureStatusesModal"
+            >
+              <i class="fas fa-building fa-2x"></i>
+              <h3 data-ar="مستوى الأضرار على الأبنية" data-en="Building Damage Levels">
+                مستوى الأضرار على الأبنية
+              </h3>
+            </div>
+
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#damageLevelsModal"
+            >
+              <i class="fas fa-exclamation-triangle fa-2x"></i>
+              <h3>مستويات الضرر</h3>
+              <!-- <h4>Damage Levels</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#networkStatusesModal"
+            >
+              <i class="fas fa-network-wired fa-2x"></i>
+              <h3>حالات الشبكة</h3>
+              <!-- <h4>Network Statuses</h4> -->
+            </div>
+
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#ownershipDocumentationTypesModal"
+            >
+              <i class="fas fa-file-contract fa-2x"></i>
+              <h3>أنواع توثيق الملكية</h3>
+              <!-- <h4>Ownership Documentation Types</h4> -->
+            </div>
+
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#ownershipTypesModal"
+            >
+              <i class="fas fa-house-user fa-2x"></i>
+              <h3>أنواع الملكية</h3>
+              <!-- <h4>Ownership Types</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#urbanConditionsModal"
+            >
+              <i class="fas fa-city fa-2x"></i>
+              <h3>الحالات العمرانية</h3>
+              <!-- <h4>Urban Conditions</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#dominantLandUsesModal"
+            >
+              <i class="fas fa-globe fa-2x"></i>
+              <h3>الاستخدام السائد للأرض</h3>
+              <!-- <h4>Dominant Land Uses</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#humanNeedsTypesModal"
+            >
+              <i class="fas fa-hands-helping fa-2x"></i>
+              <h3 data-ar="أنواع الاحتياجات الإنسانية" data-en="Humanitarian Needs Types">
+                أنواع الاحتياجات الإنسانية
+              </h3>
+            </div>
+
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#urbanClassificationsModal"
+            >
+              <i class="fas fa-city fa-2x"></i>
+              <h3>التصنيفات العمرانية</h3>
+              <!-- <h4>Urban Classifications</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#administrativeClassificationsModal"
+            >
+              <i class="fas fa-sitemap fa-2x"></i>
+              <h3>التصنيفات الإدارية</h3>
+              <!-- <h4>Administrative Classifications</h4> -->
+            </div>
+
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#transportationMobilityTypesModal"
+            >
+              <i class="fas fa-route fa-2x"></i>
+              <h3 data-ar="أقسام النقل والتنقل" data-en="Transportation and Mobility Sections">
+                أقسام النقل والتنقل
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#mobilityCentersTypesModal"
+            >
+              <i class="fas fa-map-marker-alt fa-2x"></i>
+              <h3>أنواع مراكز التنقل</h3>
+              <!-- <h4>Mobility Centers Types</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#suppliesNamesModal"
+            >
+              <i class="fas fa-shipping-fast fa-2x"></i>
+              <h3 data-ar="أنواع المؤون والبضائع" data-en="Supplies and Goods Types">
+                أنواع المؤون والبضائع
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#operationStatusesModal"
+            >
+              <i class="fas fa-power-off fa-2x"></i>
+              <h3>حالات التشغيل</h3>
+              <!-- <h4>Operation Statuses</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#healthServiceFacilitiesModal"
+            >
+              <i class="fas fa-hospital fa-2x"></i>
+              <h3>مرافق الخدمة الصحية</h3>
+              <!-- <h4>Health Service Facilities</h4> -->
+            </div>
+
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#availabilityStatusesModal"
+            >
+              <i class="fas fa-check-double fa-2x"></i>
+              <h3 data-ar="واقع الكادر التشغيلي / المستهلكات" data-en="Operational Staff / Consumables Reality">
+                واقع الكادر التشغيلي / المستهلكات
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#infrastructureFacilitiesModal"
+            >
+              <i class="fas fa-industry fa-2x"></i>
+              <h3>مرافق البنية التحتية</h3>
+              <!-- <h4>Infrastructure Facilities</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#administrativeServicesNamesModal"
+            >
+              <i class="fas fa-clipboard-list fa-2x"></i>
+              <h3 data-ar="أنواع الخدمات الإدارية" data-en="Administrative Services Types">
+                أنواع الخدمات الإدارية
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#otherServicesNamesModal"
+            >
+              <i class="fas fa-concierge-bell fa-2x"></i>
+              <h3 data-ar="الخدمات الإدارية" data-en="Administrative Services">
+                الخدمات الإدارية
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#facilityTypesModal"
+            >
+              <i class="fas fa-warehouse fa-2x"></i>
+              <h3>أنواع المنشآت</h3>
+              <!-- <h4>Facility Types</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#participationTypesModal"
+            >
+              <i class="fas fa-handshake fa-2x"></i>
+              <h3>أنواع المشاركة</h3>
+              <!-- <h4>Participation Types</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#potentialPartnersModal"
+            >
+              <i class="fas fa-users-cog fa-2x"></i>
+              <h3 data-ar="الشركاء المحتملين للوحدات الإدارية" data-en="Potential Partners for Administrative Units">
+                الشركاء المحتملين للوحدات الإدارية
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#marketTypesModal"
+            >
+              <i class="fas fa-store fa-2x"></i>
+              <h3>أنواع الأسواق</h3>
+              <!-- <h4>Market Types</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#randomLocationsModal"
+            >
+              <i class="fas fa-map-pin fa-2x"></i>
+              <h3>المواقع العشوائية</h3>
+              <!-- <h4>Random Locations</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#streetCleanlinessLevelsModal"
+            >
+              <i class="fas fa-broom fa-2x"></i>
+              <h3>مستويات نظافة الشوارع</h3>
+              <!-- <h4>Street Cleanliness Levels</h4> -->
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#insectControlsModal"
+            >
+              <i class="fas fa-bug fa-2x"></i>
+              <h3 data-ar="أنشطة مكافحة الحشرات والقوارض" data-en="Insect and Rodent Control Activities">
+                أنشطة مكافحة الحشرات والقوارض
+              </h3>
+            </div>
+            <div
+              class="grid-item"
+              data-bs-toggle="modal"
+              data-bs-target="#rubbleRemovalsModal"
+            >
+              <i class="fas fa-trash fa-2x"></i>
+              <h3>إزالة الأنقاض</h3>
+              <!-- <h4>Rubble Removals</h4> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- InterventionPriorities Modal -->
+        <div
+          class="modal fade"
+          id="interventionPrioritiesModal"
+          tabindex="-1"
+          aria-labelledby="interventionPrioritiesModalLabel"
+          aria-hidden="true"
+          data-table="interventionPriorities"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="interventionPrioritiesModalLabel"
+                  data-ar="أولويات التدخل"
+                  data-en="Intervention Priorities"
+                >
+                  أولويات التدخل
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('interventionPriorities')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف أولوية التدخل</th>
+                        <th>اسم أولوية التدخل</th>
+                        <th>اسم أولوية التدخل باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="interventionPrioritiesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- InfrastructureStatuses Modal -->
+        <div
+          class="modal fade"
+          id="infrastructureStatusesModal"
+          tabindex="-1"
+          aria-labelledby="infrastructureStatusesModalLabel"
+          aria-hidden="true"
+          data-table="infrastructureStatuses"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="infrastructureStatusesModalLabel"
+                  data-ar="مستوى الأضرار على الأبنية"
+                  data-en="Building Damage Levels"
+                >
+                  مستوى الأضرار على الأبنية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('infrastructureStatuses')"
+                  data-ar="إضافة حالة جديدة"
+                  data-en="Add New Status"
+                >
+                  إضافة حالة جديدة
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف مستوى الضرر على الأبنية</th>
+                        <th>اسم مستوى الضرر على الأبنية</th>
+                        <th>اسم مستوى الضرر على الأبنية باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="infrastructureStatusesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DamageLevels Modal -->
+        <div
+          class="modal fade"
+          id="damageLevelsModal"
+          tabindex="-1"
+          aria-labelledby="damageLevelsModalLabel"
+          aria-hidden="true"
+          data-table="damageLevels"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="damageLevelsModalLabel"
+                  data-ar="مستويات الضرر"
+                  data-en="Damage Levels"
+                >
+                  مستويات الضرر
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('damageLevels')"
+                  data-ar="إضافة مستوى جديد"
+                  data-en="Add New Level"
+                >
+                  إضافة مستوى جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف مستوى الضرر</th>
+                        <th>اسم مستوى الضرر</th>
+                        <th>اسم مستوى الضرر باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="damageLevelsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NetworkStatuses Modal -->
+        <div
+          class="modal fade"
+          id="networkStatusesModal"
+          tabindex="-1"
+          aria-labelledby="networkStatusesModalLabel"
+          aria-hidden="true"
+          data-table="networkStatuses"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="networkStatusesModalLabel"
+                  data-ar="حالات الشبكة"
+                  data-en="Network Statuses"
+                >
+                  حالات الشبكة
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('networkStatuses')"
+                  data-ar="إضافة حالة جديدة"
+                  data-en="Add New Status"
+                >
+                  إضافة حالة جديدة
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف حالة الشبكة</th>
+                        <th>اسم حالة الشبكة</th>
+                        <th>اسم حالة الشبكة باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="networkStatusesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OwnershipDocumentationTypes Modal -->
+        <div
+          class="modal fade"
+          id="ownershipDocumentationTypesModal"
+          tabindex="-1"
+          aria-labelledby="ownershipDocumentationTypesModalLabel"
+          aria-hidden="true"
+          data-table="ownershipDocumentationTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="ownershipDocumentationTypesModalLabel"
+                  data-ar="أنواع توثيق الملكية"
+                  data-en="Ownership Documentation Types"
+                >
+                  أنواع توثيق الملكية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('ownershipDocumentationTypes')"
+                  data-ar="إضافة نوع جديد"
+                  data-en="Add New Type"
+                >
+                  إضافة نوع جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع توثيق الملكية</th>
+                        <th>اسم نوع توثيق الملكية</th>
+                        <th>اسم نوع توثيق الملكية باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ownershipDocumentationTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OwnershipTypes Modal -->
+        <div
+          class="modal fade"
+          id="ownershipTypesModal"
+          tabindex="-1"
+          aria-labelledby="ownershipTypesModalLabel"
+          aria-hidden="true"
+          data-table="ownershipTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="ownershipTypesModalLabel"
+                  data-ar="أنواع الملكية"
+                  data-en="Ownership Types"
+                >
+                  أنواع الملكية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('ownershipTypes')"
+                  data-ar="إضافة نوع جديد"
+                  data-en="Add New Type"
+                >
+                  إضافة نوع جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع الملكية</th>
+                        <th>اسم نوع الملكية</th>
+                        <th>اسم نوع الملكية باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ownershipTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UrbanConditions Modal -->
+        <div
+          class="modal fade"
+          id="urbanConditionsModal"
+          tabindex="-1"
+          aria-labelledby="urbanConditionsModalLabel"
+          aria-hidden="true"
+          data-table="urbanConditions"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="urbanConditionsModalLabel"
+                  data-ar="الحالات العمرانية"
+                  data-en="Urban Conditions"
+                >
+                  الحالات العمرانية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('urbanConditions')"
+                  data-ar="إضافة حالة جديدة"
+                  data-en="Add New Condition"
+                >
+                  إضافة حالة جديدة
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف الحالة العمرانية</th>
+                        <th>اسم الحالة العمرانية</th>
+                        <th>اسم الحالة العمرانية باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="urbanConditionsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DominantLandUses Modal -->
+        <div
+          class="modal fade"
+          id="dominantLandUsesModal"
+          tabindex="-1"
+          aria-labelledby="dominantLandUsesModalLabel"
+          aria-hidden="true"
+          data-table="dominantLandUses"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="dominantLandUsesModalLabel"
+                  data-ar="الاستخدام السائد للأرض"
+                  data-en="Dominant Land Uses"
+                >
+                  الاستخدام السائد للأرض
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('dominantLandUses')"
+                  data-ar="إضافة استخدام جديد"
+                  data-en="Add New Use"
+                >
+                  إضافة استخدام جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف الاستخدام السائد للأرض</th>
+                        <th>الاستخدام السائد للأرض</th>
+                        <th>الاستخدام السائد للأرض باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dominantLandUsesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HumanNeedsTypes Modal -->
+        <div
+          class="modal fade"
+          id="humanNeedsTypesModal"
+          tabindex="-1"
+          aria-labelledby="humanNeedsTypesModalLabel"
+          aria-hidden="true"
+          data-table="humanNeedsTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="humanNeedsTypesModalLabel"
+                  data-ar="أنواع الاحتياجات الإنسانية"
+                  data-en="Humanitarian Needs Types"
+                >
+                  أنواع الاحتياجات الإنسانية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-add add-button"
+                  onclick="addRow('humanNeedsTypes')"
+                  data-ar="إضافة نوع جديد"
+                  data-en="Add New Type"
+                >
+                  إضافة نوع جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع الاحتياجات الإنسانية</th>
+                        <th>اسم نوع الاحتياجات الإنسانية</th>
+                        <th>اسم نوع الاحتياجات الإنسانية باللغة العربية</th>
+                        <th>الفعالية العمرانية القطاعية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="humanNeedsTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Urban Classifications Modal -->
+        <div
+          class="modal fade"
+          id="urbanClassificationsModal"
+          tabindex="-1"
+          aria-labelledby="urbanClassificationsModalLabel"
+          aria-hidden="true"
+          data-table="urbanClassifications"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="urbanClassificationsModalLabel"
+                  data-ar="التصنيفات العمرانية"
+                  data-en="Urban Classifications"
+                >
+                  التصنيفات العمرانية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('urbanClassifications')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف التصنيف العمراني</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="urbanClassificationsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Administrative Classifications Modal -->
+        <div
+          class="modal fade"
+          id="administrativeClassificationsModal"
+          tabindex="-1"
+          aria-labelledby="administrativeClassificationsModalLabel"
+          aria-hidden="true"
+          data-table="administrativeClassifications"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="administrativeClassificationsModalLabel"
+                  data-ar="التصنيفات الإدارية"
+                  data-en="Administrative Classifications"
+                >
+                  التصنيفات الإدارية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('administrativeClassifications')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف التصنيف الإداري</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="administrativeClassificationsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transportation Mobility Types Modal -->
+        <div
+          class="modal fade"
+          id="transportationMobilityTypesModal"
+          tabindex="-1"
+          aria-labelledby="transportationMobilityTypesModalLabel"
+          aria-hidden="true"
+          data-table="transportationMobilityTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="transportationMobilityTypesModalLabel"
+                  data-ar="أقسام النقل والتنقل"
+                  data-en="Transportation and Mobility Sections"
+                >
+                  أقسام النقل والتنقل
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('transportationMobilityTypes')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف قسم النقل والتنقل</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="transportationMobilityTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobility Centers Types Modal -->
+        <div
+          class="modal fade"
+          id="mobilityCentersTypesModal"
+          tabindex="-1"
+          aria-labelledby="mobilityCentersTypesModalLabel"
+          aria-hidden="true"
+          data-table="mobilityCentersTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="mobilityCentersTypesModalLabel"
+                  data-ar="أنواع مراكز التنقل"
+                  data-en="Mobility Centers Types"
+                >
+                  أنواع مراكز التنقل
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('mobilityCentersTypes')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع مركز التنقل</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="mobilityCentersTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supplies Names Modal -->
+        <div
+          class="modal fade"
+          id="suppliesNamesModal"
+          tabindex="-1"
+          aria-labelledby="suppliesNamesModalLabel"
+          aria-hidden="true"
+          data-table="suppliesNames"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="suppliesNamesModalLabel"
+                  data-ar="أنواع المؤون والبضائع"
+                  data-en="Supplies and Goods Types"
+                >
+                  أنواع المؤون والبضائع
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('suppliesNames')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع المؤون والبضائع</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="suppliesNamesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operation Statuses Modal -->
+        <div
+          class="modal fade"
+          id="operationStatusesModal"
+          tabindex="-1"
+          aria-labelledby="operationStatusesModalLabel"
+          aria-hidden="true"
+          data-table="operationStatuses"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="operationStatusesModalLabel"
+                  data-ar="حالات التشغيل"
+                  data-en="Operation Statuses"
+                >
+                  حالات التشغيل
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('operationStatuses')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف حالة التشغيل</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="operationStatusesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Health Service Facilities Modal -->
+        <div
+          class="modal fade"
+          id="healthServiceFacilitiesModal"
+          tabindex="-1"
+          aria-labelledby="healthServiceFacilitiesModalLabel"
+          aria-hidden="true"
+          data-table="healthServiceFacilities"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="healthServiceFacilitiesModalLabel"
+                  data-ar="مرافق الخدمة الصحية"
+                  data-en="Health Service Facilities"
+                >
+                  مرافق الخدمة الصحية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('healthServiceFacilities')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف مرفق الخدمة الصحية</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="healthServiceFacilitiesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Availability Statuses Modal -->
+        <div
+          class="modal fade"
+          id="availabilityStatusesModal"
+          tabindex="-1"
+          aria-labelledby="availabilityStatusesModalLabel"
+          aria-hidden="true"
+          data-table="availabilityStatuses"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="availabilityStatusesModalLabel"
+                  data-ar="واقع الكادر التشغيلي / المستهلكات"
+                  data-en="Operational Staff / Consumables Reality"
+                >
+                  واقع الكادر التشغيلي / المستهلكات
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('availabilityStatuses')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف واقع الكادر التشغيلي / المستهلكات</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="availabilityStatusesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Infrastructure Facilities Modal -->
+        <div
+          class="modal fade"
+          id="infrastructureFacilitiesModal"
+          tabindex="-1"
+          aria-labelledby="infrastructureFacilitiesModalLabel"
+          aria-hidden="true"
+          data-table="infrastructureFacilities"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="infrastructureFacilitiesModalLabel"
+                  data-ar="مرافق البنية التحتية"
+                  data-en="Infrastructure Facilities"
+                >
+                  مرافق البنية التحتية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('infrastructureFacilities')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف مرفق البنية التحتية</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="infrastructureFacilitiesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Administrative Services Names Modal -->
+        <div
+          class="modal fade"
+          id="administrativeServicesNamesModal"
+          tabindex="-1"
+          aria-labelledby="administrativeServicesNamesModalLabel"
+          aria-hidden="true"
+          data-table="administrativeServicesNames"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="administrativeServicesNamesModalLabel"
+                  data-ar="أنواع الخدمات الإدارية"
+                  data-en="Administrative Services Types"
+                >
+                  أنواع الخدمات الإدارية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('administrativeServicesNames')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع الخدمة الإدارية</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="administrativeServicesNamesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Services Names Modal -->
+        <div
+          class="modal fade"
+          id="otherServicesNamesModal"
+          tabindex="-1"
+          aria-labelledby="otherServicesNamesModalLabel"
+          aria-hidden="true"
+          data-table="otherServicesNames"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="otherServicesNamesModalLabel"
+                  data-ar="الخدمات الإدارية"
+                  data-en="Administrative Services"
+                >
+                  الخدمات الإدارية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('otherServicesNames')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف الخدمة الإدارية</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="otherServicesNamesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Facility Types Modal -->
+        <div
+          class="modal fade"
+          id="facilityTypesModal"
+          tabindex="-1"
+          aria-labelledby="facilityTypesModalLabel"
+          aria-hidden="true"
+          data-table="facilityTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="facilityTypesModalLabel"
+                  data-ar="أنواع المرافق"
+                  data-en="Facility Types"
+                >
+                  أنواع المرافق
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('facilityTypes')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع المرفق</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="facilityTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Participation Types Modal -->
+        <div
+          class="modal fade"
+          id="participationTypesModal"
+          tabindex="-1"
+          aria-labelledby="participationTypesModalLabel"
+          aria-hidden="true"
+          data-table="participationTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="participationTypesModalLabel"
+                  data-ar="أنواع المشاركة"
+                  data-en="Participation Types"
+                >
+                  أنواع المشاركة
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('participationTypes')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع المشاركة</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="participationTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Potential Partners Modal -->
+        <div
+          class="modal fade"
+          id="potentialPartnersModal"
+          tabindex="-1"
+          aria-labelledby="potentialPartnersModalLabel"
+          aria-hidden="true"
+          data-table="potentialPartners"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="potentialPartnersModalLabel"
+                  data-ar="الشركاء المحتملين للوحدات الإدارية"
+                  data-en="Potential Partners for Administrative Units"
+                >
+                  الشركاء المحتملين للوحدات الإدارية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('potentialPartners')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف الشريك المحتمل للوحدات الإدارية</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="potentialPartnersTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market Types Modal -->
+        <div
+          class="modal fade"
+          id="marketTypesModal"
+          tabindex="-1"
+          aria-labelledby="marketTypesModalLabel"
+          aria-hidden="true"
+          data-table="marketTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="marketTypesModalLabel"
+                  data-ar="أنواع الأسواق"
+                  data-en="Market Types"
+                >
+                  أنواع الأسواق
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('marketTypes')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع السوق</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="marketTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Random Locations Modal -->
+        <div
+          class="modal fade"
+          id="randomLocationsModal"
+          tabindex="-1"
+          aria-labelledby="randomLocationsModalLabel"
+          aria-hidden="true"
+          data-table="randomLocations"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="randomLocationsModalLabel"
+                  data-ar="المواقع العشوائية"
+                  data-en="Random Locations"
+                >
+                  المواقع العشوائية
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('randomLocations')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف الموقع العشوائي</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="randomLocationsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Street Cleanliness Levels Modal -->
+        <div
+          class="modal fade"
+          id="streetCleanlinessLevelsModal"
+          tabindex="-1"
+          aria-labelledby="streetCleanlinessLevelsModalLabel"
+          aria-hidden="true"
+          data-table="streetCleanlinessLevels"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="streetCleanlinessLevelsModalLabel"
+                  data-ar="مستويات نظافة الشوارع"
+                  data-en="Street Cleanliness Levels"
+                >
+                  مستويات نظافة الشوارع
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('streetCleanlinessLevels')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف مستوى نظافة الشارع</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="streetCleanlinessLevelsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insect Controls Modal -->
+        <div
+          class="modal fade"
+          id="insectControlsModal"
+          tabindex="-1"
+          aria-labelledby="insectControlsModalLabel"
+          aria-hidden="true"
+          data-table="insectControls"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="insectControlsModalLabel"
+                  data-ar="أنشطة مكافحة الحشرات والقوارض"
+                  data-en="Insect and Rodent Control Activities"
+                >
+                  أنشطة مكافحة الحشرات والقوارض
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('insectControls')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف أنشطة مكافحة الحشرات والقوارض</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="insectControlsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rubble Removals Modal -->
+        <div
+          class="modal fade"
+          id="rubbleRemovalsModal"
+          tabindex="-1"
+          aria-labelledby="rubbleRemovalsModalLabel"
+          aria-hidden="true"
+          data-table="rubbleRemovals"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="rubbleRemovalsModalLabel"
+                  data-ar="إزالة الأنقاض"
+                  data-en="Rubble Removals"
+                >
+                  إزالة الأنقاض
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('rubbleRemovals')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف إزالة الأنقاض</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>القيمة العمرانية المركبة</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="rubbleRemovalsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CommitteeRoles Modal -->
+        <div
+          class="modal fade"
+          id="committeeRolesModal"
+          tabindex="-1"
+          aria-labelledby="committeeRolesModalLabel"
+          aria-hidden="true"
+          data-table="committeeRoles"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="committeeRolesModalLabel"
+                  data-ar="أدوار اللجنة"
+                  data-en="Committee Roles"
+                >
+                  أدوار اللجنة
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('committeeRoles')"
+                  data-ar="إضافة دور جديد"
+                  data-en="Add New Role"
+                >
+                  إضافة دور جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>اسم الدور</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="committeeRolesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CoordinationType Modal -->
+        <div
+          class="modal fade"
+          id="coordinationTypeModal"
+          tabindex="-1"
+          aria-labelledby="coordinationTypeModalLabel"
+          aria-hidden="true"
+          data-table="coordinationType"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="coordinationTypeModalLabel"
+                  data-ar="أنواع التنسيق"
+                  data-en="Coordination Types"
+                >
+                  أنواع التنسيق
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('coordinationType')"
+                  data-ar="إضافة نوع جديد"
+                  data-en="Add New Type"
+                >
+                  إضافة نوع جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>اسم نوع التنسيق</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="coordinationTypeTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project Types Modal -->
+        <div
+          class="modal fade"
+          id="projectTypesModal"
+          tabindex="-1"
+          aria-labelledby="projectTypesModalLabel"
+          aria-hidden="true"
+          data-table="projectTypes"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="projectTypesModalLabel"
+                  data-ar="أنواع المشاريع"
+                  data-en="Project Types"
+                >
+                  أنواع المشاريع
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('projectTypes')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف نوع المشروع</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="projectTypesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project Statuses Modal -->
+        <div
+          class="modal fade"
+          id="projectStatusesModal"
+          tabindex="-1"
+          aria-labelledby="projectStatusesModalLabel"
+          aria-hidden="true"
+          data-table="projectStatuses"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="projectStatusesModalLabel"
+                  data-ar="حالات المشاريع"
+                  data-en="Project Statuses"
+                >
+                  حالات المشاريع
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('projectStatuses')"
+                  data-ar="إضافة حالة جديدة"
+                  data-en="Add New Status"
+                >
+                  إضافة حالة جديدة
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف حالة المشروع</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="projectStatusesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project Names Modal -->
+        <div
+          class="modal fade"
+          id="projectNamesModal"
+          tabindex="-1"
+          aria-labelledby="projectNamesModalLabel"
+          aria-hidden="true"
+          data-table="projectNames"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="projectNamesModalLabel"
+                  data-ar="أسماء المشاريع"
+                  data-en="Project Names"
+                >
+                  أسماء المشاريع
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('projectNames')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف اسم المشروع</th>
+                        <th>الاسم بالإنجليزية</th>
+                        <th>الاسم بالعربية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="projectNamesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Need Items Modal -->
+        <div
+          class="modal fade"
+          id="needItemsModal"
+          tabindex="-1"
+          aria-labelledby="needItemsModalLabel"
+          aria-hidden="true"
+          data-table="needItems"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="needItemsModalLabel"
+                  data-ar="عناصر الاحتياج"
+                  data-en="Need Items"
+                >
+                  عناصر الاحتياج
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('needItems')"
+                  data-ar="إضافة عنصر جديد"
+                  data-en="Add New Item"
+                >
+                  إضافة عنصر جديد
+                </button>
+                <div class="table-container">
+                  <table
+                    id="needItemsTable"
+                    class="table align-items-center mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          معرف عنصر الاحتياج
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          اسم عنصر الاحتياج
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          إجراءات
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="needItemsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Functionality Levels Modal -->
+        <div
+          class="modal fade"
+          id="functionalityLevelsModal"
+          tabindex="-1"
+          aria-labelledby="functionalityLevelsModalLabel"
+          aria-hidden="true"
+          data-table="functionalityLevels"
+          data-bs-backdrop="false"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5
+                  class="modal-title"
+                  id="functionalityLevelsModalLabel"
+                  data-ar="مستويات الضرر على الحي"
+                  data-en="Neighborhood Damage Levels"
+                >
+                  مستويات الضرر على الحي
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <button
+                  class="btn btn-primary btn-sm btn-add add-button"
+                  onclick="addRow('functionalityLevels')"
+                  data-ar="إضافة جديد"
+                  data-en="Add New"
+                >
+                  إضافة جديد
+                </button>
+                <div class="table-container">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>معرف مستوى الضرر على الحي</th>
+                        <th>اسم مستوى الضرر على الحي</th>
+                        <th>اسم مستوى الضرر على الحي باللغة العربية</th>
+                        <th>إجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="functionalityLevelsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="fixed-plugin">
+      <a
+        id="helpButton"
+        class="fixed-plugin-button text-dark position-fixed px-3 py-2"
+        style="bottom: 40px; z-index: 6000"
+      >
+        <i class="fa fa-question-circle py-2"> </i>
+      </a>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="libraries/js/popper-2.11.8.min.js"></script>
+    <script src="libraries/js/bootstrap-5.3.2.min.js"></script>
+    <script src="libraries/js/perfect-scrollbar-1.5.5.min.js"></script>
+    <script src="libraries/js/smooth-scrollbar-8.8.4.js"></script>
+    <script src="libraries/js/chart-4.4.1.umd.min.js"></script>
+
+    <!-- Language Toggle Script -->
+    <script>
+      // Language toggle functions are now handled in tables_data.js
+      function toggleLanguage() {
+        if (window.currentLang === "ar") {
+          window.switchLanguage("en");
+        } else {
+          window.switchLanguage("ar");
+        }
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById("menuDropdown");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Close menu when clicking outside
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("menuDropdown");
+        const menuBtn = document.getElementById("menuToggleBtn");
+        if (
+          menu &&
+          menuBtn &&
+          !menuBtn.contains(e.target) &&
+          !menu.contains(e.target)
+        ) {
+          menu.style.display = "none";
+        }
+      });
+
+      // Initialize page when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        const helpButton = document.getElementById("helpButton");
+        if (helpButton) {
+          helpButton.style.left = "20px";
+          helpButton.style.right = "auto";
+        }
+
+        let savedLanguage;
+        try {
+          savedLanguage = localStorage.getItem("preferredLanguage");
+        } catch (error) {
+          console.error("Error retrieving language preference:", error);
+          savedLanguage = null;
+        }
+
+        const initialLang = savedLanguage || "ar";
+        if (window.switchLanguage) {
+          window.switchLanguage(initialLang);
+        }
+      });
+    </script>
+
+    <!--   Tables JS Files   -->
+    <script src="assets/js/tables_data.js"></script>
+  </body>
+</html>

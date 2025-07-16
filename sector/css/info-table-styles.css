@@ -1,0 +1,242 @@
+/* Styles for the new editable info tables */
+
+.info-table-container {
+  margin: 15px 0;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100vw;
+}
+
+.add-row-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.add-row-btn::before {
+  content: "+";
+  font-size: 1.2rem;
+}
+
+.add-row-btn:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+.info-table-editable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+  table-layout: fixed;
+}
+
+.info-table-editable th,
+.info-table-editable td {
+  border: 1px solid #e9ecef;
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  vertical-align: middle;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.info-table-editable th {
+  background-color: #4a5568;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.info-table-editable tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.info-table-editable tbody tr:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.info-table-editable .delete-row-btn {
+  background: transparent;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.info-table-editable .delete-row-btn:hover {
+  color: #a71d2a;
+  transform: scale(1.1);
+}
+
+.info-table-editable input,
+.info-table-editable select,
+.info-table-editable textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 4px;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+}
+
+.info-table-editable input:focus,
+.info-table-editable select:focus,
+.info-table-editable textarea:focus {
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+/* Improved responsive design */
+@media (max-width: 768px) {
+  .info-table-container {
+    margin: 10px 0;
+    border-radius: 6px;
+  }
+
+  .add-row-btn {
+    width: 100%;
+    padding: 10px 16px !important;
+    font-size: 15px !important;
+  }
+
+  .info-table-editable {
+    font-size: 13px;
+  }
+
+  .info-table-editable th,
+  .info-table-editable td {
+    padding: 6px 8px !important;
+  }
+
+  .info-table-editable input[type="text"] {
+    font-size: 13px;
+  }
+
+  .delete-row-btn {
+    padding: 3px 6px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* Animation for new rows */
+@keyframes slideInRow {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-table-editable tbody tr:last-child {
+  animation: slideInRow 0.3s ease-out;
+}
+
+/* Custom scrollbar for horizontal scroll */
+.info-table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.info-table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.info-table-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.info-table-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Enhanced focus states */
+.info-table-editable input[type="text"]:focus {
+  outline: none;
+}
+
+/* Improved button styles */
+.add-row-btn i {
+  margin-left: 8px;
+}
+
+.delete-row-btn i {
+  pointer-events: none;
+}
+
+/* Table header enhancements */
+.info-table-editable th:first-child {
+  border-top-right-radius: 6px;
+}
+
+.info-table-editable th:last-child {
+  border-top-left-radius: 6px;
+}
+
+/* Success feedback for saved changes */
+.info-table-editable input.saved {
+  background-color: #d4edda !important;
+  border-color: #28a745 !important;
+}
+
+/* Error feedback for validation issues */
+.info-table-editable input.error {
+  background-color: #f8d7da !important;
+  border-color: #dc3545 !important;
+}
+
+/* Loading state */
+.info-table-container.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.info-table-container.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
